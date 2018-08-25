@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		63300015213125E100A3FAAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300014213125E100A3FAAC /* AppDelegate.swift */; };
+		63300017213125E100A3FAAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300016213125E100A3FAAC /* ViewController.swift */; };
+		6330001A213125E100A3FAAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63300018213125E100A3FAAC /* Main.storyboard */; };
+		6330001C213125E400A3FAAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6330001B213125E400A3FAAC /* Assets.xcassets */; };
+		6330001F213125E400A3FAAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6330001D213125E400A3FAAC /* LaunchScreen.storyboard */; };
+		6330002A213125E400A3FAAC /* jibun_dictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300029213125E400A3FAAC /* jibun_dictionaryTests.swift */; };
+		63300035213125E400A3FAAC /* jibun_dictionaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300034213125E400A3FAAC /* jibun_dictionaryUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		63300026213125E400A3FAAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63300009213125E100A3FAAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63300010213125E100A3FAAC;
+			remoteInfo = "jibun-dictionary";
+		};
+		63300031213125E400A3FAAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63300009213125E100A3FAAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63300010213125E100A3FAAC;
+			remoteInfo = "jibun-dictionary";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		63300011213125E100A3FAAC /* jibun-dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jibun-dictionary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63300014213125E100A3FAAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		63300016213125E100A3FAAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		63300019213125E100A3FAAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6330001B213125E400A3FAAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6330001E213125E400A3FAAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		63300020213125E400A3FAAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63300025213125E400A3FAAC /* jibun-dictionaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "jibun-dictionaryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63300029213125E400A3FAAC /* jibun_dictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jibun_dictionaryTests.swift; sourceTree = "<group>"; };
+		6330002B213125E400A3FAAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63300030213125E400A3FAAC /* jibun-dictionaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "jibun-dictionaryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63300034213125E400A3FAAC /* jibun_dictionaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jibun_dictionaryUITests.swift; sourceTree = "<group>"; };
+		63300036213125E400A3FAAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6330000E213125E100A3FAAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63300022213125E400A3FAAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6330002D213125E400A3FAAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63300008213125E100A3FAAC = {
+			isa = PBXGroup;
+			children = (
+				63300013213125E100A3FAAC /* jibun-dictionary */,
+				63300028213125E400A3FAAC /* jibun-dictionaryTests */,
+				63300033213125E400A3FAAC /* jibun-dictionaryUITests */,
+				63300012213125E100A3FAAC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		63300012213125E100A3FAAC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63300011213125E100A3FAAC /* jibun-dictionary.app */,
+				63300025213125E400A3FAAC /* jibun-dictionaryTests.xctest */,
+				63300030213125E400A3FAAC /* jibun-dictionaryUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		63300013213125E100A3FAAC /* jibun-dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				63300014213125E100A3FAAC /* AppDelegate.swift */,
+				63300016213125E100A3FAAC /* ViewController.swift */,
+				63300018213125E100A3FAAC /* Main.storyboard */,
+				6330001B213125E400A3FAAC /* Assets.xcassets */,
+				6330001D213125E400A3FAAC /* LaunchScreen.storyboard */,
+				63300020213125E400A3FAAC /* Info.plist */,
+			);
+			path = "jibun-dictionary";
+			sourceTree = "<group>";
+		};
+		63300028213125E400A3FAAC /* jibun-dictionaryTests */ = {
+			isa = PBXGroup;
+			children = (
+				63300029213125E400A3FAAC /* jibun_dictionaryTests.swift */,
+				6330002B213125E400A3FAAC /* Info.plist */,
+			);
+			path = "jibun-dictionaryTests";
+			sourceTree = "<group>";
+		};
+		63300033213125E400A3FAAC /* jibun-dictionaryUITests */ = {
+			isa = PBXGroup;
+			children = (
+				63300034213125E400A3FAAC /* jibun_dictionaryUITests.swift */,
+				63300036213125E400A3FAAC /* Info.plist */,
+			);
+			path = "jibun-dictionaryUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		63300010213125E100A3FAAC /* jibun-dictionary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63300039213125E400A3FAAC /* Build configuration list for PBXNativeTarget "jibun-dictionary" */;
+			buildPhases = (
+				6330000D213125E100A3FAAC /* Sources */,
+				6330000E213125E100A3FAAC /* Frameworks */,
+				6330000F213125E100A3FAAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "jibun-dictionary";
+			productName = "jibun-dictionary";
+			productReference = 63300011213125E100A3FAAC /* jibun-dictionary.app */;
+			productType = "com.apple.product-type.application";
+		};
+		63300024213125E400A3FAAC /* jibun-dictionaryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6330003C213125E400A3FAAC /* Build configuration list for PBXNativeTarget "jibun-dictionaryTests" */;
+			buildPhases = (
+				63300021213125E400A3FAAC /* Sources */,
+				63300022213125E400A3FAAC /* Frameworks */,
+				63300023213125E400A3FAAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63300027213125E400A3FAAC /* PBXTargetDependency */,
+			);
+			name = "jibun-dictionaryTests";
+			productName = "jibun-dictionaryTests";
+			productReference = 63300025213125E400A3FAAC /* jibun-dictionaryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6330002F213125E400A3FAAC /* jibun-dictionaryUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6330003F213125E400A3FAAC /* Build configuration list for PBXNativeTarget "jibun-dictionaryUITests" */;
+			buildPhases = (
+				6330002C213125E400A3FAAC /* Sources */,
+				6330002D213125E400A3FAAC /* Frameworks */,
+				6330002E213125E400A3FAAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63300032213125E400A3FAAC /* PBXTargetDependency */,
+			);
+			name = "jibun-dictionaryUITests";
+			productName = "jibun-dictionaryUITests";
+			productReference = 63300030213125E400A3FAAC /* jibun-dictionaryUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		63300009213125E100A3FAAC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "村中　勇輝";
+				TargetAttributes = {
+					63300010213125E100A3FAAC = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					63300024213125E400A3FAAC = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 63300010213125E100A3FAAC;
+					};
+					6330002F213125E400A3FAAC = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 63300010213125E100A3FAAC;
+					};
+				};
+			};
+			buildConfigurationList = 6330000C213125E100A3FAAC /* Build configuration list for PBXProject "jibun-dictionary" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 63300008213125E100A3FAAC;
+			productRefGroup = 63300012213125E100A3FAAC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				63300010213125E100A3FAAC /* jibun-dictionary */,
+				63300024213125E400A3FAAC /* jibun-dictionaryTests */,
+				6330002F213125E400A3FAAC /* jibun-dictionaryUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6330000F213125E100A3FAAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6330001F213125E400A3FAAC /* LaunchScreen.storyboard in Resources */,
+				6330001C213125E400A3FAAC /* Assets.xcassets in Resources */,
+				6330001A213125E100A3FAAC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63300023213125E400A3FAAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6330002E213125E400A3FAAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6330000D213125E100A3FAAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63300017213125E100A3FAAC /* ViewController.swift in Sources */,
+				63300015213125E100A3FAAC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63300021213125E400A3FAAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6330002A213125E400A3FAAC /* jibun_dictionaryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6330002C213125E400A3FAAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63300035213125E400A3FAAC /* jibun_dictionaryUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		63300027213125E400A3FAAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63300010213125E100A3FAAC /* jibun-dictionary */;
+			targetProxy = 63300026213125E400A3FAAC /* PBXContainerItemProxy */;
+		};
+		63300032213125E400A3FAAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63300010213125E100A3FAAC /* jibun-dictionary */;
+			targetProxy = 63300031213125E400A3FAAC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		63300018213125E100A3FAAC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63300019213125E100A3FAAC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6330001D213125E400A3FAAC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6330001E213125E400A3FAAC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		63300037213125E400A3FAAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		63300038213125E400A3FAAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6330003A213125E400A3FAAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FEUJUQKYYF;
+				INFOPLIST_FILE = "jibun-dictionary/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.umeneri-yuuki.jibun-dictionary";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6330003B213125E400A3FAAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FEUJUQKYYF;
+				INFOPLIST_FILE = "jibun-dictionary/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.umeneri-yuuki.jibun-dictionary";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6330003D213125E400A3FAAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FEUJUQKYYF;
+				INFOPLIST_FILE = "jibun-dictionaryTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.umeneri-yuuki.jibun-dictionaryTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jibun-dictionary.app/jibun-dictionary";
+			};
+			name = Debug;
+		};
+		6330003E213125E400A3FAAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FEUJUQKYYF;
+				INFOPLIST_FILE = "jibun-dictionaryTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.umeneri-yuuki.jibun-dictionaryTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jibun-dictionary.app/jibun-dictionary";
+			};
+			name = Release;
+		};
+		63300040213125E400A3FAAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FEUJUQKYYF;
+				INFOPLIST_FILE = "jibun-dictionaryUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.umeneri-yuuki.jibun-dictionaryUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "jibun-dictionary";
+			};
+			name = Debug;
+		};
+		63300041213125E400A3FAAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FEUJUQKYYF;
+				INFOPLIST_FILE = "jibun-dictionaryUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.umeneri-yuuki.jibun-dictionaryUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "jibun-dictionary";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6330000C213125E100A3FAAC /* Build configuration list for PBXProject "jibun-dictionary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63300037213125E400A3FAAC /* Debug */,
+				63300038213125E400A3FAAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63300039213125E400A3FAAC /* Build configuration list for PBXNativeTarget "jibun-dictionary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6330003A213125E400A3FAAC /* Debug */,
+				6330003B213125E400A3FAAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6330003C213125E400A3FAAC /* Build configuration list for PBXNativeTarget "jibun-dictionaryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6330003D213125E400A3FAAC /* Debug */,
+				6330003E213125E400A3FAAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6330003F213125E400A3FAAC /* Build configuration list for PBXNativeTarget "jibun-dictionaryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63300040213125E400A3FAAC /* Debug */,
+				63300041213125E400A3FAAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 63300009213125E100A3FAAC /* Project object */;
+}
