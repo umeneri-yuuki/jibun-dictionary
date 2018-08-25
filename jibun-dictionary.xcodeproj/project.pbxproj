@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		63300015213125E100A3FAAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300014213125E100A3FAAC /* AppDelegate.swift */; };
-		63300017213125E100A3FAAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300016213125E100A3FAAC /* ViewController.swift */; };
 		6330001A213125E100A3FAAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63300018213125E100A3FAAC /* Main.storyboard */; };
 		6330001C213125E400A3FAAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6330001B213125E400A3FAAC /* Assets.xcassets */; };
 		6330001F213125E400A3FAAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6330001D213125E400A3FAAC /* LaunchScreen.storyboard */; };
 		6330002A213125E400A3FAAC /* jibun_dictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300029213125E400A3FAAC /* jibun_dictionaryTests.swift */; };
 		63300035213125E400A3FAAC /* jibun_dictionaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300034213125E400A3FAAC /* jibun_dictionaryUITests.swift */; };
+		63300045213134F500A3FAAC /* DictionaryListTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300044213134F400A3FAAC /* DictionaryListTableTableViewController.swift */; };
+		6330004A2131396D00A3FAAC /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633000492131396D00A3FAAC /* Word.swift */; };
+		6330005021313B5800A3FAAC /* myDic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330004F21313B5800A3FAAC /* myDic.swift */; };
+		6330005221313E6800A3FAAC /* DicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330005121313E6800A3FAAC /* DicList.swift */; };
+		6330005621313FC200A3FAAC /* WordListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330005521313FC200A3FAAC /* WordListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,6 @@
 /* Begin PBXFileReference section */
 		63300011213125E100A3FAAC /* jibun-dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jibun-dictionary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63300014213125E100A3FAAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		63300016213125E100A3FAAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		63300019213125E100A3FAAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6330001B213125E400A3FAAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6330001E213125E400A3FAAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +50,11 @@
 		63300030213125E400A3FAAC /* jibun-dictionaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "jibun-dictionaryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63300034213125E400A3FAAC /* jibun_dictionaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jibun_dictionaryUITests.swift; sourceTree = "<group>"; };
 		63300036213125E400A3FAAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63300044213134F400A3FAAC /* DictionaryListTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryListTableTableViewController.swift; sourceTree = "<group>"; };
+		633000492131396D00A3FAAC /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		6330004F21313B5800A3FAAC /* myDic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myDic.swift; sourceTree = "<group>"; };
+		6330005121313E6800A3FAAC /* DicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicList.swift; sourceTree = "<group>"; };
+		6330005521313FC200A3FAAC /* WordListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +105,10 @@
 		63300013213125E100A3FAAC /* jibun-dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				63300046213138CC00A3FAAC /* Model */,
+				63300047213138D500A3FAAC /* View */,
+				63300048213138DB00A3FAAC /* Controller */,
 				63300014213125E100A3FAAC /* AppDelegate.swift */,
-				63300016213125E100A3FAAC /* ViewController.swift */,
 				63300018213125E100A3FAAC /* Main.storyboard */,
 				6330001B213125E400A3FAAC /* Assets.xcassets */,
 				6330001D213125E400A3FAAC /* LaunchScreen.storyboard */,
@@ -123,6 +133,32 @@
 				63300036213125E400A3FAAC /* Info.plist */,
 			);
 			path = "jibun-dictionaryUITests";
+			sourceTree = "<group>";
+		};
+		63300046213138CC00A3FAAC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				633000492131396D00A3FAAC /* Word.swift */,
+				6330004F21313B5800A3FAAC /* myDic.swift */,
+				6330005121313E6800A3FAAC /* DicList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		63300047213138D500A3FAAC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63300048213138DB00A3FAAC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				63300044213134F400A3FAAC /* DictionaryListTableTableViewController.swift */,
+				6330005521313FC200A3FAAC /* WordListTableViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +292,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63300017213125E100A3FAAC /* ViewController.swift in Sources */,
+				6330005021313B5800A3FAAC /* myDic.swift in Sources */,
+				63300045213134F500A3FAAC /* DictionaryListTableTableViewController.swift in Sources */,
+				6330005221313E6800A3FAAC /* DicList.swift in Sources */,
 				63300015213125E100A3FAAC /* AppDelegate.swift in Sources */,
+				6330004A2131396D00A3FAAC /* Word.swift in Sources */,
+				6330005621313FC200A3FAAC /* WordListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
