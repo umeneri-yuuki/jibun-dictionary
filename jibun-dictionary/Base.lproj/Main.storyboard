@@ -34,12 +34,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="辞書リスト" id="B2y-hA-g0e"/>
                     <connections>
-                        <segue destination="nLw-fV-CnY" kind="presentation" identifier="toWordsList" id="JO5-Fk-7K4"/>
+                        <segue destination="wCm-gj-XQ8" kind="show" identifier="toWordsList" id="bfB-Nt-3aS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHf-ke-BYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460" y="-337.78110944527737"/>
+            <point key="canvasLocation" x="1390" y="-338"/>
         </scene>
         <!--単語リスト-->
         <scene sceneID="b2W-uE-shD">
@@ -50,7 +50,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="q3P-Zp-spk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="q3P-Zp-spk">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q3P-Zp-spk" id="Iax-tS-Zbe">
@@ -68,7 +68,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEp-cs-fgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460" y="401"/>
+            <point key="canvasLocation" x="2188" y="-338"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ztL-YG-m0F">
@@ -88,25 +88,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8an-OI-fbH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="520.79999999999995" y="-337.78110944527737"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="2oy-zK-A2i">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nLw-fV-CnY" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="drm-g4-9LY">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.74117647060000003" green="0.20392156859999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="wCm-gj-XQ8" kind="relationship" relationship="rootViewController" id="fRU-2W-tsJ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lT7-DG-t6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="521" y="401"/>
         </scene>
     </scenes>
 </document>

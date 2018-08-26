@@ -24,12 +24,7 @@ class WordListTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController!.navigationBar.tintColor = UIColor.black
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "戻る", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListTableViewController.close))
-    }
-    
-    @objc func close() {
-        self.dismiss(animated: true, completion: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,14 +41,16 @@ class WordListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return selectDic.words.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        
+        let word = self.selectDic.words[indexPath.row]
+        cell.textLabel!.text = word.wordtitle
+        cell.textLabel!.font = UIFont(name: "HirakakuProN-W3", size: 15)
 
         return cell
     }

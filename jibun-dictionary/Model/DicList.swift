@@ -15,9 +15,15 @@ class DicList: NSObject {
   func sampleDic() {
         for i in 0..<3 {
             let dic = myDic()
-            let word = Word()
-            word.wordtitle = "辞書\(i + 1)"
-            dic.words.append(word)
+            let word1 = Word()
+            word1.wordtitle = "ワード\(i + 1)"
+            dic.words.append(word1)
+            let word2 = Word()
+            word2.wordtitle = "ワード\(i + 2)"
+            dic.words.append(word2)
+            let word3 = Word()
+            word3.wordtitle = "ワード\(i + 3)"
+            dic.words.append(word3)
             dic.dictitle = "辞書\(i + 1)"
             self.dics.append(dic)
         }

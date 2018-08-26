@@ -11,6 +11,8 @@ import UIKit
 class DictionaryListTableTableViewController: UITableViewController {
     
     let mydiclist = DicList()
+    
+    var selectDic = myDic()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,21 +61,25 @@ class DictionaryListTableTableViewController: UITableViewController {
     // Cell が選択された場合
     override func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         
+        self.selectDic = self.mydiclist.dics[indexPath.row]
         
-        self.performSegue(withIdentifier: "toWordsList",sender:self)
-        //performSegue(withIdentifier: "toWordsList",sender:nil)
-        
+        performSegue(withIdentifier: "toWordsList",sender:nil)
+
     }
     
     // Segue 準備
-    /*
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toWordsList") {
+            // NavigationControllerの一番目のViewControllerが次の画面
+            let WLTVC = segue.destination as! WordListTableViewController
+            WLTVC.selectDic = self.selectDic
 
         }
     }
  
- */
+ 
+ 
  
  
     
