@@ -87,10 +87,9 @@ class DictionaryListTableTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toWordsList") {
-            let WLTVC = segue.destination as! WordListTableViewController
-            WLTVC.selectDic = self.selectDic
-            WLTVC.selectDicNum = self.selectDicNum
-
+            let WLVC = segue.destination as! WordListViewController
+            WLVC.selectDic = self.selectDic
+            WLVC.selectDicNum = self.selectDicNum
         }
     }
  

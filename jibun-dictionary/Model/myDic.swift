@@ -14,8 +14,9 @@ class myDic: NSObject, NSCoding{
     
     var words:[Word] = []
     
-    func addWordList(word: Word, row: Int){
+    func addWordList(word: Word,row: Int){
         self.words.append(word)
+        
         self.save(row: row)
     }
     
@@ -39,6 +40,7 @@ class myDic: NSObject, NSCoding{
     func fetchWordList(row: Int){
         if let loadedData = UserDefaults().data(forKey: String(row)) {
             words = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as! [Word]
+            print(words[words.count - 1].wordtitle)
         }
     }
 

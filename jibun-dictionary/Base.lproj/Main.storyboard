@@ -35,8 +35,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="辞書リスト" id="B2y-hA-g0e"/>
                     <connections>
-                        <segue destination="wCm-gj-XQ8" kind="show" identifier="toWordsList" id="bfB-Nt-3aS"/>
                         <segue destination="QzI-mi-ycf" kind="presentation" identifier="toNewDic" id="yyJ-gj-LQ6"/>
+                        <segue destination="Ntd-zN-vqe" kind="show" identifier="toWordsList" id="al1-Ei-635"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHf-ke-BYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,13 +151,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="単語リスト" id="nTm-wq-jgo"/>
-                    <connections>
-                        <segue destination="UV6-vS-NLO" kind="presentation" identifier="toNewWord" id="9Bi-Mb-VDS"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEp-cs-fgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2209" y="-339"/>
+            <point key="canvasLocation" x="2153" y="327"/>
         </scene>
         <!--Word List View Controller-->
         <scene sceneID="NhR-DB-Dy9">
@@ -166,13 +163,54 @@
                     <view key="view" contentMode="scaleToFill" id="G5g-a7-6yR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UNU-TC-ct8">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="ry2-AW-7S9">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ry2-AW-7S9" id="AD0-8H-gV5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vu0-xd-Bbl">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="wH5-xB-Jgd"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem systemItem="favorites" id="MLi-lW-LYy"/>
+                                    <tabBarItem systemItem="more" id="emW-BC-yIN"/>
+                                </items>
+                                <color key="barTintColor" red="0.74117647060000003" green="0.20392156859999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tabBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Vu0-xd-Bbl" firstAttribute="top" secondItem="UNU-TC-ct8" secondAttribute="bottom" id="Bpf-2h-hoG"/>
+                            <constraint firstItem="Vu0-xd-Bbl" firstAttribute="trailing" secondItem="di9-iM-N6P" secondAttribute="trailing" id="Uhx-Nf-AXg"/>
+                            <constraint firstItem="Vu0-xd-Bbl" firstAttribute="bottom" secondItem="di9-iM-N6P" secondAttribute="bottom" id="Xrr-7b-yZi"/>
+                            <constraint firstItem="UNU-TC-ct8" firstAttribute="top" secondItem="di9-iM-N6P" secondAttribute="top" id="goY-g0-MgC"/>
+                            <constraint firstItem="UNU-TC-ct8" firstAttribute="trailing" secondItem="di9-iM-N6P" secondAttribute="trailing" id="lMU-JZ-WgT"/>
+                            <constraint firstItem="UNU-TC-ct8" firstAttribute="leading" secondItem="di9-iM-N6P" secondAttribute="leading" id="nFf-B5-oEL"/>
+                            <constraint firstItem="Vu0-xd-Bbl" firstAttribute="leading" secondItem="di9-iM-N6P" secondAttribute="leading" id="uR5-zJ-1RB"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="di9-iM-N6P"/>
                     </view>
+                    <connections>
+                        <outlet property="TableView" destination="UNU-TC-ct8" id="wYS-53-54q"/>
+                        <segue destination="UV6-vS-NLO" kind="presentation" identifier="toNewWord" id="Ebh-1n-Ttv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4A-qu-txm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2993" y="-330"/>
+            <point key="canvasLocation" x="2992.8000000000002" y="-330.58470764617692"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ztL-YG-m0F">
@@ -229,7 +267,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGI-ct-iir" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2209" y="483"/>
+            <point key="canvasLocation" x="3175" y="516"/>
         </scene>
     </scenes>
 </document>

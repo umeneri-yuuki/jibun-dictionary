@@ -19,6 +19,9 @@ class NewWordViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(selectDic.dictitle)
+        print(selectDicNum)
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newWordtitle.delegate = self
@@ -46,6 +49,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate{
         } else {
             let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!)
             self.selectDic.addWordList(word: word, row: selectDicNum)
+            print(selectDic.words[selectDic.words.count - 1].wordtitle)
             self.dismiss(animated: true, completion: nil)
         }
     }
