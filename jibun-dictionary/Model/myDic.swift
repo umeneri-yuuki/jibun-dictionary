@@ -8,10 +8,24 @@
 
 import UIKit
 
-class myDic: NSObject {
+class myDic: NSObject, NSCoding{
     
-    var dictitle = ""
+    var dictitle: String!
     
     var words:[Word] = []
+    
+    init(dictitle: String) {
+        self.dictitle = dictitle
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.dictitle = aDecoder.decodeObject(forKey: "dictitle") as! String
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        if let dictitle = dictitle { aCoder.encode(dictitle, forKey: "dictitle") }
+    }
+
+    
 
 }

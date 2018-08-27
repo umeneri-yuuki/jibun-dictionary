@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,11 +36,47 @@
                     <navigationItem key="navigationItem" title="辞書リスト" id="B2y-hA-g0e"/>
                     <connections>
                         <segue destination="wCm-gj-XQ8" kind="show" identifier="toWordsList" id="bfB-Nt-3aS"/>
+                        <segue destination="QzI-mi-ycf" kind="presentation" identifier="toNewDic" id="yyJ-gj-LQ6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHf-ke-BYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1390" y="-338"/>
+            <point key="canvasLocation" x="1342" y="-338"/>
+        </scene>
+        <!--新規辞書作成-->
+        <scene sceneID="TGp-cT-xTD">
+            <objects>
+                <viewController id="WSn-5T-6MR" customClass="NewDicViewController" customModule="jibun_dictionary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f21-Qv-BBd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="新規辞書名を入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TQ7-9I-bni">
+                                <rect key="frame" x="16" y="136" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2Ax-ac-hJt"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TQ7-9I-bni" firstAttribute="leading" secondItem="Ydk-bg-ZRe" secondAttribute="leading" constant="16" id="7kW-Lk-7jo"/>
+                            <constraint firstItem="Ydk-bg-ZRe" firstAttribute="trailing" secondItem="TQ7-9I-bni" secondAttribute="trailing" constant="16" id="HLg-fS-9OZ"/>
+                            <constraint firstItem="TQ7-9I-bni" firstAttribute="top" secondItem="Ydk-bg-ZRe" secondAttribute="top" constant="72" id="hf6-VU-SgR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ydk-bg-ZRe"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="新規辞書作成" id="K95-ik-Zmc"/>
+                    <connections>
+                        <outlet property="newDicname" destination="TQ7-9I-bni" id="2XO-a1-DG8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ks-MB-83d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1341.5999999999999" y="1252.6236881559221"/>
         </scene>
         <!--単語リスト-->
         <scene sceneID="b2W-uE-shD">
@@ -68,7 +105,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEp-cs-fgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2188" y="-338"/>
+            <point key="canvasLocation" x="2210" y="-338"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ztL-YG-m0F">
@@ -88,6 +125,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8an-OI-fbH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="520.79999999999995" y="-337.78110944527737"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jey-T8-ZWJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QzI-mi-ycf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QUQ-Se-buZ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.74117647060000003" green="0.20392156859999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WSn-5T-6MR" kind="relationship" relationship="rootViewController" id="1rB-Mx-YpJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bLp-RR-8FL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1341.5999999999999" y="482.60869565217394"/>
         </scene>
     </scenes>
 </document>

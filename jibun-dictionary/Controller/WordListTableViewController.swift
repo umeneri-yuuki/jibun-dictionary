@@ -10,7 +10,7 @@ import UIKit
 
 class WordListTableViewController: UITableViewController {
     
-    var selectDic = myDic()
+    var selectDic = myDic(dictitle: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()

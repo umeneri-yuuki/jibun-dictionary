@@ -8,10 +8,30 @@
 
 import UIKit
 
-class DicList: NSObject {
-    
+class DicList: NSObject{
+   static let sharedInstance = DicList()
    var dics:[myDic] = []
     
+    func addDicList(dic: myDic){
+        self.dics.append(dic)
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: dics),forKey: "dics")
+        //self.save()
+       // let adddic = myDic(dictitle: dic.dictitle)
+    }
+   
+    
+    func fetchDicList(){
+        if let loadedData = UserDefaults().data(forKey: "dics") {
+            dics = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as! [myDic]
+        }
+    }
+ 
+    
+   // func save() {
+    //}
+    
+    
+/*
   func sampleDic() {
         for i in 0..<3 {
             let dic = myDic()
@@ -28,5 +48,6 @@ class DicList: NSObject {
             self.dics.append(dic)
         }
     }
+    */
 
 }

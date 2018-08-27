@@ -8,9 +8,24 @@
 
 import UIKit
 
-class Word: NSObject {
+class Word: NSObject, NSCoding{
     
-    var wordtitle = ""
-    //var wordmean = ""
+    var wordtitle: String!
+    var wordmean: String!
+    
+    init(wordtitle: String, wordmean: String) {
+        self.wordtitle = wordtitle
+        self.wordmean = wordmean
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.wordtitle = aDecoder.decodeObject(forKey: "wordtitle") as! String
+        self.wordmean = aDecoder.decodeObject(forKey: "wordmean") as! String
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        if let wordtitle = wordtitle { aCoder.encode(wordtitle, forKey: "wordtitle") }
+        if let wordmean = wordmean { aCoder.encode(wordmean, forKey: "wordmean") }
+    }
 
 }

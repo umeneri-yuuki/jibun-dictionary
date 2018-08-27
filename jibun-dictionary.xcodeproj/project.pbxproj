@@ -18,6 +18,7 @@
 		6330005021313B5800A3FAAC /* myDic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330004F21313B5800A3FAAC /* myDic.swift */; };
 		6330005221313E6800A3FAAC /* DicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330005121313E6800A3FAAC /* DicList.swift */; };
 		6330005621313FC200A3FAAC /* WordListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330005521313FC200A3FAAC /* WordListTableViewController.swift */; };
+		633000582132EC2800A3FAAC /* NewDicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633000572132EC2800A3FAAC /* NewDicViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		6330004F21313B5800A3FAAC /* myDic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myDic.swift; sourceTree = "<group>"; };
 		6330005121313E6800A3FAAC /* DicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicList.swift; sourceTree = "<group>"; };
 		6330005521313FC200A3FAAC /* WordListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListTableViewController.swift; sourceTree = "<group>"; };
+		633000572132EC2800A3FAAC /* NewDicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDicViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			children = (
 				63300044213134F400A3FAAC /* DictionaryListTableTableViewController.swift */,
 				6330005521313FC200A3FAAC /* WordListTableViewController.swift */,
+				633000572132EC2800A3FAAC /* NewDicViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				6330005221313E6800A3FAAC /* DicList.swift in Sources */,
 				63300015213125E100A3FAAC /* AppDelegate.swift in Sources */,
 				6330004A2131396D00A3FAAC /* Word.swift in Sources */,
+				633000582132EC2800A3FAAC /* NewDicViewController.swift in Sources */,
 				6330005621313FC200A3FAAC /* WordListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

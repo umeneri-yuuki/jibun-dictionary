@@ -10,20 +10,33 @@ import UIKit
 
 class DictionaryListTableTableViewController: UITableViewController {
     
-    let mydiclist = DicList()
+    var mydiclist = DicList.sharedInstance
+    //var mydiclist = DicList()
     
-    var selectDic = myDic()
+    var selectDic = myDic(dictitle: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mydiclist.sampleDic()
+       // self.mydiclist.sampleDic()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController!.navigationBar.tintColor = UIColor.black
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "新規作成", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListTableTableViewController.newDic))
+        self.tableView.reloadData()
+        mydiclist.fetchDicList()
+    }
+    
+    @objc func newDic() {
+        self.performSegue(withIdentifier: "toNewDic", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
