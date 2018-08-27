@@ -31,6 +31,7 @@ class DictionaryListTableTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "新規作成", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListTableTableViewController.newDic))
+        self.navigationItem.leftBarButtonItem = editButtonItem
         self.tableView.reloadData()
         mydiclist.fetchDicList()
     }
@@ -91,6 +92,25 @@ class DictionaryListTableTableViewController: UITableViewController {
         }
     }
  
+    //editボタンを押したときのセルの操作
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            self.mydiclist.dics.remove(at: indexPath.row)
+            self.mydiclist.save()
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+        default:
+            return
+        }
+    }
+    
+    //セルを移動する操作
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let dic = self.mydiclist.dics[sourceIndexPath.row]
+        self.mydiclist.dics.remove(at: sourceIndexPath.row)
+        self.mydiclist.dics.insert(dic, at: destinationIndexPath.row)
+        self.mydiclist.save()
+    }
  
  
  

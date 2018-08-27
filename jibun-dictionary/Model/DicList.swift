@@ -14,8 +14,8 @@ class DicList: NSObject{
     
     func addDicList(dic: myDic){
         self.dics.append(dic)
-        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: dics),forKey: "dics")
-        //self.save()
+        //UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: dics),forKey: "dics")
+        self.save()
        // let adddic = myDic(dictitle: dic.dictitle)
     }
    
@@ -27,8 +27,9 @@ class DicList: NSObject{
     }
  
     
-   // func save() {
-    //}
+    func save() {
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: dics),forKey: "dics")
+    }
     
     
 /*
