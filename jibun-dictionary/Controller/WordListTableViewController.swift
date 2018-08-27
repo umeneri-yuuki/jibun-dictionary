@@ -11,6 +11,7 @@ import UIKit
 class WordListTableViewController: UITableViewController {
     
     var selectDic = myDic(dictitle: "")
+    var selectDicNum = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +25,26 @@ class WordListTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController!.navigationBar.tintColor = UIColor.black
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "単語追加", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListTableViewController.newWord))
+        self.tableView.reloadData()
+        selectDic.fetchWordList(row: selectDicNum)
         
     }
+    
+    @objc func newWord() {
+        self.performSegue(withIdentifier: "toNewWord", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toNewWord") {
+            let nc = segue.destination as! UINavigationController
+            let NWVC = nc.topViewController as! NewWordViewController
+            NWVC.selectDic = self.selectDic
+            NWVC.selectDicNum = self.selectDicNum
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

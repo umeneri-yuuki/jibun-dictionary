@@ -14,6 +14,11 @@ class myDic: NSObject, NSCoding{
     
     var words:[Word] = []
     
+    func addWordList(word: Word, row: Int){
+        self.words.append(word)
+        self.save(row: row)
+    }
+    
     init(dictitle: String) {
         self.dictitle = dictitle
     }
@@ -24,6 +29,17 @@ class myDic: NSObject, NSCoding{
     
     func encode(with aCoder: NSCoder) {
         if let dictitle = dictitle { aCoder.encode(dictitle, forKey: "dictitle") }
+    }
+    
+    func save(row: Int) {
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: words),forKey: String(row))
+        
+    }
+    
+    func fetchWordList(row: Int){
+        if let loadedData = UserDefaults().data(forKey: String(row)) {
+            words = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as! [Word]
+        }
     }
 
     

@@ -14,6 +14,7 @@ class DictionaryListTableTableViewController: UITableViewController {
     //var mydiclist = DicList()
     
     var selectDic = myDic(dictitle: "")
+    var selectDicNum = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +77,7 @@ class DictionaryListTableTableViewController: UITableViewController {
     override func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         
         self.selectDic = self.mydiclist.dics[indexPath.row]
+        self.selectDicNum = indexPath.row
         
         performSegue(withIdentifier: "toWordsList",sender:nil)
 
@@ -85,9 +87,9 @@ class DictionaryListTableTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toWordsList") {
-            // NavigationControllerの一番目のViewControllerが次の画面
             let WLTVC = segue.destination as! WordListTableViewController
             WLTVC.selectDic = self.selectDic
+            WLTVC.selectDicNum = self.selectDicNum
 
         }
     }
