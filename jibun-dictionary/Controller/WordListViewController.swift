@@ -15,6 +15,9 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet weak var TableView: UITableView!
     
+    
+    @IBOutlet weak var WLVtabbar: UIToolbar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(selectDic.dictitle)
@@ -29,14 +32,36 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "単語追加", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.newWord))
+
+        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "単語追加", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.newWord))
+        self.WLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+        self.WLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
         self.TableView.reloadData()
         selectDic.fetchWordList(row: selectDicNum)
         
     }
+    @IBAction func tapAddWord(_ sender: UIBarButtonItem) {
+        self.newWord()
+    }
     
     @objc func newWord() {
         self.performSegue(withIdentifier: "toNewWord", sender: self)
+    }
+    @IBAction func tapWordEdit(_ sender: UIBarButtonItem) {
+        //編集モードにする
+        self.TableView.setEditing(true, animated: true)
+        //完了ボタンの追加
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.done))
+        
+    }
+    
+    
+    @objc func done() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
+        //編集モードを終わる
+        self.TableView.setEditing(false, animated: true)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -69,6 +94,25 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.textLabel!.font = UIFont(name: "HirakakuProN-W3", size: 15)
         
         return cell
+    }
+    
+    //編集中のセルの操作
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            self.selectDic.words.remove(at: indexPath.row)
+            self.selectDic.save(row: selectDicNum)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+        default:
+            return
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let dic = self.selectDic.words[sourceIndexPath.row]
+        self.selectDic.words.remove(at: sourceIndexPath.row)
+        self.selectDic.words.insert(dic, at: destinationIndexPath.row)
+        self.selectDic.save(row: selectDicNum)
     }
     
     

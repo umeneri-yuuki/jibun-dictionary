@@ -19,6 +19,24 @@ class DictionaryListTableTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        
+        if let appDomain = Bundle.main.bundleIdentifier,
+            let dic = UserDefaults.standard.persistentDomain(forName: appDomain) {
+            
+            for (key, value) in dic.sorted(by: { $0.0 < $1.0 }) {
+                print("- \(key) => \(value)")
+            }
+        }
+        /*
+        let userDefaults = UserDefaults.standard
+        //全て消す
+        if let domain = Bundle.main.bundleIdentifier {
+            userDefaults.removePersistentDomain(forName: domain)
+        }
+ */
+ 
+        
        // self.mydiclist.sampleDic()
 
         // Uncomment the following line to preserve selection between presentations
@@ -107,11 +125,33 @@ class DictionaryListTableTableViewController: UITableViewController {
     
     //セルを移動する操作
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+           //let userDefaults = UserDefaults.standard
+        
+        
+        if sourceIndexPath.row < destinationIndexPath.row {
+            
+            for row in sourceIndexPath.row + 1 ... destinationIndexPath.row {
+                self.mydiclist.dics[row].save(row: row - 1)
+            }
+            self.mydiclist.dics[sourceIndexPath.row].save(row: sourceIndexPath.row)
+        }else{
+            self.mydiclist.dics[sourceIndexPath.row].save(row: destinationIndexPath.row)
+            for row in destinationIndexPath.row ... sourceIndexPath.row - 1{
+                self.mydiclist.dics[row].save(row: row + 1)
+            }
+  
+        }
+        
+      
         let dic = self.mydiclist.dics[sourceIndexPath.row]
         self.mydiclist.dics.remove(at: sourceIndexPath.row)
         self.mydiclist.dics.insert(dic, at: destinationIndexPath.row)
         self.mydiclist.save()
+        
     }
+    
+
  
  
  
