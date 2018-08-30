@@ -10,8 +10,9 @@ import UIKit
 
 class WordListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
    
-    var selectDic = myDic(dictitle: "")
-    var selectDicNum = 0
+    var selectDic = myDic(dictitle: "",dicid: "")
+    //var selectDicNum = 0
+    var dicid = -1
 
     @IBOutlet weak var TableView: UITableView!
     
@@ -20,9 +21,10 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(selectDic.dictitle)
-        print(selectDicNum)
+        //print(selectDic.dictitle)
+        //print(selectDicNum)
        // print(selectDic.words[0])
+        print(dicid)
 
         // Do any additional setup after loading the view.
         TableView.delegate = self
@@ -37,7 +39,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.WLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         self.WLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
         self.TableView.reloadData()
-        selectDic.fetchWordList(row: selectDicNum)
+        selectDic.fetchWordList(row: dicid)
         
     }
     @IBAction func tapAddWord(_ sender: UIBarButtonItem) {
@@ -69,7 +71,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             let nc = segue.destination as! UINavigationController
             let NWVC = nc.topViewController as! NewWordViewController
             NWVC.selectDic = self.selectDic
-            NWVC.selectDicNum = self.selectDicNum
+            NWVC.dicid = self.dicid
         }
     }
     
@@ -101,7 +103,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         switch editingStyle {
         case .delete:
             self.selectDic.words.remove(at: indexPath.row)
-            self.selectDic.save(row: selectDicNum)
+            self.selectDic.save(row: dicid)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
         default:
             return
@@ -112,7 +114,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         let dic = self.selectDic.words[sourceIndexPath.row]
         self.selectDic.words.remove(at: sourceIndexPath.row)
         self.selectDic.words.insert(dic, at: destinationIndexPath.row)
-        self.selectDic.save(row: selectDicNum)
+        self.selectDic.save(row: dicid)
     }
     
     

@@ -13,14 +13,15 @@ class NewWordViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var newWordtitle: UITextField!
     @IBOutlet weak var newWordmean: UITextView!
     
-    var selectDic = myDic(dictitle: "")
+    var selectDic = myDic(dictitle: "",dicid: "")
     var selectDicNum = 0
+    var dicid = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print(selectDic.dictitle)
-        print(selectDicNum)
+        print(dicid)
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
@@ -48,7 +49,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate{
             self.present(alertView, animated: true, completion: nil)
         } else {
             let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!)
-            self.selectDic.addWordList(word: word, row: selectDicNum)
+            self.selectDic.addWordList(word: word, row: self.dicid)
             print(selectDic.words[selectDic.words.count - 1].wordtitle)
             self.dismiss(animated: true, completion: nil)
         }

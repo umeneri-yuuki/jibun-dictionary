@@ -12,6 +12,8 @@ class myDic: NSObject, NSCoding{
     
     var dictitle: String!
     
+    var dicid: String!
+    
     var words:[Word] = []
     
     func addWordList(word: Word,row: Int){
@@ -20,16 +22,19 @@ class myDic: NSObject, NSCoding{
         self.save(row: row)
     }
     
-    init(dictitle: String) {
+    init(dictitle: String, dicid: String) {
         self.dictitle = dictitle
+        self.dicid = dicid
     }
     
     required init?(coder aDecoder: NSCoder) {
         self.dictitle = aDecoder.decodeObject(forKey: "dictitle") as! String
+        self.dicid = aDecoder.decodeObject(forKey: "dicid") as! String
     }
     
     func encode(with aCoder: NSCoder) {
         if let dictitle = dictitle { aCoder.encode(dictitle, forKey: "dictitle") }
+        if let dicid = dicid { aCoder.encode(dicid, forKey: "dicid") }
     }
     
     func save(row: Int) {
