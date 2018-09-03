@@ -45,7 +45,10 @@ class myDic: NSObject, NSCoding{
     func fetchWordList(row: Int){
         if let loadedData = UserDefaults().data(forKey: String(row)) {
             words = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as! [Word]
-            print(words[words.count - 1].wordtitle)
+            for title in words{
+                print(title.wordtitle)
+            }
+           // print(words[words.count - 1].wordtitle)
         }
     }
 

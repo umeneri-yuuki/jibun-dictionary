@@ -19,7 +19,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var TableView: UITableView!
     
     
-    @IBOutlet weak var WLVtabbar: UIToolbar!
+    //@IBOutlet weak var WLVtabbar: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,21 +37,24 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
 
-        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "単語追加", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.newWord))
-        self.WLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
-        self.WLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.tapWordEdit))
+       // self.WLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+        //self.WLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
         self.TableView.reloadData()
         selectDic.fetchWordList(row: dicid)
+        self.navigationItem.title = selectDic.dictitle
         
     }
-    @IBAction func tapAddWord(_ sender: UIBarButtonItem) {
+    /*
+    @objc func tapAddWord(_ sender: UIBarButtonItem) {
         self.newWord()
     }
+ */
     
     @objc func newWord() {
         self.performSegue(withIdentifier: "toNewWord", sender: self)
     }
-    @IBAction func tapWordEdit(_ sender: UIBarButtonItem) {
+    @objc func tapWordEdit(_ sender: UIBarButtonItem) {
         //編集モードにする
         self.TableView.setEditing(true, animated: true)
         //完了ボタンの追加
@@ -61,8 +64,9 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     @objc func done() {
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
+        //self.navigationItem.rightBarButtonItem?.isEnabled = false
+        //self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.tapWordEdit))
         //編集モードを終わる
         self.TableView.setEditing(false, animated: true)
         
