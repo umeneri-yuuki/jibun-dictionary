@@ -10,39 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--辞書リスト-->
-        <scene sceneID="85N-bG-JUv">
-            <objects>
-                <tableViewController storyboardIdentifier="DictionaryListTableTableViewController" id="5wE-zw-AVf" customClass="DictionaryListTableTableViewController" customModule="jibun_dictionary" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yl7-fA-9K1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="ck8-cB-XjC">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ck8-cB-XjC" id="ecD-jo-OaU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="5wE-zw-AVf" id="5Wr-hJ-FcD"/>
-                            <outlet property="delegate" destination="5wE-zw-AVf" id="ZCS-Lt-rCk"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="辞書リスト" id="B2y-hA-g0e"/>
-                    <connections>
-                        <segue destination="QzI-mi-ycf" kind="presentation" identifier="toNewDic" id="yyJ-gj-LQ6"/>
-                        <segue destination="Ntd-zN-vqe" kind="show" identifier="toWordsList" id="al1-Ei-635"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WHf-ke-BYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1342" y="-338"/>
-        </scene>
         <!--新規辞書作成-->
         <scene sceneID="TGp-cT-xTD">
             <objects>
@@ -76,7 +43,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ks-MB-83d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1341.5999999999999" y="1252.6236881559221"/>
+            <point key="canvasLocation" x="2281" y="1253"/>
         </scene>
         <!--新規単語追加-->
         <scene sceneID="bQQ-El-J4V">
@@ -125,7 +92,65 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qsf-dD-Uf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2246" y="1253"/>
+            <point key="canvasLocation" x="3185" y="1253"/>
+        </scene>
+        <!--辞書一覧-->
+        <scene sceneID="5tz-T3-lsO">
+            <objects>
+                <viewController id="RHL-aA-soV" customClass="DictionaryListViewController" customModule="jibun_dictionary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IQZ-As-hUg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8a7-f8-PIJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="cvx-Na-pBK">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cvx-Na-pBK" id="VqD-nm-VMO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0W2-9m-CVc">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.74117647060000003" green="0.20392156859999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <barButtonItem title="新規作成" width="189" id="QjG-OY-ua1">
+                                        <connections>
+                                            <action selector="tapAddDic:" destination="RHL-aA-soV" id="f2o-Zs-2kC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="編集" width="186" id="EbW-8S-cLN">
+                                        <connections>
+                                            <action selector="tapDicListEdit:" destination="RHL-aA-soV" id="8gM-Oi-kvo"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </toolbar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1gR-t2-oeB"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="辞書一覧" id="4IA-gV-w4v"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="DLVtabbar" destination="0W2-9m-CVc" id="s8Y-AY-dsU"/>
+                        <outlet property="TableView" destination="8a7-f8-PIJ" id="5lC-wk-roI"/>
+                        <segue destination="QzI-mi-ycf" kind="presentation" identifier="toNewDic" id="3OO-Mp-t36"/>
+                        <segue destination="Ntd-zN-vqe" kind="show" identifier="toWordsList" id="Ub1-I6-gSh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0I-Dg-gBv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2280.8000000000002" y="-340.47976011994007"/>
         </scene>
         <!--Word List View Controller-->
         <scene sceneID="NhR-DB-Dy9">
@@ -135,8 +160,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UNU-TC-ct8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UNU-TC-ct8">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="ry2-AW-7S9">
@@ -149,12 +175,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nma-RQ-tDV">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nma-RQ-tDV">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.74117647060000003" green="0.20392156859999999" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="GkO-Zz-FJk"/>
-                                </constraints>
                                 <items>
                                     <barButtonItem title="編集" width="186" id="Ytq-3t-jnm">
                                         <connections>
@@ -170,15 +194,6 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="UNU-TC-ct8" firstAttribute="trailing" secondItem="di9-iM-N6P" secondAttribute="trailing" id="GWg-Zq-10O"/>
-                            <constraint firstAttribute="trailing" secondItem="nma-RQ-tDV" secondAttribute="trailing" id="JCF-7v-5MW"/>
-                            <constraint firstItem="UNU-TC-ct8" firstAttribute="top" secondItem="di9-iM-N6P" secondAttribute="top" id="e9N-6q-Bxz"/>
-                            <constraint firstItem="UNU-TC-ct8" firstAttribute="leading" secondItem="di9-iM-N6P" secondAttribute="leading" id="euv-W1-AG7"/>
-                            <constraint firstItem="nma-RQ-tDV" firstAttribute="top" secondItem="UNU-TC-ct8" secondAttribute="bottom" id="s8m-Ij-xij"/>
-                            <constraint firstItem="nma-RQ-tDV" firstAttribute="leading" secondItem="G5g-a7-6yR" secondAttribute="leading" id="tVQ-y7-BXK"/>
-                            <constraint firstAttribute="bottom" secondItem="nma-RQ-tDV" secondAttribute="bottom" id="zHX-aK-Ssc"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="di9-iM-N6P"/>
                     </view>
                     <toolbarItems/>
@@ -187,16 +202,53 @@
                         <outlet property="TableView" destination="UNU-TC-ct8" id="wYS-53-54q"/>
                         <outlet property="WLVtabbar" destination="nma-RQ-tDV" id="UgS-rW-mdG"/>
                         <segue destination="UV6-vS-NLO" kind="presentation" identifier="toNewWord" id="Ebh-1n-Ttv"/>
+                        <segue destination="dPU-ZX-hCL" kind="show" identifier="toWordDetail" id="wOF-L7-6Zg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4A-qu-txm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2245.5999999999999" y="-338.68065967016497"/>
+            <point key="canvasLocation" x="3184.8000000000002" y="-339.58020989505252"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Word Detail View Controller-->
+        <scene sceneID="1AR-xd-oMD">
+            <objects>
+                <viewController id="dPU-ZX-hCL" customClass="WordDetailViewController" customModule="jibun_dictionary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zlw-i8-qWP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHJ-QA-jnF">
+                                <rect key="frame" x="16" y="64" width="343" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0nq-JL-dTy">
+                                <rect key="frame" x="16" y="162" width="343" height="461"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ia5-42-A7E"/>
+                    </view>
+                    <connections>
+                        <outlet property="WordMean" destination="0nq-JL-dTy" id="uTb-7w-9NF"/>
+                        <outlet property="WordName" destination="iHJ-QA-jnF" id="Ql0-zx-LCJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SaO-li-APx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4076" y="-338.68065967016497"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="ztL-YG-m0F">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vKL-Kr-4ei" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Ixu-h3-asM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B15-eA-cbO">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -205,12 +257,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="5wE-zw-AVf" kind="relationship" relationship="rootViewController" id="7S8-DO-cF1"/>
+                        <segue destination="RHL-aA-soV" kind="relationship" relationship="rootViewController" id="OLE-d2-WfY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8an-OI-fbH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="520.79999999999995" y="-337.78110944527737"/>
+            <point key="canvasLocation" x="1460" y="-337.78110944527737"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jey-T8-ZWJ">
@@ -229,7 +281,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLp-RR-8FL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1341.5999999999999" y="482.60869565217394"/>
+            <point key="canvasLocation" x="2281" y="483"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Z5-uP-gmV">
@@ -248,7 +300,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGI-ct-iir" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2246" y="483"/>
+            <point key="canvasLocation" x="3185" y="483"/>
         </scene>
     </scenes>
 </document>

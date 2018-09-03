@@ -23,6 +23,10 @@ class NewWordViewController: UIViewController, UITextFieldDelegate{
         print(selectDic.dictitle)
         print(dicid)
         
+        newWordmean.layer.cornerRadius = 5
+        newWordmean.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
+        newWordmean.layer.borderWidth = 1
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newWordtitle.delegate = self

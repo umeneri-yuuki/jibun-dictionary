@@ -13,6 +13,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     var selectDic = myDic(dictitle: "",dicid: "")
     //var selectDicNum = 0
     var dicid = -1
+    
+    var selectrow = -1
 
     @IBOutlet weak var TableView: UITableView!
     
@@ -73,6 +75,13 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             NWVC.selectDic = self.selectDic
             NWVC.dicid = self.dicid
         }
+        if (segue.identifier == "toWordDetail") {
+            let WDVC = segue.destination as! WordDetailViewController
+            WDVC.dicid = self.dicid
+            WDVC.selectrow = self.selectrow
+            //WLVC.selectDic = self.selectDic
+            //WLVC.selectDicNum = self.selectDicNum
+        }
     }
     
 
@@ -103,11 +112,28 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         switch editingStyle {
         case .delete:
             self.selectDic.words.remove(at: indexPath.row)
-            self.selectDic.save(row: dicid)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+            if self.selectDic.words.isEmpty == false {
+            self.selectDic.save(row: dicid)
+            } else {
+                let userDefaults = UserDefaults.standard
+                userDefaults.removeObject(forKey: String(dicid))
+            }
         default:
             return
         }
+    }
+    
+    func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
+        
+        // self.selectDic = self.mydiclist.dics[indexPath.row]
+        self.selectrow = indexPath.row
+        // self.dicid = Int(self.selectDic.dicid)!
+        //print("indexpath:\(indexPath.row)")
+        //print("id:\(self.dicid)")
+        
+        performSegue(withIdentifier: "toWordDetail",sender:nil)
+        
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
