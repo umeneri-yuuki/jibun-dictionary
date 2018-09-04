@@ -31,6 +31,9 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         // Do any additional setup after loading the view.
         TableView.delegate = self
         TableView.dataSource = self
+        tabBarController?.tabBar.isHidden = true
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,12 +42,15 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
 
         let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
         let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
-        self.navigationItem.setRightBarButtonItems([wordlistaddbutton,wordlisteditbutton], animated: true)
+        self.navigationItem.setRightBarButtonItems([wordlisteditbutton,wordlistaddbutton], animated: true)
        // self.WLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         //self.WLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
         self.TableView.reloadData()
         selectDic.fetchWordList(row: dicid)
         self.navigationItem.title = selectDic.dictitle
+        
+        //self.navigationController?.navigationBar.alpha = 1
+        navigationController?.hidesBarsOnTap = false
         
     }
     /*

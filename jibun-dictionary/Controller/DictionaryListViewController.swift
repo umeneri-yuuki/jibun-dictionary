@@ -27,6 +27,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         TableView.dataSource = self
 
         // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,12 +35,13 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         self.navigationController!.navigationBar.tintColor = UIColor.black
         let diclisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.tapDicListEdit))
         let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
-        self.navigationItem.setRightBarButtonItems([diclistaddbutton,diclisteditbutton], animated: true)
+        self.navigationItem.setRightBarButtonItems([diclisteditbutton,diclistaddbutton], animated: true)
         //self.DLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         //self.DLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
        // self.navigationItem.leftBarButtonItem = editButtonItem
         self.TableView.reloadData()
         mydiclist.fetchDicList()
+        tabBarController?.tabBar.isHidden = false
     }
     
     /*
