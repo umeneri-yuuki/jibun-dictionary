@@ -12,6 +12,7 @@ class Word: NSObject, NSCoding{
     
     var wordtitle: String!
     var wordmean: String!
+    //var wordpicture: 
     
     init(wordtitle: String, wordmean: String) {
         self.wordtitle = wordtitle

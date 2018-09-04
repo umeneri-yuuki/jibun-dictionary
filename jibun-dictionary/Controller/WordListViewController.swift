@@ -37,7 +37,9 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.tapWordEdit))
+        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
+        let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
+        self.navigationItem.setRightBarButtonItems([wordlistaddbutton,wordlisteditbutton], animated: true)
        // self.WLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         //self.WLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
         self.TableView.reloadData()
@@ -66,7 +68,9 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     @objc func done() {
         //self.navigationItem.rightBarButtonItem?.isEnabled = false
         //self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.tapWordEdit))
+        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
+        let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
+        self.navigationItem.setRightBarButtonItems([wordlistaddbutton,wordlisteditbutton], animated: true)
         //編集モードを終わる
         self.TableView.setEditing(false, animated: true)
         

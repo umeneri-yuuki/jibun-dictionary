@@ -8,7 +8,8 @@
 
 import UIKit
 
-class NewWordViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
+class NewWordViewController: UIViewController, UITextFieldDelegate{
+//, UIPickerViewDelegate, UIPickerViewDataSource{
 
     @IBOutlet weak var newWordtitle: UITextField!
     @IBOutlet weak var newWorddic: UITextField!
@@ -18,7 +19,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate, UIPickerView
     var selectDic = myDic(dictitle: "",dicid: "")
     var selectDicNum = 0
     var dicid = -1
-    var pickerView: UIPickerView = UIPickerView()
+    //var pickerView: UIPickerView = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +34,13 @@ class NewWordViewController: UIViewController, UITextFieldDelegate, UIPickerView
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newWordtitle.delegate = self
-        
+       
+        /*
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.showsSelectionIndicator = true
         
+ 
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
         let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancel))
@@ -45,8 +48,10 @@ class NewWordViewController: UIViewController, UITextFieldDelegate, UIPickerView
         let addDic = UIBarButtonItem(title: "辞書を追加", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.addnewDic))
         toolbar.setItems([cancelItem, doneItem, flexibleItem, addDic], animated: true)
         
+        
         self.newWorddic.inputView = pickerView
         self.newWorddic.inputAccessoryView = toolbar
+        */
         
 
         // Do any additional setup after loading the view.
@@ -55,40 +60,45 @@ class NewWordViewController: UIViewController, UITextFieldDelegate, UIPickerView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
-        //self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.close))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.close))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.save))
         
         mydiclist.fetchDicList()
         
     }
     
-    /*
+    
     @objc func close() {
         self.dismiss(animated: true, completion: nil)
     }
- */
+ 
     
     @objc func save() {
         if newWordtitle.text!.isEmpty {
             let alertView = UIAlertController(title: "失敗しました", message: "単語名が記述されていません", preferredStyle: UIAlertControllerStyle.alert)
             alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alertView, animated: true, completion: nil)
-        } else if newWorddic.text!.isEmpty {
+        /*
+             } else if newWorddic.text!.isEmpty {
             let alertView = UIAlertController(title: "失敗しました", message: "辞書が選択されていません", preferredStyle: UIAlertControllerStyle.alert)
             alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alertView, animated: true, completion: nil)
+            */
         } else {
             let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!)
             self.selectDic.addWordList(word: word, row: self.dicid)
             print(selectDic.words[selectDic.words.count - 1].wordtitle)
+            /*
             self.newWordtitle.text = ""
             self.newWorddic.text = ""
             self.newWordmean.text = ""
-            //self.dismiss(animated: true, completion: nil)
-            
+ */
+            self.dismiss(animated: true, completion: nil)
+            /*
             newWordtitle.resignFirstResponder()
             newWordmean.resignFirstResponder()
             self.newWorddic.endEditing(true)
+ */
         }
     }
 
@@ -106,6 +116,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate, UIPickerView
         newWordtitle.resignFirstResponder()
         return true
     }
+    /*
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -139,6 +150,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate, UIPickerView
     @objc func done() {
         self.newWorddic.endEditing(true)
     }
+ 
     
     @objc func addnewDic(){
         let t = Int(Date().timeIntervalSince1970)
@@ -154,5 +166,6 @@ class NewWordViewController: UIViewController, UITextFieldDelegate, UIPickerView
             NDVC.dicid = self.dicid
         }
     }
+ */
 
 }

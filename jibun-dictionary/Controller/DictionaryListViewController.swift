@@ -32,7 +32,9 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListViewController.tapDicListEdit))
+        let diclisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.tapDicListEdit))
+        let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
+        self.navigationItem.setRightBarButtonItems([diclistaddbutton,diclisteditbutton], animated: true)
         //self.DLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         //self.DLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
        // self.navigationItem.leftBarButtonItem = editButtonItem
@@ -45,7 +47,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         self.newDic()
     }
  */
-    /*
+    
     @objc func newDic() {
         
         //self.dicid = self.mydiclist.dics.count
@@ -55,7 +57,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         
         self.performSegue(withIdentifier: "toNewDic", sender: self)
     }
- */
+ 
 
     @objc func tapDicListEdit(_ sender: UIBarButtonItem) {
         //編集モードにする
@@ -63,12 +65,15 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         //完了ボタンの追加
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListViewController.done))
         
+        
     }
     
     @objc func done() {
         //self.navigationItem.rightBarButtonItem?.isEnabled = false
         //self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListViewController.tapDicListEdit))
+        let diclisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.tapDicListEdit))
+        let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
+        self.navigationItem.setRightBarButtonItems([diclistaddbutton,diclisteditbutton], animated: true)
         //編集モードを終わる
         self.TableView.setEditing(false, animated: true)
         
@@ -114,18 +119,19 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
             //WLVC.selectDic = self.selectDic
             //WLVC.selectDicNum = self.selectDicNum
         }
-        /*
+        
         if (segue.identifier == "toNewDic") {
             let nc = segue.destination as! UINavigationController
             let NDVC = nc.topViewController as! NewDicViewController
             NDVC.dicid = self.dicid
         }
- */
+ 
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
+            UserDefaults.standard.removeObject(forKey: String(self.mydiclist.dics[indexPath.row].dicid)) 
             self.mydiclist.dics.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
             self.mydiclist.save()
