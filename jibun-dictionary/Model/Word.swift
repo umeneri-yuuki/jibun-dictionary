@@ -12,21 +12,25 @@ class Word: NSObject, NSCoding{
     
     var wordtitle: String!
     var wordmean: String!
-    //var wordpicture: 
+    var wordpicturekey: String!
     
-    init(wordtitle: String, wordmean: String) {
+    init(wordtitle: String, wordmean: String, wordpicturekey: String) {
         self.wordtitle = wordtitle
         self.wordmean = wordmean
+        self.wordpicturekey = wordpicturekey
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         self.wordtitle = aDecoder.decodeObject(forKey: "wordtitle") as! String
         self.wordmean = aDecoder.decodeObject(forKey: "wordmean") as! String
+         self.wordpicturekey = aDecoder.decodeObject(forKey: "wordpicturekey") as! String
     }
     
     func encode(with aCoder: NSCoder) {
         if let wordtitle = wordtitle { aCoder.encode(wordtitle, forKey: "wordtitle") }
         if let wordmean = wordmean { aCoder.encode(wordmean, forKey: "wordmean") }
+        if let wordpicturekey = wordpicturekey { aCoder.encode(wordpicturekey, forKey: "wordpicturekey") }
     }
 
 }

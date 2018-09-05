@@ -63,15 +63,56 @@ class WordDetailViewController: UIViewController {
             WordName.backgroundColor = .white
             WordName.sizeToFit()
             WordName.center = pageview.center
-            WordName.frame.origin.x = 10
+            WordName.frame.origin.x = 20
+            WordName.frame.origin.y = 20
             WordName.tag = WordDetailViewController.LABEL_TAG
             
-           
-           // WordMean.isEditable = false
-           // WordMean.text = selectDic.words[i].wordmean
+            //let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[i].wordpicturekey) as! NSData
+            //if UIImage(data:imageDate as Data) != UIImage(named: "noImage.png"){
             
-            pageview.addSubview(WordName)
-           // pageview.addSubview(WordMean)
+            if let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[i].wordpicturekey) as? NSData {
+                
+                let WordPicture = UIImageView()
+                WordPicture.frame = CGRect(x: 20, y: WordName.frame.height + 20, width: size.width - 40, height: (size.width - 40)*3/4)
+                WordPicture.contentMode = UIViewContentMode.scaleAspectFit
+                WordPicture.image = UIImage(data:imageDate as Data)
+                WordPicture.tag = WordDetailViewController.LABEL_TAG
+                
+                
+                let WordMean = UITextView()
+                WordMean.text = selectDic.words[i].wordmean
+                WordMean.backgroundColor = .white
+                WordMean.sizeToFit()
+                WordMean.center = pageview.center
+                WordMean.frame.origin.x = 20
+                WordMean.frame.origin.y = WordName.frame.height + WordPicture.frame.height + 40
+                WordMean.tag = WordDetailViewController.LABEL_TAG
+                WordMean.isEditable = false
+                
+                
+                pageview.addSubview(WordName)
+                pageview.addSubview(WordPicture)
+                pageview.addSubview(WordMean)
+                
+            } else {
+                
+                let WordMean = UITextView()
+                WordMean.text = selectDic.words[i].wordmean
+                WordMean.backgroundColor = .white
+                WordMean.sizeToFit()
+                WordMean.center = pageview.center
+                WordMean.frame.origin.x = 20
+                WordMean.frame.origin.y = WordName.frame.height + 20
+                WordMean.tag = WordDetailViewController.LABEL_TAG
+                WordMean.isEditable = false
+                
+                
+                pageview.addSubview(WordName)
+                pageview.addSubview(WordMean)
+                
+            }
+            
+            
             contentView.addSubview(pageview)
             pageViewArray.append(pageview)
         }
@@ -83,46 +124,6 @@ class WordDetailViewController: UIViewController {
 
     }
     
-    /*
-    func setPageView() {
-        for i in 0..<pageViewArray.count {
-            // ５つあるビューの真ん中が現在選択されているページになるようにする
-            let index = getPageIndex(page: page + (i - 2))
-            // tagからラベルを取得しtextを再設定
-            let label: UILabel = pageViewArray[i].viewWithTag(WordDetailViewController.LABEL_TAG) as! UILabel
-            label.text = selectDic.words[index].wordtitle
-            label.sizeToFit()
-        }
-        
-    }
-    
-    func getPageIndex(page: Int) -> Int {
-        var index = page
-        if index < 0 {
-            index = (pageViewArray.count + page)
-        } else if index >= pageViewArray.count {
-            index = page - pageViewArray.count
-        }
-        return index
-    }
- */
-    /*
-    func makePage(x: CGFloat ,i: Int)-> UIView{
-        let pageview = UIView(frame: CGRect(x: size.width * CGFloat(i), y: 0, width: size.width, height: size.height))
-        let WordName = UILabel()
-        WordName.frame = CGRect(x: x + 16, y: 83, width: 343, height: 75)
-        let WordMean = UITextView()
-        WordMean.frame = CGRect(x: x + 16, y: 192, width: 343, height: 200)
-        WordMean.isEditable = false
-        
-        WordName.text = selectDic.words[i].wordtitle
-        WordMean.text = selectDic.words[i].wordmean
-        
-        pageview.addSubview(WordName)
-        pageview.addSubview(WordMean)
-        return pageview
-    }
- */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

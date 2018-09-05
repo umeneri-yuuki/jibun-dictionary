@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63114A1E213FA30800CA0383 /* 辞書タブ用.png in Resources */ = {isa = PBXBuildFile; fileRef = 63114A1D213FA30800CA0383 /* 辞書タブ用.png */; };
+		63114A20213FA49100CA0383 /* 辞書タブ.png in Resources */ = {isa = PBXBuildFile; fileRef = 63114A1F213FA49100CA0383 /* 辞書タブ.png */; };
 		63168D862137ECCC00BFF6F5 /* DictionaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63168D852137ECCC00BFF6F5 /* DictionaryListViewController.swift */; };
 		63168D88213837B100BFF6F5 /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63168D87213837B100BFF6F5 /* WordDetailViewController.swift */; };
 		63300015213125E100A3FAAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300014213125E100A3FAAC /* AppDelegate.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63114A1D213FA30800CA0383 /* 辞書タブ用.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "辞書タブ用.png"; sourceTree = "<group>"; };
+		63114A1F213FA49100CA0383 /* 辞書タブ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "辞書タブ.png"; sourceTree = "<group>"; };
 		63168D852137ECCC00BFF6F5 /* DictionaryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryListViewController.swift; sourceTree = "<group>"; };
 		63168D87213837B100BFF6F5 /* WordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
 		63300011213125E100A3FAAC /* jibun-dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jibun-dictionary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63114A1A213FA2AC00CA0383 /* アプリ用画像 */ = {
+			isa = PBXGroup;
+			children = (
+				63114A1D213FA30800CA0383 /* 辞書タブ用.png */,
+				63114A1F213FA49100CA0383 /* 辞書タブ.png */,
+			);
+			path = "アプリ用画像";
+			sourceTree = "<group>";
+		};
 		63300008213125E100A3FAAC = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +132,7 @@
 				6330001B213125E400A3FAAC /* Assets.xcassets */,
 				6330001D213125E400A3FAAC /* LaunchScreen.storyboard */,
 				63300020213125E400A3FAAC /* Info.plist */,
+				63114A1A213FA2AC00CA0383 /* アプリ用画像 */,
 			);
 			path = "jibun-dictionary";
 			sourceTree = "<group>";
@@ -274,6 +288,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63114A1E213FA30800CA0383 /* 辞書タブ用.png in Resources */,
+				63114A20213FA49100CA0383 /* 辞書タブ.png in Resources */,
 				6330001F213125E400A3FAAC /* LaunchScreen.storyboard in Resources */,
 				6330001C213125E400A3FAAC /* Assets.xcassets in Resources */,
 				6330001A213125E100A3FAAC /* Main.storyboard in Resources */,

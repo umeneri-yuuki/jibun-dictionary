@@ -8,24 +8,25 @@
 
 import UIKit
 
-class NewWordViewController: UIViewController, UITextFieldDelegate{
-//, UIPickerViewDelegate, UIPickerViewDataSource{
+class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
     @IBOutlet weak var newWordtitle: UITextField!
-    @IBOutlet weak var newWorddic: UITextField!
     @IBOutlet weak var newWordmean: UITextView!
+    @IBOutlet weak var newWordpictureview: UIImageView!
+    
     
     var mydiclist = DicList.sharedInstance
     var selectDic = myDic(dictitle: "",dicid: "")
     var selectDicNum = 0
+    var selectpicture:UIImage? = UIImage()
+    var selectpicturekey = String()
     var dicid = -1
-    //var pickerView: UIPickerView = UIPickerView()
+    
+    var picker: UIImagePickerController! = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // print(selectDic.dictitle)
-
         
         newWordmean.layer.cornerRadius = 5
         newWordmean.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
@@ -34,24 +35,6 @@ class NewWordViewController: UIViewController, UITextFieldDelegate{
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newWordtitle.delegate = self
-       
-        /*
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        pickerView.showsSelectionIndicator = true
-        
- 
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
-        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
-        let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancel))
-        let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let addDic = UIBarButtonItem(title: "辞書を追加", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.addnewDic))
-        toolbar.setItems([cancelItem, doneItem, flexibleItem, addDic], animated: true)
-        
-        
-        self.newWorddic.inputView = pickerView
-        self.newWorddic.inputAccessoryView = toolbar
-        */
         
 
         // Do any additional setup after loading the view.
@@ -63,10 +46,40 @@ class NewWordViewController: UIViewController, UITextFieldDelegate{
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.close))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.save))
         
+        let imagePickUpButton:UIButton = UIButton()
+        imagePickUpButton.frame = CGRect(x: newWordpictureview.frame.width - 100, y: newWordpictureview.frame.height - 20, width: 80, height: 40)
+        imagePickUpButton.addTarget(self, action: #selector(self.imagePickUpButtonClicked(_:)), for: .touchUpInside)
+        imagePickUpButton.backgroundColor = UIColor.gray
+        imagePickUpButton.setTitle("画像追加", for: UIControlState.normal)
+        newWordpictureview.addSubview(imagePickUpButton)
+        
+        
         mydiclist.fetchDicList()
         
     }
     
+    @objc func imagePickUpButtonClicked(_ sender: UIButton){
+        picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        picker.delegate = self
+        picker.navigationBar.tintColor = UIColor.black
+        picker.navigationBar.barTintColor = UIColor.white
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            newWordpictureview.image = image
+            selectpicture = image
+        } else{
+            print("Error")
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
     
     @objc func close() {
         self.dismiss(animated: true, completion: nil)
@@ -78,27 +91,27 @@ class NewWordViewController: UIViewController, UITextFieldDelegate{
             let alertView = UIAlertController(title: "失敗しました", message: "単語名が記述されていません", preferredStyle: UIAlertControllerStyle.alert)
             alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alertView, animated: true, completion: nil)
-        /*
-             } else if newWorddic.text!.isEmpty {
-            let alertView = UIAlertController(title: "失敗しました", message: "辞書が選択されていません", preferredStyle: UIAlertControllerStyle.alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alertView, animated: true, completion: nil)
-            */
+        
         } else {
-            let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!)
-            self.selectDic.addWordList(word: word, row: self.dicid)
-            print(selectDic.words[selectDic.words.count - 1].wordtitle)
-            /*
-            self.newWordtitle.text = ""
-            self.newWorddic.text = ""
-            self.newWordmean.text = ""
- */
+            
+            if  let selectpicture = selectpicture{
+                selectpicturekey = String(Int(Date().timeIntervalSince1970))
+                let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!,wordpicturekey: selectpicturekey)
+                self.selectDic.addWordList(word: word, row: self.dicid)
+                
+                UserDefaults.standard.set(UIImageJPEGRepresentation(selectpicture, 1), forKey: selectpicturekey)
+            } else {
+                selectpicturekey = String(Int(Date().timeIntervalSince1970))
+                let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!,wordpicturekey: selectpicturekey)
+                self.selectDic.addWordList(word: word, row: self.dicid)
+                //selectpicture = UIImage(named: "noImage.png")
+                UserDefaults.standard.set(UIImageJPEGRepresentation(UIImage(named: "noImage.png")!, 1), forKey: selectpicturekey)
+                
+            }
+            
+            
             self.dismiss(animated: true, completion: nil)
-            /*
-            newWordtitle.resignFirstResponder()
-            newWordmean.resignFirstResponder()
-            self.newWorddic.endEditing(true)
- */
+       
         }
     }
 

@@ -27,6 +27,12 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         TableView.dataSource = self
 
         // Do any additional setup after loading the view.
+        /*
+         //userdefaultのデータを全部消す処理
+        let appDomain = Bundle.main.bundleIdentifier
+        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+ */
+ 
         
     }
     
@@ -65,7 +71,8 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         //編集モードにする
         self.TableView.setEditing(true, animated: true)
         //完了ボタンの追加
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListViewController.done))
+        let diclistfinishbutton = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListViewController.done))
+         self.navigationItem.setRightBarButtonItems([diclistfinishbutton], animated: true)
         
         
     }
@@ -75,7 +82,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         //self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
         let diclisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.tapDicListEdit))
         let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
-        self.navigationItem.setRightBarButtonItems([diclistaddbutton,diclisteditbutton], animated: true)
+        self.navigationItem.setRightBarButtonItems([diclisteditbutton,diclistaddbutton], animated: true)
         //編集モードを終わる
         self.TableView.setEditing(false, animated: true)
         
@@ -133,6 +140,9 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
+            for word in self.mydiclist.dics[indexPath.row].words {
+                UserDefaults.standard.removeObject(forKey: word.wordpicturekey)
+            }
             UserDefaults.standard.removeObject(forKey: String(self.mydiclist.dics[indexPath.row].dicid)) 
             self.mydiclist.dics.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)

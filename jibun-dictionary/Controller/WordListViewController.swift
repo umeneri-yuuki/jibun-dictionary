@@ -66,7 +66,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         //編集モードにする
         self.TableView.setEditing(true, animated: true)
         //完了ボタンの追加
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.done))
+        let wordlistfinishbutton = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.done))
+        self.navigationItem.setRightBarButtonItems([wordlistfinishbutton], animated: true)
         
     }
     
@@ -76,7 +77,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         //self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
         let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
         let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
-        self.navigationItem.setRightBarButtonItems([wordlistaddbutton,wordlisteditbutton], animated: true)
+        self.navigationItem.setRightBarButtonItems([wordlisteditbutton,wordlistaddbutton], animated: true)
         //編集モードを終わる
         self.TableView.setEditing(false, animated: true)
         
@@ -125,13 +126,14 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
+            UserDefaults.standard.removeObject(forKey: selectDic.words[indexPath.row].wordpicturekey)
             self.selectDic.words.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+
             if self.selectDic.words.isEmpty == false {
             self.selectDic.save(row: dicid)
             } else {
-                let userDefaults = UserDefaults.standard
-                userDefaults.removeObject(forKey: String(dicid))
+                UserDefaults.standard.removeObject(forKey: String(dicid))
             }
         default:
             return
