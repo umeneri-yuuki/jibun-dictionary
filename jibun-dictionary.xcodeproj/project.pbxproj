@@ -11,8 +11,8 @@
 		63114A20213FA49100CA0383 /* 辞書タブ.png in Resources */ = {isa = PBXBuildFile; fileRef = 63114A1F213FA49100CA0383 /* 辞書タブ.png */; };
 		63168D862137ECCC00BFF6F5 /* DictionaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63168D852137ECCC00BFF6F5 /* DictionaryListViewController.swift */; };
 		63168D88213837B100BFF6F5 /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63168D87213837B100BFF6F5 /* WordDetailViewController.swift */; };
+		6323F7D22141163300B9EEA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63300018213125E100A3FAAC /* Main.storyboard */; };
 		63300015213125E100A3FAAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300014213125E100A3FAAC /* AppDelegate.swift */; };
-		6330001A213125E100A3FAAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63300018213125E100A3FAAC /* Main.storyboard */; };
 		6330001C213125E400A3FAAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6330001B213125E400A3FAAC /* Assets.xcassets */; };
 		6330001F213125E400A3FAAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6330001D213125E400A3FAAC /* LaunchScreen.storyboard */; };
 		6330002A213125E400A3FAAC /* jibun_dictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63300029213125E400A3FAAC /* jibun_dictionaryTests.swift */; };
@@ -289,10 +289,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				63114A1E213FA30800CA0383 /* 辞書タブ用.png in Resources */,
+				6323F7D22141163300B9EEA1 /* Main.storyboard in Resources */,
 				63114A20213FA49100CA0383 /* 辞書タブ.png in Resources */,
 				6330001F213125E400A3FAAC /* LaunchScreen.storyboard in Resources */,
 				6330001C213125E400A3FAAC /* Assets.xcassets in Resources */,
-				6330001A213125E100A3FAAC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
