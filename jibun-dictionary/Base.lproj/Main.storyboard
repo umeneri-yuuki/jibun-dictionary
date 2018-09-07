@@ -104,7 +104,7 @@
             </objects>
             <point key="canvasLocation" x="3128.8000000000002" y="984.55772113943033"/>
         </scene>
-        <!--辞書一覧-->
+        <!--ライブラリ-->
         <scene sceneID="5tz-T3-lsO">
             <objects>
                 <viewController id="RHL-aA-soV" customClass="DictionaryListViewController" customModule="jibun_dictionary" customModuleProvider="target" sceneMemberID="viewController">
@@ -128,15 +128,15 @@
                             </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="8a7-f8-PIJ" firstAttribute="top" secondItem="1gR-t2-oeB" secondAttribute="top" id="0jK-zO-Kka"/>
-                            <constraint firstItem="8a7-f8-PIJ" firstAttribute="leading" secondItem="1gR-t2-oeB" secondAttribute="leading" id="JtL-0O-2R5"/>
-                            <constraint firstItem="8a7-f8-PIJ" firstAttribute="trailing" secondItem="1gR-t2-oeB" secondAttribute="trailing" id="OOg-h6-Qmy"/>
-                            <constraint firstAttribute="bottom" secondItem="8a7-f8-PIJ" secondAttribute="bottom" id="jFt-X8-5xU"/>
+                            <constraint firstItem="8a7-f8-PIJ" firstAttribute="leading" secondItem="1gR-t2-oeB" secondAttribute="leading" id="KfK-hF-3aQ"/>
+                            <constraint firstAttribute="bottom" secondItem="8a7-f8-PIJ" secondAttribute="bottom" id="dQG-1K-uDx"/>
+                            <constraint firstItem="8a7-f8-PIJ" firstAttribute="trailing" secondItem="1gR-t2-oeB" secondAttribute="trailing" id="eXZ-uX-GUV"/>
+                            <constraint firstItem="8a7-f8-PIJ" firstAttribute="top" secondItem="1gR-t2-oeB" secondAttribute="top" id="nCA-ti-Apd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1gR-t2-oeB"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="辞書一覧" id="4IA-gV-w4v"/>
+                    <navigationItem key="navigationItem" title="ライブラリ" id="4IA-gV-w4v"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="TableView" destination="8a7-f8-PIJ" id="5lC-wk-roI"/>
@@ -148,7 +148,7 @@
             </objects>
             <point key="canvasLocation" x="2196" y="-574"/>
         </scene>
-        <!--Word List View Controller-->
+        <!--Title-->
         <scene sceneID="NhR-DB-Dy9">
             <objects>
                 <viewController id="Ntd-zN-vqe" customClass="WordListViewController" customModule="jibun_dictionary" customModuleProvider="target" sceneMemberID="viewController">
@@ -156,6 +156,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5J8-Hn-vHG">
+                                <rect key="frame" x="0.0" y="88" width="375" height="60"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yjg-fN-aI0">
+                                        <rect key="frame" x="16" y="15" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Yjg-fN-aI0" secondAttribute="trailing" constant="16" id="2TA-pO-bGY"/>
+                                    <constraint firstItem="Yjg-fN-aI0" firstAttribute="leading" secondItem="5J8-Hn-vHG" secondAttribute="leading" constant="16" id="C6c-Zo-WDd"/>
+                                    <constraint firstAttribute="bottom" secondItem="Yjg-fN-aI0" secondAttribute="bottom" constant="15" id="M0Q-rA-Tqo"/>
+                                    <constraint firstItem="Yjg-fN-aI0" firstAttribute="top" secondItem="5J8-Hn-vHG" secondAttribute="top" constant="15" id="VfU-sr-TyC"/>
+                                    <constraint firstAttribute="height" constant="60" id="gTJ-G7-P3y"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UNU-TC-ct8">
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -172,24 +191,31 @@
                             </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="UNU-TC-ct8" firstAttribute="top" secondItem="di9-iM-N6P" secondAttribute="top" id="AO7-m6-RAQ"/>
-                            <constraint firstAttribute="bottom" secondItem="UNU-TC-ct8" secondAttribute="bottom" id="DDh-Fd-zD4"/>
-                            <constraint firstItem="UNU-TC-ct8" firstAttribute="trailing" secondItem="di9-iM-N6P" secondAttribute="trailing" id="Yuo-GX-ioD"/>
-                            <constraint firstItem="UNU-TC-ct8" firstAttribute="leading" secondItem="di9-iM-N6P" secondAttribute="leading" id="j7s-u8-tJH"/>
+                            <constraint firstItem="UNU-TC-ct8" firstAttribute="leading" secondItem="di9-iM-N6P" secondAttribute="leading" id="AVD-RA-Evh"/>
+                            <constraint firstItem="5J8-Hn-vHG" firstAttribute="leading" secondItem="di9-iM-N6P" secondAttribute="leading" id="CBI-Ta-129"/>
+                            <constraint firstItem="5J8-Hn-vHG" firstAttribute="top" secondItem="di9-iM-N6P" secondAttribute="top" id="YjD-J3-4DC"/>
+                            <constraint firstItem="UNU-TC-ct8" firstAttribute="trailing" secondItem="di9-iM-N6P" secondAttribute="trailing" id="of4-Jy-ZJG"/>
+                            <constraint firstItem="UNU-TC-ct8" firstAttribute="top" secondItem="di9-iM-N6P" secondAttribute="top" id="ole-jv-Kwb"/>
+                            <constraint firstItem="5J8-Hn-vHG" firstAttribute="trailing" secondItem="di9-iM-N6P" secondAttribute="trailing" id="uWp-Ka-ps7"/>
+                            <constraint firstAttribute="bottom" secondItem="UNU-TC-ct8" secondAttribute="bottom" id="yw3-Yc-kIu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="di9-iM-N6P"/>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="z0y-Ww-lH6"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="TableView" destination="UNU-TC-ct8" id="wYS-53-54q"/>
+                        <outlet property="WordListTitle" destination="z0y-Ww-lH6" id="Gsa-kF-6Ny"/>
+                        <outlet property="editview" destination="5J8-Hn-vHG" id="Mlt-NK-Szh"/>
+                        <outlet property="renameTextField" destination="Yjg-fN-aI0" id="9ZY-dn-7F5"/>
                         <segue destination="UV6-vS-NLO" kind="presentation" identifier="toNewWord" id="eaH-Fw-tfs"/>
                         <segue destination="dPU-ZX-hCL" kind="show" identifier="toWordDetail" id="UQe-Ry-OUm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4A-qu-txm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3129" y="-574"/>
+            <point key="canvasLocation" x="3128.8000000000002" y="-574.13793103448279"/>
         </scene>
         <!--Word Detail View Controller-->
         <scene sceneID="1AR-xd-oMD">
@@ -200,15 +226,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pfj-Yf-2hy">
-                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="597"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="pfj-Yf-2hy" firstAttribute="leading" secondItem="ia5-42-A7E" secondAttribute="leading" id="3Xb-4h-Y2y"/>
-                            <constraint firstItem="pfj-Yf-2hy" firstAttribute="trailing" secondItem="ia5-42-A7E" secondAttribute="trailing" id="9je-ei-GjN"/>
-                            <constraint firstAttribute="bottom" secondItem="pfj-Yf-2hy" secondAttribute="bottom" id="JAb-kL-49c"/>
-                            <constraint firstItem="pfj-Yf-2hy" firstAttribute="top" secondItem="ia5-42-A7E" secondAttribute="top" id="idu-Ql-EuM"/>
+                            <constraint firstItem="ia5-42-A7E" firstAttribute="bottom" secondItem="pfj-Yf-2hy" secondAttribute="bottom" id="0Fb-uE-QoZ"/>
+                            <constraint firstItem="ia5-42-A7E" firstAttribute="trailing" secondItem="pfj-Yf-2hy" secondAttribute="trailing" id="cla-XL-Ahr"/>
+                            <constraint firstItem="pfj-Yf-2hy" firstAttribute="leading" secondItem="ia5-42-A7E" secondAttribute="leading" id="gFE-Dy-drx"/>
+                            <constraint firstItem="pfj-Yf-2hy" firstAttribute="top" secondItem="ia5-42-A7E" secondAttribute="top" id="wkS-Y3-KX0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ia5-42-A7E"/>
                     </view>
@@ -218,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SaO-li-APx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4048.8000000000002" y="-575.26236881559225"/>
+            <point key="canvasLocation" x="4048.8000000000002" y="-575.61576354679801"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="nuc-HJ-hff">
@@ -252,11 +278,11 @@
             </objects>
             <point key="canvasLocation" x="5101.6000000000004" y="-574.13793103448279"/>
         </scene>
-        <!--辞書-->
+        <!--ライブラリ-->
         <scene sceneID="ztL-YG-m0F">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vKL-Kr-4ei" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="辞書" image="TabbarItem1" id="Ixu-h3-asM" userLabel="辞書"/>
+                    <tabBarItem key="tabBarItem" title="ライブラリ" image="TabbarItem1" id="Ixu-h3-asM" userLabel="辞書"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B15-eA-cbO">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -289,7 +315,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nuV-VA-ay7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="-574"/>
+            <point key="canvasLocation" x="425" y="-574"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jey-T8-ZWJ">
@@ -332,6 +358,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TabbarItem1" width="40" height="40"/>
+        <image name="TabbarItem1" width="33" height="33"/>
     </resources>
 </document>

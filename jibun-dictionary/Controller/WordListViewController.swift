@@ -15,9 +15,17 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     var dicid = -1
     
     var selectrow = -1
-
+    
+    var selectdictitle = ""
+    
+    var tableheight = CGFloat()
+    
     @IBOutlet weak var TableView: UITableView!
     
+    @IBOutlet weak var WordListTitle: UINavigationItem!
+    @IBOutlet weak var editview: UIView!
+    
+    @IBOutlet weak var renameTextField: UITextField!
     
     //@IBOutlet weak var WLVtabbar: UIToolbar!
     
@@ -32,6 +40,10 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         TableView.delegate = self
         TableView.dataSource = self
         tabBarController?.tabBar.isHidden = true
+        
+        editview.isHidden = true
+        
+        self.navigationItem.leftItemsSupplementBackButton = true
 
         
     }
@@ -40,19 +52,36 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
 
-        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
-        let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
-        self.navigationItem.setRightBarButtonItems([wordlisteditbutton,wordlistaddbutton], animated: true)
+        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
+        //let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
+        //let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        self.navigationItem.setRightBarButtonItems([wordlisteditbutton], animated: true)
+        
+        let wordlistfinishbutton = UIBarButtonItem(image: UIImage(named: "FinishItem"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.done))
+        self.navigationItem.setLeftBarButtonItems([wordlistfinishbutton], animated: true)
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        self.navigationItem.leftBarButtonItem?.tintColor =  UIColor.clear
+        
+        
        // self.WLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         //self.WLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
         self.TableView.reloadData()
         selectDic.fetchWordList(row: dicid)
-        self.navigationItem.title = selectDic.dictitle
+        selectDic.dictitle = selectdictitle
+        
+        self.WordListTitle.title = selectDic.dictitle
+        print("選択した辞書の名前：\(selectDic.dictitle)")
+       
         
         //self.navigationController?.navigationBar.alpha = 1
         navigationController?.hidesBarsOnTap = false
         
+        
+        
+        tableheight = TableView.frame.size.height
+        
     }
+    
     /*
     @objc func tapAddWord(_ sender: UIBarButtonItem) {
         self.newWord()
@@ -60,28 +89,59 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
  */
     
     @objc func newWord() {
+        self.done()
         self.performSegue(withIdentifier: "toNewWord", sender: self)
     }
     @objc func tapWordEdit(_ sender: UIBarButtonItem) {
+        self.navigationItem.leftItemsSupplementBackButton = false
+        TableView.frame = CGRect(x: 0, y: editview.frame.size.height, width: TableView.frame.size.width, height: tableheight - editview.frame.size.height)
+        //TableView.isHidden = true
+        editview.isHidden = false
         //編集モードにする
         self.TableView.setEditing(true, animated: true)
         //完了ボタンの追加
-        let wordlistfinishbutton = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.done))
-        self.navigationItem.setRightBarButtonItems([wordlistfinishbutton], animated: true)
+        
+        self.navigationItem.leftBarButtonItem?.isEnabled = true
+        self.navigationItem.leftBarButtonItem?.tintColor =  UIColor.black
+       
+        let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
+        self.navigationItem.setRightBarButtonItems([wordlistaddbutton], animated: true)
+  
         
     }
     
     
     @objc func done() {
+        
+        self.navigationItem.leftItemsSupplementBackButton = true
+        TableView.frame = CGRect(x: 0, y:0, width: TableView.frame.size.width, height: tableheight)
+        editview.isHidden = true
+        //TableView.isHidden = false
+        
         //self.navigationItem.rightBarButtonItem?.isEnabled = false
         //self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
-        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
-        let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
-        self.navigationItem.setRightBarButtonItems([wordlisteditbutton,wordlistaddbutton], animated: true)
+        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
+        //let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
+       // let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        //let backbutton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(WordListViewController.tappedLeftBarButton))
+        //self.navigationItem.backBarButtonItem = backbutton
+        self.navigationItem.setRightBarButtonItems([wordlisteditbutton], animated: true)
+        //self.navigationItem.setLeftBarButtonItems([backbutton], animated: true)
+        //self.navigationItem.backBarButtonItem
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        self.navigationItem.leftBarButtonItem?.tintColor =  UIColor.clear
+        
+        
         //編集モードを終わる
         self.TableView.setEditing(false, animated: true)
         
+        
     }
+    
+    @objc func tappedLeftBarButton() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+ 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toNewWord") {

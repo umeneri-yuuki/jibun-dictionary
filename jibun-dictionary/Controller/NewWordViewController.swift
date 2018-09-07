@@ -43,8 +43,8 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.close))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.save))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Clear"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.close))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.save))
         
         let imagePickUpButton:UIButton = UIButton()
         imagePickUpButton.frame = CGRect(x: newWordpictureview.frame.width - 100, y: newWordpictureview.frame.height - 20, width: 80, height: 40)

@@ -89,7 +89,6 @@ class WordDetailViewController: UIViewController {
                 WordMean.tag = WordDetailViewController.LABEL_TAG
                 WordMean.isEditable = false
                 
-                
                 pageview.addSubview(WordName)
                 pageview.addSubview(WordPicture)
                 pageview.addSubview(WordMean)
@@ -106,12 +105,10 @@ class WordDetailViewController: UIViewController {
                 WordMean.tag = WordDetailViewController.LABEL_TAG
                 WordMean.isEditable = false
                 
-                
                 pageview.addSubview(WordName)
                 pageview.addSubview(WordMean)
                 
             }
-            
             
             contentView.addSubview(pageview)
             pageViewArray.append(pageview)

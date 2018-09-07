@@ -13,6 +13,10 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     var mydiclist = DicList.sharedInstance
     
     var dicid = 0
+    
+    var selectdictitle = ""
+    
+    var renametext = ""
 
     @IBOutlet weak var TableView: UITableView!
     
@@ -39,9 +43,34 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
-        let diclisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.tapDicListEdit))
-        let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
-        self.navigationItem.setRightBarButtonItems([diclisteditbutton,diclistaddbutton], animated: true)
+        self.navigationController!.navigationBar.isTranslucent = false
+        //self.tabBarController!.tabBar.isTranslucent = false
+        
+        /*
+        let editbutton: UIButton = UIButton.init()
+        editbutton.setImage(UIImage.init(named: "EditItem"), for: .normal)
+        editbutton.sizeToFit()
+  
+        let diclisteditbutton = UIBarButtonItem.init(customView: editbutton)
+        */
+       let diclisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.tapDicListEdit))
+        
+    
+ 
+        let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        
+        /*
+        let addbutton: UIButton = UIButton.init()
+        addbutton.setImage(UIImage.init(named: "AddItem"), for: .normal)
+        addbutton.sizeToFit()
+        addbutton.target(forAction: #selector(DictionaryListViewController.newDic), withSender: self)
+        
+        let diclistaddbutton = UIBarButtonItem.init(customView: addbutton)
+*/
+ 
+        //let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
+        self.navigationItem.setRightBarButtonItems([diclisteditbutton], animated: true)
+        self.navigationItem.setLeftBarButtonItems([flexibleItem], animated: true)
         //self.DLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         //self.DLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
        // self.navigationItem.leftBarButtonItem = editButtonItem
@@ -58,6 +87,8 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     
     @objc func newDic() {
         
+        self.done()
+        
         //self.dicid = self.mydiclist.dics.count
         let t = Int(Date().timeIntervalSince1970)
         self.dicid = t
@@ -71,8 +102,11 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         //編集モードにする
         self.TableView.setEditing(true, animated: true)
         //完了ボタンの追加
-        let diclistfinishbutton = UIBarButtonItem(title: "完了", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListViewController.done))
-         self.navigationItem.setRightBarButtonItems([diclistfinishbutton], animated: true)
+          let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
+        let diclistfinishbutton = UIBarButtonItem(image: UIImage(named: "FinishItem"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListViewController.done))
+        
+         self.navigationItem.setRightBarButtonItems([diclistaddbutton], animated: true)
+         self.navigationItem.setLeftBarButtonItems([diclistfinishbutton], animated: true)
         
         
     }
@@ -80,9 +114,12 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     @objc func done() {
         //self.navigationItem.rightBarButtonItem?.isEnabled = false
         //self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
-        let diclisteditbutton :UIBarButtonItem = UIBarButtonItem(title: "編集", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.tapDicListEdit))
-        let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
-        self.navigationItem.setRightBarButtonItems([diclisteditbutton,diclistaddbutton], animated: true)
+        let diclisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.tapDicListEdit))
+        let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        //let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
+
+        self.navigationItem.setRightBarButtonItems([diclisteditbutton], animated: true)
+        self.navigationItem.setLeftBarButtonItems([flexibleItem], animated: true)
         //編集モードを終わる
         self.TableView.setEditing(false, animated: true)
         
@@ -111,7 +148,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
 
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         
-        // self.selectDic = self.mydiclist.dics[indexPath.row]
+         self.selectdictitle = self.mydiclist.dics[indexPath.row].dictitle
         //self.selectDicNum = indexPath.row
         self.dicid = Int(self.mydiclist.dics[indexPath.row].dicid)!
         print("indexpath:\(indexPath.row)")
@@ -125,7 +162,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         if (segue.identifier == "toWordsList") {
             let WLVC = segue.destination as! WordListViewController
             WLVC.dicid = self.dicid
-            //WLVC.selectDic = self.selectDic
+            WLVC.selectdictitle = self.selectdictitle
             //WLVC.selectDicNum = self.selectDicNum
         }
         
@@ -147,10 +184,12 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
             self.mydiclist.dics.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
             self.mydiclist.save()
+
         default:
             return
         }
     }
+ 
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
@@ -160,5 +199,50 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         self.mydiclist.save()
         
     }
+    /*
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .default, title: "Delete"){ action, indexPath in
+            for word in self.mydiclist.dics[indexPath.row].words {
+                UserDefaults.standard.removeObject(forKey: word.wordpicturekey)
+            }
+            UserDefaults.standard.removeObject(forKey: String(self.mydiclist.dics[indexPath.row].dicid))
+            self.mydiclist.dics.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
+            self.mydiclist.save()
+        }
+        
+        let rename = UITableViewRowAction(style: .default, title: "Rename"){ action, indexPath in
+            
+            let alert:UIAlertController = UIAlertController(title: "辞書名の変更", message: "新しい名前を入力してください", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { action in
+                print("Hello World!!")
+                self.mydiclist.dics[indexPath.row].dictitle = self.renametext
+                self.mydiclist.save()
+                self.TableView.reloadData()
+            }
+            
+            alert.addTextField{ (textField: UITextField!) -> Void in
+               
+                let Notification = NotificationCenter.default
+                
+                Notification.addObserver(self, selector: #selector(self.Rename(sender:)), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
+            }
+            
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
+        rename.backgroundColor = UIColor.gray
+        
+        return [rename,delete]
+    }
+    
+    @objc func Rename(sender: NSNotification) {
+
+        let textField = sender.object as! UITextField
+
+        self.renametext = textField.text!
+        
+    }
+ */
 
 }

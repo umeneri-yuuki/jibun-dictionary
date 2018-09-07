@@ -31,8 +31,8 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.tintColor = UIColor.black
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewDicViewController.close))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "作成", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewDicViewController.save))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Clear"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewDicViewController.close))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewDicViewController.save))
     }
     
     @objc func close() {
