@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WordDetailViewController: UIViewController {
+class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -26,7 +26,7 @@ class WordDetailViewController: UIViewController {
     
     static let LABEL_TAG = 100
     // 現在表示されているページ
-    private var page: Int = 0
+    var page: Int = 0
     // ScrollViewをスクロールする前の位置
     private var startPoint: CGPoint!
     // 表示するページビューの配列
@@ -35,7 +35,7 @@ class WordDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+       scrollView.delegate = self
     }
     
 
@@ -52,6 +52,9 @@ class WordDetailViewController: UIViewController {
         // 5ページ分のcontentSize
         let contentRect = CGRect(x: 0, y: 0, width: size.width * CGFloat(selectDic.words.count), height: size.height)
         let contentView = UIView(frame: contentRect)
+        
+        let wordeditbutton :UIBarButtonItem = UIBarButtonItem(title: "単語編集", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.wordedit))
+        self.navigationItem.setRightBarButtonItems([wordeditbutton], animated: true)
         
         pageNum = selectDic.words.count
         
@@ -121,10 +124,32 @@ class WordDetailViewController: UIViewController {
 
     }
     
-
+    open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        page =  Int((scrollView.contentOffset.x + (0.5 * scrollView.bounds.width)) / scrollView.bounds.width)
+        print(page)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @objc func wordedit() {
+        self.performSegue(withIdentifier: "toWordEdit", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toWordEdit") {
+            let nc = segue.destination as! UINavigationController
+            let WEVC = nc.topViewController as! WordEditViewController
+            WEVC.dicid = self.dicid
+            WEVC.selectpage = self.page
+            WEVC.selectpicturekey = selectDic.words[page].wordpicturekey
+
+        }
+    }
+ 
 
 }

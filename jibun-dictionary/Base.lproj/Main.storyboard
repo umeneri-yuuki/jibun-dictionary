@@ -104,6 +104,64 @@
             </objects>
             <point key="canvasLocation" x="3128.8000000000002" y="984.55772113943033"/>
         </scene>
+        <!--単語編集-->
+        <scene sceneID="JKm-TB-xzv">
+            <objects>
+                <viewController id="ZyF-gY-M6I" customClass="WordEditViewController" customModule="jibun_dictionary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ufE-6X-gvD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="deN-x9-wy8">
+                                <rect key="frame" x="16" y="105" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KKD-bH-Yq8"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cnZ-rF-TGK">
+                                <rect key="frame" x="16" y="154" width="343" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="4Af-oG-61N"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X9M-1U-qcI">
+                                <rect key="frame" x="16" y="349" width="343" height="151"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="151" id="hJd-fZ-2c3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X9M-1U-qcI" firstAttribute="leading" secondItem="TT8-3S-GfL" secondAttribute="leading" constant="16" id="02U-yG-eTN"/>
+                            <constraint firstItem="TT8-3S-GfL" firstAttribute="trailing" secondItem="X9M-1U-qcI" secondAttribute="trailing" constant="16" id="6dh-gv-7jF"/>
+                            <constraint firstItem="TT8-3S-GfL" firstAttribute="trailing" secondItem="deN-x9-wy8" secondAttribute="trailing" constant="16" id="BtQ-mc-q0b"/>
+                            <constraint firstItem="cnZ-rF-TGK" firstAttribute="leading" secondItem="TT8-3S-GfL" secondAttribute="leading" constant="16" id="HAf-Rf-yNT"/>
+                            <constraint firstItem="deN-x9-wy8" firstAttribute="leading" secondItem="TT8-3S-GfL" secondAttribute="leading" constant="16" id="Mla-Xf-MDM"/>
+                            <constraint firstItem="deN-x9-wy8" firstAttribute="top" secondItem="TT8-3S-GfL" secondAttribute="top" constant="17" id="XXD-Cu-Qse"/>
+                            <constraint firstItem="TT8-3S-GfL" firstAttribute="trailing" secondItem="cnZ-rF-TGK" secondAttribute="trailing" constant="16" id="iDp-vd-gVx"/>
+                            <constraint firstItem="cnZ-rF-TGK" firstAttribute="top" secondItem="deN-x9-wy8" secondAttribute="bottom" constant="19" id="q0d-Mf-yOg"/>
+                            <constraint firstItem="X9M-1U-qcI" firstAttribute="top" secondItem="cnZ-rF-TGK" secondAttribute="bottom" constant="20" id="tyL-Pi-mXi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TT8-3S-GfL"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="単語編集" id="9xF-di-uVU"/>
+                    <connections>
+                        <outlet property="editimageview" destination="cnZ-rF-TGK" id="xe1-ov-3To"/>
+                        <outlet property="edittextfield" destination="deN-x9-wy8" id="8it-Sq-0fK"/>
+                        <outlet property="edittextview" destination="X9M-1U-qcI" id="oP4-wC-cR3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PwS-rU-kWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4049" y="985"/>
+        </scene>
         <!--ライブラリ-->
         <scene sceneID="5tz-T3-lsO">
             <objects>
@@ -240,6 +298,7 @@
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="pfj-Yf-2hy" id="r4r-ah-YQn"/>
+                        <segue destination="vkr-z4-ych" kind="presentation" identifier="toWordEdit" id="h1h-T1-iQq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SaO-li-APx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -355,6 +414,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGI-ct-iir" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3129" y="212"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0FJ-4o-bcw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vkr-z4-ych" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fOY-uJ-n5l">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZyF-gY-M6I" kind="relationship" relationship="rootViewController" id="2q2-bJ-OKy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RCr-hD-O2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4049" y="211"/>
         </scene>
     </scenes>
     <resources>

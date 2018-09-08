@@ -32,6 +32,8 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
         newWordmean.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
         newWordmean.layer.borderWidth = 1
         
+        newWordpictureview.backgroundColor = UIColor.lightGray
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newWordtitle.delegate = self
@@ -50,7 +52,8 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
         imagePickUpButton.frame = CGRect(x: newWordpictureview.frame.width - 100, y: newWordpictureview.frame.height - 20, width: 80, height: 40)
         imagePickUpButton.addTarget(self, action: #selector(self.imagePickUpButtonClicked(_:)), for: .touchUpInside)
         imagePickUpButton.backgroundColor = UIColor.gray
-        imagePickUpButton.setTitle("画像追加", for: UIControlState.normal)
+        imagePickUpButton.setTitle("画像選択", for: UIControlState.normal)
+        imagePickUpButton.tag = 0
         newWordpictureview.addSubview(imagePickUpButton)
         
         
@@ -71,11 +74,32 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             newWordpictureview.image = image
             selectpicture = image
+            let imagedeletebutton:UIButton = UIButton()
+            imagedeletebutton.frame =  CGRect(x: 2, y: 0, width: 40, height: 40)
+            imagedeletebutton.addTarget(self, action: #selector(self.imagedelete), for: .touchUpInside)
+            imagedeletebutton.backgroundColor = UIColor.gray
+            imagedeletebutton.setTitle("削除", for: UIControlState.normal)
+            imagedeletebutton.tag = 1
+            newWordpictureview.addSubview(imagedeletebutton)
+            
         } else{
             print("Error")
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @objc func imagedelete() {
+        newWordpictureview.image = UIImage()
+        selectpicture = UIImage()
+        let subviews = newWordpictureview.subviews
+        for subview in subviews {
+            if subview.tag == 1 {
+                subview.removeFromSuperview()
+            }
+        }
+
+    }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
