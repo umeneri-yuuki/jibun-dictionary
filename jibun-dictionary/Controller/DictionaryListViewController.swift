@@ -105,8 +105,8 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
           let diclistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(DictionaryListViewController.newDic))
         let diclistfinishbutton = UIBarButtonItem(image: UIImage(named: "FinishItem"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(DictionaryListViewController.done))
         
-         self.navigationItem.setRightBarButtonItems([diclistaddbutton], animated: true)
-         self.navigationItem.setLeftBarButtonItems([diclistfinishbutton], animated: true)
+         self.navigationItem.setRightBarButtonItems([diclistfinishbutton], animated: true)
+         self.navigationItem.setLeftBarButtonItems([diclistaddbutton], animated: true)
         
         
     }
