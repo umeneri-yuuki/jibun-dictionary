@@ -32,14 +32,30 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
         newWordmean.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
         newWordmean.layer.borderWidth = 1
         
-        newWordpictureview.backgroundColor = UIColor.lightGray
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newWordtitle.delegate = self
         
-
-        // Do any additional setup after loading the view.
+        if let _:NSData = UserDefaults.standard.object(forKey: selectpicturekey) as? NSData {
+            let imagedeletebutton:UIButton = UIButton()
+            imagedeletebutton.frame =  CGRect(x: 2, y: 0, width: 40, height: 40)
+            imagedeletebutton.addTarget(self, action: #selector(self.imagedelete), for: .touchUpInside)
+            imagedeletebutton.setImage(UIImage(named: "Cansel"), for: UIControlState.normal)
+            imagedeletebutton.sizeToFit()
+            imagedeletebutton.tag = 1
+            newWordpictureview.addSubview(imagedeletebutton)
+        }else{
+            let imagePickUpButton:UIButton = UIButton()
+            imagePickUpButton.addTarget(self, action: #selector(self.imagePickUpButtonClicked(_:)), for: .touchUpInside)
+            imagePickUpButton.setImage(UIImage(named: "AddPhoto"), for: UIControlState.normal)
+            imagePickUpButton.sizeToFit()
+            let pickbuttonwidth =  imagePickUpButton.frame.width
+            let pickbuttonheight = imagePickUpButton.frame.height
+            imagePickUpButton.frame = CGRect(x: newWordpictureview.frame.width - pickbuttonwidth, y: newWordpictureview.frame.height - pickbuttonheight, width:pickbuttonwidth, height:pickbuttonheight )
+            imagePickUpButton.tag = 0
+            newWordpictureview.addSubview(imagePickUpButton)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,15 +63,6 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
         self.navigationController!.navigationBar.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Clear"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.close))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.save))
-        
-        let imagePickUpButton:UIButton = UIButton()
-        imagePickUpButton.frame = CGRect(x: newWordpictureview.frame.width - 100, y: newWordpictureview.frame.height - 20, width: 80, height: 40)
-        imagePickUpButton.addTarget(self, action: #selector(self.imagePickUpButtonClicked(_:)), for: .touchUpInside)
-        imagePickUpButton.backgroundColor = UIColor.gray
-        imagePickUpButton.setTitle("画像選択", for: UIControlState.normal)
-        imagePickUpButton.tag = 0
-        newWordpictureview.addSubview(imagePickUpButton)
-        
         
         mydiclist.fetchDicList()
         
@@ -74,13 +81,22 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             newWordpictureview.image = image
             selectpicture = image
+            
             let imagedeletebutton:UIButton = UIButton()
             imagedeletebutton.frame =  CGRect(x: 2, y: 0, width: 40, height: 40)
             imagedeletebutton.addTarget(self, action: #selector(self.imagedelete), for: .touchUpInside)
-            imagedeletebutton.backgroundColor = UIColor.gray
-            imagedeletebutton.setTitle("削除", for: UIControlState.normal)
+            imagedeletebutton.setImage(UIImage(named: "Cansel"), for: UIControlState.normal)
+            imagedeletebutton.sizeToFit()
             imagedeletebutton.tag = 1
             newWordpictureview.addSubview(imagedeletebutton)
+            
+            let subviews = newWordpictureview.subviews
+            for subview in subviews {
+                if subview.tag == 0 {
+                    subview.removeFromSuperview()
+                }
+            }
+            
             
         } else{
             print("Error")
@@ -97,6 +113,16 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
                 subview.removeFromSuperview()
             }
         }
+        
+        let imagePickUpButton:UIButton = UIButton()
+        imagePickUpButton.addTarget(self, action: #selector(self.imagePickUpButtonClicked(_:)), for: .touchUpInside)
+        imagePickUpButton.setImage(UIImage(named: "AddPhoto"), for: UIControlState.normal)
+        imagePickUpButton.sizeToFit()
+        let pickbuttonwidth =  imagePickUpButton.frame.width
+        let pickbuttonheight = imagePickUpButton.frame.height
+        imagePickUpButton.frame = CGRect(x: newWordpictureview.frame.width - pickbuttonwidth, y: newWordpictureview.frame.height - pickbuttonheight, width:pickbuttonwidth, height:pickbuttonheight )
+        imagePickUpButton.tag = 0
+        newWordpictureview.addSubview(imagePickUpButton)
 
     }
     

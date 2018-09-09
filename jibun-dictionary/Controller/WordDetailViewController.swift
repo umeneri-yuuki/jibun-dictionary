@@ -53,7 +53,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         let contentRect = CGRect(x: 0, y: 0, width: size.width * CGFloat(selectDic.words.count), height: size.height)
         let contentView = UIView(frame: contentRect)
         
-        let wordeditbutton :UIBarButtonItem = UIBarButtonItem(title: "単語編集", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.wordedit))
+        let wordeditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Create"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.wordedit))
         self.navigationItem.setRightBarButtonItems([wordeditbutton], animated: true)
         
         pageNum = selectDic.words.count
@@ -121,14 +121,15 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         scrollView.contentSize = contentView.frame.size
         
         scrollView.contentOffset = CGPoint(x: ((size.width * CGFloat(selectrow))), y: 0)
-
+        page =  Int((scrollView.contentOffset.x + (0.5 * scrollView.bounds.width)) / scrollView.bounds.width)
+        
     }
     
     open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         page =  Int((scrollView.contentOffset.x + (0.5 * scrollView.bounds.width)) / scrollView.bounds.width)
         print(page)
-        
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -137,7 +138,11 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
     }
     
     @objc func wordedit() {
+        selectrow = page
         self.performSegue(withIdentifier: "toWordEdit", sender: self)
+        for subview in scrollView.subviews {
+            subview.removeFromSuperview()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -147,7 +152,6 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
             WEVC.dicid = self.dicid
             WEVC.selectpage = self.page
             WEVC.selectpicturekey = selectDic.words[page].wordpicturekey
-
         }
     }
  
