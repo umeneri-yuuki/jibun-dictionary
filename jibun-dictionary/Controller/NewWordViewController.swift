@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
     @IBOutlet weak var newWordtitle: UITextField!
     @IBOutlet weak var newWordmean: UITextView!
@@ -27,11 +27,9 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         newWordmean.layer.cornerRadius = 5
         newWordmean.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
         newWordmean.layer.borderWidth = 1
-        
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
@@ -60,12 +58,33 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        newWordmean.text = "意味・コメントを入力"
+        newWordmean.textColor = UIColor.lightGray
+        newWordmean.alpha = 0.7
+        newWordmean.delegate = self
+        
         self.navigationController!.navigationBar.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Clear"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.close))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.save))
         
         mydiclist.fetchDicList()
         
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if newWordmean.textColor == UIColor.lightGray {
+            newWordmean.text = nil
+            newWordmean.textColor = UIColor.black
+            newWordmean.alpha = 1.0
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if newWordmean.text.isEmpty {
+            newWordmean.text = "意味・コメントを入力"
+            newWordmean.textColor = UIColor.lightGray
+            newWordmean.alpha = 0.7
+        }
     }
     
     @objc func imagePickUpButtonClicked(_ sender: UIButton){
@@ -143,6 +162,10 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UIImagePicker
             self.present(alertView, animated: true, completion: nil)
         
         } else {
+            
+            if newWordmean.textColor == UIColor.lightGray {
+                newWordmean.text = ""
+            }
             
             if  let selectpicture = selectpicture{
                 selectpicturekey = String(Int(Date().timeIntervalSince1970))

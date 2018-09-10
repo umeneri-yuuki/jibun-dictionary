@@ -36,6 +36,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         super.viewDidLoad()
         
        scrollView.delegate = self
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
 
@@ -45,7 +46,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         
         selectDic.fetchWordList(row: dicid)
         
-        // navigationController?.hidesBarsOnTap = true
+         navigationController?.hidesBarsOnTap = true
         
         //　scrollViewの表示サイズ
         let size = CGSize(width: scrollView.frame.size.width, height: scrollView.frame.size.height)
@@ -61,14 +62,17 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         for i in 0 ..< pageNum {
             //let page = makePage(x: CGFloat(i * Int(view.frame.width)), i: i)
             let pageview = UIView(frame: CGRect(x: size.width * CGFloat(i), y: 0, width: size.width, height: size.height))
-            let WordName = UILabel()
+            let WordName = UITextView()
             WordName.text = selectDic.words[i].wordtitle
+            WordName.font = UIFont(name: "Hiragino Sans", size: 30)
             WordName.backgroundColor = .white
+            WordName.frame.size.width = size.width - 10
             WordName.sizeToFit()
-            WordName.center = pageview.center
-            WordName.frame.origin.x = 20
+            //WordName.center = pageview.center
+            WordName.frame.origin.x = 10
             WordName.frame.origin.y = 20
             WordName.tag = WordDetailViewController.LABEL_TAG
+            WordName.isEditable = false
             
             //let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[i].wordpicturekey) as! NSData
             //if UIImage(data:imageDate as Data) != UIImage(named: "noImage.png"){
@@ -84,13 +88,23 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
                 
                 let WordMean = UITextView()
                 WordMean.text = selectDic.words[i].wordmean
+                WordMean.font = UIFont(name: "Hiragino Sans", size: 15)
                 WordMean.backgroundColor = .white
+                WordMean.frame.size.width = size.width - 20
                 WordMean.sizeToFit()
                 WordMean.center = pageview.center
-                WordMean.frame.origin.x = 20
+                WordMean.frame.origin.x = 10
                 WordMean.frame.origin.y = WordName.frame.height + WordPicture.frame.height + 40
                 WordMean.tag = WordDetailViewController.LABEL_TAG
                 WordMean.isEditable = false
+                WordMean.isSelectable = true
+                
+                if pageview.frame.size.height < WordName.frame.size.height + WordMean.frame.size.height + WordPicture.frame.height + 40{
+                    WordMean.frame.size.height = pageview.frame.size.height - WordName.frame.size.height - WordPicture.frame.size.height + 100
+                    WordMean.isScrollEnabled = true
+                }else{
+                    WordMean.isScrollEnabled = false
+                }
                 
                 pageview.addSubview(WordName)
                 pageview.addSubview(WordPicture)
@@ -100,14 +114,25 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
                 
                 let WordMean = UITextView()
                 WordMean.text = selectDic.words[i].wordmean
+                WordMean.font = UIFont(name: "Hiragino Sans", size: 15)
                 WordMean.backgroundColor = .white
+                WordMean.frame.size.width = size.width - 20
                 WordMean.sizeToFit()
                 WordMean.center = pageview.center
-                WordMean.frame.origin.x = 20
+                WordMean.frame.origin.x = 10
                 WordMean.frame.origin.y = WordName.frame.height + 20
                 WordMean.tag = WordDetailViewController.LABEL_TAG
                 WordMean.isEditable = false
-                
+                WordMean.isScrollEnabled = true
+                WordMean.isSelectable = true
+
+                if pageview.frame.size.height < WordName.frame.size.height + WordMean.frame.size.height + 20{
+                    WordMean.frame.size.height = pageview.frame.size.height - WordName.frame.size.height + 100
+                    WordMean.isScrollEnabled = true
+                }else{
+                    WordMean.isScrollEnabled = false
+                }
+
                 pageview.addSubview(WordName)
                 pageview.addSubview(WordMean)
                 
@@ -115,6 +140,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
             
             contentView.addSubview(pageview)
             pageViewArray.append(pageview)
+ 
         }
         
         scrollView.addSubview(contentView)
@@ -123,6 +149,9 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         scrollView.contentOffset = CGPoint(x: ((size.width * CGFloat(selectrow))), y: 0)
         page =  Int((scrollView.contentOffset.x + (0.5 * scrollView.bounds.width)) / scrollView.bounds.width)
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -154,6 +183,8 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
             WEVC.selectpicturekey = selectDic.words[page].wordpicturekey
         }
     }
+    
+    
  
 
 }

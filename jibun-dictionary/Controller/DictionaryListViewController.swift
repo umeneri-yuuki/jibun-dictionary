@@ -20,8 +20,6 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
 
     @IBOutlet weak var TableView: UITableView!
     
-    //@IBOutlet weak var DLVtabbar: UIToolbar!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +34,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         let appDomain = Bundle.main.bundleIdentifier
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
  */
+        
  
         
     }
@@ -76,14 +75,12 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
        // self.navigationItem.leftBarButtonItem = editButtonItem
         self.TableView.reloadData()
         mydiclist.fetchDicList()
-        tabBarController?.tabBar.isHidden = false
+        
     }
     
-    /*
-    @IBAction func tapAddDic(_ sender: UIBarButtonItem) {
-        self.newDic()
+    override func viewDidAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
- */
     
     @objc func newDic() {
         

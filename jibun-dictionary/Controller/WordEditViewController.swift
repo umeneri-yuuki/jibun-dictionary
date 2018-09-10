@@ -149,6 +149,13 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
     
     @objc func editfinish(){
         
+        if edittextfield.text!.isEmpty {
+            let alertView = UIAlertController(title: "失敗しました", message: "単語名が記述されていません", preferredStyle: UIAlertControllerStyle.alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alertView, animated: true, completion: nil)
+            
+        } else {
+        
         if  let selectpicture = selectpicture{
             UserDefaults.standard.set(UIImageJPEGRepresentation(selectpicture, 1), forKey: selectpicturekey)
         }else{
@@ -158,6 +165,8 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         selectDic.words[selectpage].wordmean = edittextview.text
         self.selectDic.save(row: dicid)
          self.dismiss(animated: true, completion: nil)
+            
+        }
         
     }
     
