@@ -202,56 +202,5 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
         newWordtitle.resignFirstResponder()
         return true
     }
-    /*
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.mydiclist.dics.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.mydiclist.dics[row].dictitle
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.newWorddic.text = self.mydiclist.dics[row].dictitle
-        self.selectDic = self.mydiclist.dics[row]
-        self.dicid = Int(self.mydiclist.dics[row].dicid)!
-        print(self.selectDic.dictitle)
-        print(self.dicid)
-        selectDic.fetchWordList(row: dicid)
-        for title in self.selectDic.words{
-            print(title.wordtitle)
-        }
-    }
-    
-    @objc func cancel() {
-        self.newWorddic.text = ""
-        self.newWorddic.endEditing(true)
-    }
-    
-    @objc func done() {
-        self.newWorddic.endEditing(true)
-    }
- 
-    
-    @objc func addnewDic(){
-        let t = Int(Date().timeIntervalSince1970)
-        self.dicid = t
-        print("newid:\(self.dicid)")
-        self.performSegue(withIdentifier: "toNewDic", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "toNewDic") {
-            let nc = segue.destination as! UINavigationController
-            let NDVC = nc.topViewController as! NewDicViewController
-            NDVC.dicid = self.dicid
-        }
-    }
- */
-
+   
 }

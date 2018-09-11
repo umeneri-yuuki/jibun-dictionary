@@ -36,7 +36,6 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         super.viewDidLoad()
         
        scrollView.delegate = self
-        //self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
 
@@ -68,14 +67,10 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
             WordName.backgroundColor = .white
             WordName.frame.size.width = size.width - 10
             WordName.sizeToFit()
-            //WordName.center = pageview.center
             WordName.frame.origin.x = 10
             WordName.frame.origin.y = 20
             WordName.tag = WordDetailViewController.LABEL_TAG
             WordName.isEditable = false
-            
-            //let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[i].wordpicturekey) as! NSData
-            //if UIImage(data:imageDate as Data) != UIImage(named: "noImage.png"){
             
             if let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[i].wordpicturekey) as? NSData {
                 
@@ -163,7 +158,6 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func wordedit() {

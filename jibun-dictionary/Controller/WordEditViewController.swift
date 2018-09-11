@@ -83,7 +83,6 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func imagePickUpButtonClicked(_ sender: UIButton){
@@ -180,15 +179,4 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         return true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

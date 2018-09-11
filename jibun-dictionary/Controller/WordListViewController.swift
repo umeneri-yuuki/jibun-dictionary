@@ -13,7 +13,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     var mydiclist = DicList.sharedInstance
     
     var selectDic = myDic(dictitle: "",dicid: "")
-    //var selectDicNum = 0
+
     var dicid = -1
     
     var selectrow = -1
@@ -29,14 +29,11 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var renameTextField: UITextField!
     
-    //@IBOutlet weak var WLVtabbar: UIToolbar!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
 
-        // Do any additional setup after loading the view.
         TableView.delegate = self
         TableView.dataSource = self
         tabBarController?.tabBar.isHidden = true
@@ -54,8 +51,6 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationController!.navigationBar.tintColor = UIColor.black
 
         let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
-        //let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
-        //let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         self.navigationItem.setRightBarButtonItems([wordlisteditbutton], animated: true)
 
         let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
@@ -64,9 +59,6 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         self.navigationItem.leftBarButtonItem?.tintColor =  UIColor.clear
         
-        
-       // self.WLVtabbar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
-        //self.WLVtabbar.setShadowImage(UIImage(), forToolbarPosition: UIBarPosition.any)
         self.TableView.reloadData()
         selectDic.fetchWordList(row: dicid)
         selectDic.dictitle = selectdictitle
@@ -74,21 +66,11 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.WordListTitle.title = selectDic.dictitle
         print("選択した辞書の名前：\(selectDic.dictitle)")
        
-        
-        //self.navigationController?.navigationBar.alpha = 1
         navigationController?.hidesBarsOnTap = false
-        
-        
         
         tableheight = TableView.frame.size.height
         
     }
-    
-    /*
-    @objc func tapAddWord(_ sender: UIBarButtonItem) {
-        self.newWord()
-    }
- */
     
     @objc func newWord() {
         self.done()
@@ -98,12 +80,10 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationItem.leftItemsSupplementBackButton = false
         TableView.translatesAutoresizingMaskIntoConstraints = true
         TableView.frame = CGRect(x: 0, y: editview.frame.size.height, width: TableView.frame.size.width, height: tableheight - editview.frame.size.height)
-        //TableView.isHidden = true
         editview.isHidden = false
         //編集モードにする
         self.TableView.setEditing(true, animated: true)
         //完了ボタンの追加
-        
         self.navigationItem.leftBarButtonItem?.isEnabled = true
         self.navigationItem.leftBarButtonItem?.tintColor =  UIColor.black
 
@@ -122,18 +102,10 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         TableView.frame = CGRect(x: 0, y:0, width: TableView.frame.size.width, height: tableheight)
         TableView.translatesAutoresizingMaskIntoConstraints = false
         editview.isHidden = true
-        //TableView.isHidden = false
-        
-        //self.navigationItem.rightBarButtonItem?.isEnabled = false
-        //self.navigationItem.rightBarButtonItem?.tintColor = UIColor(white: 0, alpha: 0)
+
         let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
-        //let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
-       // let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        //let backbutton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(WordListViewController.tappedLeftBarButton))
-        //self.navigationItem.backBarButtonItem = backbutton
+
         self.navigationItem.setRightBarButtonItems([wordlisteditbutton], animated: true)
-        //self.navigationItem.setLeftBarButtonItems([backbutton], animated: true)
-        //self.navigationItem.backBarButtonItem
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         self.navigationItem.leftBarButtonItem?.tintColor =  UIColor.clear
         
@@ -169,11 +141,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             let WDVC = segue.destination as! WordDetailViewController
             WDVC.dicid = self.dicid
             WDVC.selectrow = self.selectrow
-            //WDVC.selectDic = self.selectDic
-            //WDVC.selectDicNum = self.selectDicNum
         }
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -217,11 +186,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         
-        // self.selectDic = self.mydiclist.dics[indexPath.row]
+
         self.selectrow = indexPath.row
-        // self.dicid = Int(self.selectDic.dicid)!
-        //print("indexpath:\(indexPath.row)")
-        //print("id:\(self.dicid)")
         
         performSegue(withIdentifier: "toWordDetail",sender:nil)
         
@@ -236,28 +202,12 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {
-        //renameTextField.resignFirstResponder()
         editview.endEditing(true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //renameTextField.resignFirstResponder()
         editview.endEditing(true)
         return true
     }
- 
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
