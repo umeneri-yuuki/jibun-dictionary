@@ -14,7 +14,6 @@ class DicList: NSObject{
     
     func addDicList(dic: myDic){
         self.dics.append(dic)
-        self.save()
     }
    
     

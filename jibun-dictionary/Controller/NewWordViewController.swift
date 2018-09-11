@@ -15,12 +15,13 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
     @IBOutlet weak var newWordpictureview: UIImageView!
     
     
-    var mydiclist = DicList.sharedInstance
+   // var mydiclist = DicList.sharedInstance
     var selectDic = myDic(dictitle: "",dicid: "")
     var selectDicNum = 0
     var selectpicture:UIImage? = UIImage()
     var selectpicturekey = String()
     var dicid = -1
+    var backgroundTaskID : UIBackgroundTaskIdentifier = 0
     
     var picker: UIImagePickerController! = UIImagePickerController()
     
@@ -34,16 +35,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newWordtitle.delegate = self
-        
-        if let _:NSData = UserDefaults.standard.object(forKey: selectpicturekey) as? NSData {
-            let imagedeletebutton:UIButton = UIButton()
-            imagedeletebutton.frame =  CGRect(x: 2, y: 0, width: 40, height: 40)
-            imagedeletebutton.addTarget(self, action: #selector(self.imagedelete), for: .touchUpInside)
-            imagedeletebutton.setImage(UIImage(named: "Cansel"), for: UIControlState.normal)
-            imagedeletebutton.sizeToFit()
-            imagedeletebutton.tag = 1
-            newWordpictureview.addSubview(imagedeletebutton)
-        }else{
+
             let imagePickUpButton:UIButton = UIButton()
             imagePickUpButton.addTarget(self, action: #selector(self.imagePickUpButtonClicked(_:)), for: .touchUpInside)
             imagePickUpButton.setImage(UIImage(named: "AddPhoto"), for: UIControlState.normal)
@@ -53,7 +45,6 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
             imagePickUpButton.frame = CGRect(x: newWordpictureview.frame.width - pickbuttonwidth, y: newWordpictureview.frame.height - pickbuttonheight, width:pickbuttonwidth, height:pickbuttonheight )
             imagePickUpButton.tag = 0
             newWordpictureview.addSubview(imagePickUpButton)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +58,8 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Clear"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.close))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.save))
         
-        mydiclist.fetchDicList()
+        //mydiclist.fetchDicList()
+        selectDic.fetchWordList(row: Int(selectDic.dicid)!)
         
     }
     
@@ -92,6 +84,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
         picker.delegate = self
         picker.navigationBar.tintColor = UIColor.black
         picker.navigationBar.barTintColor = UIColor.white
+        selectpicture = nil
         present(picker, animated: true, completion: nil)
     }
     
@@ -125,7 +118,8 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
     
     @objc func imagedelete() {
         newWordpictureview.image = UIImage()
-        selectpicture = UIImage()
+        //selectpicture = UIImage()
+        selectpicture = nil
         let subviews = newWordpictureview.subviews
         for subview in subviews {
             if subview.tag == 1 {
@@ -167,25 +161,41 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 newWordmean.text = ""
             }
             
-            if  let selectpicture = selectpicture{
+           // if let selectpicture = selectpicture{
+                print("こんにちは")
                 selectpicturekey = String(Int(Date().timeIntervalSince1970))
                 let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!,wordpicturekey: selectpicturekey)
-                self.selectDic.addWordList(word: word, row: self.dicid)
-                
-                UserDefaults.standard.set(UIImageJPEGRepresentation(selectpicture, 1), forKey: selectpicturekey)
+                self.selectDic.addWordList(word: word)
+                self.selectDic.save(row: Int(selectDic.dicid)!)
+                //let picture = UIImageJPEGRepresentation(selectpicture!, 1)
+                let picture = pictureconversion(picture: selectpicture!)
+                UserDefaults.standard.set(picture, forKey: selectpicturekey)
+            
+            /*
             } else {
                 selectpicturekey = String(Int(Date().timeIntervalSince1970))
                 let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!,wordpicturekey: selectpicturekey)
-                self.selectDic.addWordList(word: word, row: self.dicid)
-                //selectpicture = UIImage(named: "noImage.png")
-                UserDefaults.standard.set(UIImageJPEGRepresentation(UIImage(named: "noImage.png")!, 1), forKey: selectpicturekey)
+                self.selectDic.addWordList(word: word)
+                self.selectDic.save(row: Int(selectDic.dicid)!)
+                //let picture = UIImageJPEGRepresentation(UIImage(named: "noImage.png")!, 1)
+                let picture = UIImageJPEGRepresentation(UIImage(named: "noImage.png")!, 1)
+                UserDefaults.standard.set(picture, forKey: selectpicturekey)
                 
             }
+ */
+ 
             
             
             self.dismiss(animated: true, completion: nil)
        
         }
+    }
+    
+    func pictureconversion(picture: UIImage) -> NSData?{
+        self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
+        let picturedata = UIImageJPEGRepresentation(picture, 1)
+        UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
+        return picturedata as NSData?
     }
 
     override func didReceiveMemoryWarning() {

@@ -16,6 +16,8 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     
     var selectdictitle = ""
     
+    var selectdicnum = 0
+    
     var renametext = ""
 
     @IBOutlet weak var TableView: UITableView!
@@ -27,6 +29,8 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         
         TableView.delegate = self
         TableView.dataSource = self
+        
+        mydiclist.fetchDicList()
         
          //userdefaultのデータを全部消す処理
         //let appDomain = Bundle.main.bundleIdentifier
@@ -45,7 +49,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         self.navigationItem.setRightBarButtonItems([diclisteditbutton], animated: true)
         self.navigationItem.setLeftBarButtonItems([flexibleItem], animated: true)
         self.TableView.reloadData()
-        mydiclist.fetchDicList()
+
         
     }
     
@@ -55,8 +59,10 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     
     @objc func newDic() {
         self.done()
+        /*
         let t = Int(Date().timeIntervalSince1970)
         self.dicid = t
+ */
         self.performSegue(withIdentifier: "toNewDic", sender: self)
     }
  
@@ -103,8 +109,9 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     }
 
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
-        self.selectdictitle = self.mydiclist.dics[indexPath.row].dictitle
-        self.dicid = Int(self.mydiclist.dics[indexPath.row].dicid)!
+        //self.selectdictitle = self.mydiclist.dics[indexPath.row].dictitle
+        //self.dicid = Int(self.mydiclist.dics[indexPath.row].dicid)!
+        self.selectdicnum = indexPath.row
         performSegue(withIdentifier: "toWordsList",sender:nil)
         
     }
@@ -112,15 +119,17 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toWordsList") {
             let WLVC = segue.destination as! WordListViewController
-            WLVC.dicid = self.dicid
-            WLVC.selectdictitle = self.selectdictitle
+            //WLVC.dicid = self.dicid
+            //WLVC.selectdictitle = self.selectdictitle
+            WLVC.selectDic = mydiclist.dics[selectdicnum]
         }
-        
+        /*
         if (segue.identifier == "toNewDic") {
             let nc = segue.destination as! UINavigationController
             let NDVC = nc.topViewController as! NewDicViewController
-            NDVC.dicid = self.dicid
+            //NDVC.dicid = self.dicid
         }
+        */
  
     }
     

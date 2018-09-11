@@ -20,6 +20,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
     var selectpage = -1
     var selectpicture:UIImage? = UIImage()
     var selectpicturekey = String()
+    var backgroundTaskID : UIBackgroundTaskIdentifier = 0
     
     var picker: UIImagePickerController! = UIImagePickerController()
     
@@ -35,12 +36,12 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         edittextview.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
         edittextview.layer.borderWidth = 1
         
-        if let imageDate:NSData = UserDefaults.standard.object(forKey: selectpicturekey) as? NSData {
+        if let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[selectpage].wordpicturekey) as? NSData {
             editimageview.image = UIImage(data:imageDate as Data)
             selectpicture = editimageview.image
         }
         
-        if let _:NSData = UserDefaults.standard.object(forKey: selectpicturekey) as? NSData {
+        if let _:NSData = UserDefaults.standard.object(forKey: selectDic.words[selectpage].wordpicturekey) as? NSData {
             let imagedeletebutton:UIButton = UIButton()
             imagedeletebutton.frame =  CGRect(x: 2, y: 0, width: 40, height: 40)
             imagedeletebutton.addTarget(self, action: #selector(self.imagedelete), for: .touchUpInside)
@@ -68,7 +69,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         
         self.navigationController!.navigationBar.tintColor = UIColor.black
         
-        selectDic.fetchWordList(row: dicid)
+        //selectDic.fetchWordList(row: Int(selectDic.dicid)!)
         
         print("編集するページは\(selectpage)")
         edittextfield.text = selectDic.words[selectpage].wordtitle
@@ -122,7 +123,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
     
     @objc func imagedelete() {
         editimageview.image = UIImage()
-        selectpicture = UIImage()
+        selectpicture = nil
         let subviews = editimageview.subviews
         for subview in subviews {
             if subview.tag == 1 {
@@ -156,17 +157,28 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         } else {
         
         if  let selectpicture = selectpicture{
-            UserDefaults.standard.set(UIImageJPEGRepresentation(selectpicture, 1), forKey: selectpicturekey)
+            let picture = pictureconversion(picture: selectpicture)
+            UserDefaults.standard.set(picture, forKey: selectDic.words[selectpage].wordpicturekey)
+            
         }else{
-            UserDefaults.standard.set(UIImageJPEGRepresentation(UIImage(named: "noImage.png")!, 1), forKey: selectpicturekey)
+            //let picture = UIImageJPEGRepresentation(UIImage(named: "noImage.png")!, 1)
+            UserDefaults.standard.set(nil, forKey: selectDic.words[selectpage].wordpicturekey)
         }
+ 
         selectDic.words[selectpage].wordtitle = edittextfield.text
         selectDic.words[selectpage].wordmean = edittextview.text
-        self.selectDic.save(row: dicid)
+        self.selectDic.save(row: Int(selectDic.dicid)!)
          self.dismiss(animated: true, completion: nil)
             
         }
         
+    }
+    
+    func pictureconversion(picture: UIImage) -> NSData?{
+        self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
+        let picturedata = UIImageJPEGRepresentation(picture, 1)
+        UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
+        return picturedata as NSData?
     }
     
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {

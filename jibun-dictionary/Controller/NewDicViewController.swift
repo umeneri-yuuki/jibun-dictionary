@@ -12,19 +12,13 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var newDicname: UITextField!
     
-    var dicid = -1
-    
     var mydiclist = DicList.sharedInstance
-    //var mydiclist = DicList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(dicid)
-        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewDicViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newDicname.delegate = self
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,11 +38,13 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
             alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alertView, animated: true, completion: nil)
         } else {
-            print("id=\(self.dicid)")
-            let dic = myDic(dictitle: newDicname.text!, dicid: String(self.dicid))
+            let dicid = Int(Date().timeIntervalSince1970)
+            let dic = myDic(dictitle: newDicname.text!, dicid: String(dicid))
             //dic.dicid = self.dicid
             //dic.dictitle = newDicname.text!
             self.mydiclist.addDicList(dic: dic)
+            self.mydiclist.save()
+            newDicname.resignFirstResponder()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -67,6 +63,4 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
         return true
     }
     
-
-
 }

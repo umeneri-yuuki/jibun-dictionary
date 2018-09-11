@@ -42,6 +42,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         editview.isHidden = true
         
         self.navigationItem.leftItemsSupplementBackButton = true
+        
+        selectDic.fetchWordList(row: Int(selectDic.dicid)!)
 
         
     }
@@ -60,8 +62,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationItem.leftBarButtonItem?.tintColor =  UIColor.clear
         
         self.TableView.reloadData()
-        selectDic.fetchWordList(row: dicid)
-        selectDic.dictitle = selectdictitle
+
+        //selectDic.dictitle = selectdictitle
         
         self.WordListTitle.title = selectDic.dictitle
         print("選択した辞書の名前：\(selectDic.dictitle)")
@@ -111,13 +113,14 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         selectDic.dictitle = self.renameTextField.text
         self.WordListTitle.title = selectDic.dictitle
-        selectDic.save(row: dicid)
+        //self.selectDic.save(row: Int(selectDic.dicid)!)
+        
         for dic in mydiclist.dics {
-            if dic.dicid == String(dicid) {
+            if dic.dicid == selectDic.dicid {
                 dic.dictitle = selectDic.dictitle
-                self.mydiclist.save()
             }
         }
+ 
         //編集モードを終わる
         self.TableView.setEditing(false, animated: true)
         editview.endEditing(true)
@@ -135,12 +138,16 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             let nc = segue.destination as! UINavigationController
             let NWVC = nc.topViewController as! NewWordViewController
             NWVC.selectDic = self.selectDic
-            NWVC.dicid = self.dicid
+            //NWVC.dicid = self.dicid
         }
         if (segue.identifier == "toWordDetail") {
             let WDVC = segue.destination as! WordDetailViewController
-            WDVC.dicid = self.dicid
+            WDVC.selectDic = self.selectDic
+            
             WDVC.selectrow = self.selectrow
+            /*
+            WDVC.dicid = self.dicid
+             */
         }
     }
 
@@ -175,9 +182,9 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
 
             if self.selectDic.words.isEmpty == false {
-            self.selectDic.save(row: dicid)
+            self.selectDic.save(row: Int(selectDic.dicid)!)
             } else {
-                UserDefaults.standard.removeObject(forKey: String(dicid))
+                UserDefaults.standard.removeObject(forKey: selectDic.dicid)
             }
         default:
             return
@@ -197,7 +204,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         let dic = self.selectDic.words[sourceIndexPath.row]
         self.selectDic.words.remove(at: sourceIndexPath.row)
         self.selectDic.words.insert(dic, at: destinationIndexPath.row)
-        self.selectDic.save(row: dicid)
+        self.selectDic.save(row: Int(selectDic.dicid)!)
     }
     
     

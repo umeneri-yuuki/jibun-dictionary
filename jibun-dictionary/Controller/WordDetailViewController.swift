@@ -43,7 +43,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        selectDic.fetchWordList(row: dicid)
+        selectDic.fetchWordList(row: Int(selectDic.dicid)!)
         
          navigationController?.hidesBarsOnTap = true
         
@@ -79,7 +79,6 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
                 WordPicture.contentMode = UIViewContentMode.scaleAspectFit
                 WordPicture.image = UIImage(data:imageDate as Data)
                 WordPicture.tag = WordDetailViewController.LABEL_TAG
-                
                 
                 let WordMean = UITextView()
                 WordMean.text = selectDic.words[i].wordmean
@@ -172,9 +171,12 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         if (segue.identifier == "toWordEdit") {
             let nc = segue.destination as! UINavigationController
             let WEVC = nc.topViewController as! WordEditViewController
+            /*
             WEVC.dicid = self.dicid
-            WEVC.selectpage = self.page
             WEVC.selectpicturekey = selectDic.words[page].wordpicturekey
+             */
+            WEVC.selectpage = selectrow
+            WEVC.selectDic = self.selectDic
         }
     }
     

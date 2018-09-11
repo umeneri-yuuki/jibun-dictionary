@@ -16,10 +16,10 @@ class myDic: NSObject, NSCoding{
     
     var words:[Word] = []
     
-    func addWordList(word: Word,row: Int){
+    func addWordList(word: Word){
         self.words.append(word)
         
-        self.save(row: row)
+       // self.save(row: row)
     }
     
     init(dictitle: String, dicid: String) {
