@@ -20,7 +20,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
     var selectpage = -1
     var selectpicture:UIImage? = UIImage()
     var selectpicturekey = String()
-    var backgroundTaskID : UIBackgroundTaskIdentifier = 0
+    var backgroundTaskID : UIBackgroundTaskIdentifier = 1
     
     var picker: UIImagePickerController! = UIImagePickerController()
     
@@ -36,12 +36,14 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         edittextview.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
         edittextview.layer.borderWidth = 1
         
-        if let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[selectpage].wordpicturekey) as? NSData {
+        let filename = getDocumentsDirectory().appendingPathComponent(selectDic.words[selectpage].wordpicturekey)
+        
+        if let imageDate:NSData = NSData(contentsOf: filename){
             editimageview.image = UIImage(data:imageDate as Data)
             selectpicture = editimageview.image
         }
         
-        if let _:NSData = UserDefaults.standard.object(forKey: selectDic.words[selectpage].wordpicturekey) as? NSData {
+        if let _:NSData = NSData(contentsOf: filename){
             let imagedeletebutton:UIButton = UIButton()
             imagedeletebutton.frame =  CGRect(x: 2, y: 0, width: 40, height: 40)
             imagedeletebutton.addTarget(self, action: #selector(self.imagedelete), for: .touchUpInside)
@@ -156,14 +158,17 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
             
         } else {
         
+            saveImageToDocumentsDirectory(image: selectpicture!, key: selectDic.words[selectpage].wordpicturekey)
+            /*
         if  let selectpicture = selectpicture{
-            let picture = pictureconversion(picture: selectpicture)
-            UserDefaults.standard.set(picture, forKey: selectDic.words[selectpage].wordpicturekey)
+            //let picture = pictureconversion(picture: selectpicture)
+            //UserDefaults.standard.set(picture, forKey: selectDic.words[selectpage].wordpicturekey)
             
         }else{
             //let picture = UIImageJPEGRepresentation(UIImage(named: "noImage.png")!, 1)
-            UserDefaults.standard.set(nil, forKey: selectDic.words[selectpage].wordpicturekey)
+            //UserDefaults.standard.set(nil, forKey: selectDic.words[selectpage].wordpicturekey)
         }
+ */
  
         selectDic.words[selectpage].wordtitle = edittextfield.text
         selectDic.words[selectpage].wordmean = edittextview.text
@@ -174,11 +179,26 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         
     }
     
+    /*
     func pictureconversion(picture: UIImage) -> NSData?{
         self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
         let picturedata = UIImageJPEGRepresentation(picture, 1)
         UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
         return picturedata as NSData?
+    }
+ */
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func saveImageToDocumentsDirectory(image: UIImage, key: String) {
+        let data = UIImageJPEGRepresentation(image,1)
+        let filename = getDocumentsDirectory().appendingPathComponent(key)
+        try? data?.write(to: filename)
+        
     }
     
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {

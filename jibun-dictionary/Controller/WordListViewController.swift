@@ -22,6 +22,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var tableheight = CGFloat()
     
+    var backgroundTaskID : UIBackgroundTaskIdentifier = 0
+    
     @IBOutlet weak var TableView: UITableView!
     
     @IBOutlet weak var WordListTitle: UINavigationItem!
@@ -76,6 +78,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @objc func newWord() {
         self.done()
+        //self.doneprocess()
         self.performSegue(withIdentifier: "toNewWord", sender: self)
     }
     @objc func tapWordEdit(_ sender: UIBarButtonItem) {
@@ -97,35 +100,45 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    /*
+    @objc func doneprocess() {
+        self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
+
+        print("にゃー")
+
+        UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
+     
+    }
+ */
     
     @objc func done() {
-        
         self.navigationItem.leftItemsSupplementBackButton = true
         TableView.frame = CGRect(x: 0, y:0, width: TableView.frame.size.width, height: tableheight)
         TableView.translatesAutoresizingMaskIntoConstraints = false
         editview.isHidden = true
-
+        
         let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
-
+        
         self.navigationItem.setRightBarButtonItems([wordlisteditbutton], animated: true)
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         self.navigationItem.leftBarButtonItem?.tintColor =  UIColor.clear
         
         selectDic.dictitle = self.renameTextField.text
         self.WordListTitle.title = selectDic.dictitle
-        //self.selectDic.save(row: Int(selectDic.dicid)!)
+        
+        self.TableView.setEditing(false, animated: true)
+        editview.endEditing(true)
+        
+        self.selectDic.save(row: Int(selectDic.dicid)!)
         
         for dic in mydiclist.dics {
             if dic.dicid == selectDic.dicid {
                 dic.dictitle = selectDic.dictitle
             }
         }
- 
-        //編集モードを終わる
-        self.TableView.setEditing(false, animated: true)
-        editview.endEditing(true)
         
-        
+
+        print("にゃー")
     }
     
     @objc func tappedLeftBarButton() {

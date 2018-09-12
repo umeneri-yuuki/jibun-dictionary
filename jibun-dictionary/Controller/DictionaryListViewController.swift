@@ -34,7 +34,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         
          //userdefaultのデータを全部消す処理
         //let appDomain = Bundle.main.bundleIdentifier
-        //UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+       // UserDefaults.standard.removePersistentDomain(forName: appDomain!)
     }
     
     override func viewWillAppear(_ animated: Bool) {

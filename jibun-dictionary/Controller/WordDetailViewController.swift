@@ -24,6 +24,8 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
     
     var selectrow = -1
     
+    let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+    
     static let LABEL_TAG = 100
     // 現在表示されているページ
     var page: Int = 0
@@ -36,6 +38,10 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         super.viewDidLoad()
         
        scrollView.delegate = self
+        
+ 
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
 
@@ -46,6 +52,11 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         selectDic.fetchWordList(row: Int(selectDic.dicid)!)
         
          navigationController?.hidesBarsOnTap = true
+        
+        //self.navigationController?.view.addSubview(self.scrollView)
+        
+       // scrollView.frame.origin.x = 0
+       // scrollView.frame.origin.y = 0
         
         //　scrollViewの表示サイズ
         let size = CGSize(width: scrollView.frame.size.width, height: scrollView.frame.size.height)
@@ -61,6 +72,8 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         for i in 0 ..< pageNum {
             //let page = makePage(x: CGFloat(i * Int(view.frame.width)), i: i)
             let pageview = UIView(frame: CGRect(x: size.width * CGFloat(i), y: 0, width: size.width, height: size.height))
+            //self.navigationController?.view.addSubview(pageview)
+            //pageview.addSubview((navigationController?.view)!)
             let WordName = UITextView()
             WordName.text = selectDic.words[i].wordtitle
             WordName.font = UIFont(name: "Hiragino Sans", size: 30)
@@ -72,7 +85,11 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
             WordName.tag = WordDetailViewController.LABEL_TAG
             WordName.isEditable = false
             
-            if let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[i].wordpicturekey) as? NSData {
+            //if let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[i].wordpicturekey) as? NSData {
+            
+            let filename = getDocumentsDirectory().appendingPathComponent(selectDic.words[i].wordpicturekey)
+            
+            if let imageDate:NSData = NSData(contentsOf: filename){
                 
                 let WordPicture = UIImageView()
                 WordPicture.frame = CGRect(x: 20, y: WordName.frame.height + 20, width: size.width - 40, height: (size.width - 40)*3/4)
@@ -91,8 +108,22 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
                 WordMean.frame.origin.y = WordName.frame.height + WordPicture.frame.height + 40
                 WordMean.tag = WordDetailViewController.LABEL_TAG
                 WordMean.isEditable = false
-                WordMean.isSelectable = true
+                WordMean.isScrollEnabled = false
+                WordMean.isSelectable = false
                 
+                let pageviewscroll = UIScrollView()
+                pageviewscroll.addSubview(WordName)
+                pageviewscroll.addSubview(WordPicture)
+                pageviewscroll.addSubview(WordMean)
+                pageviewscroll.contentSize = CGSize(width: size.width, height: WordName.frame.size.height + WordMean.frame.size.height + WordPicture.frame.height + 40)
+                pageviewscroll.contentOffset = CGPoint(x: 0, y: 0)
+                pageviewscroll.frame = CGRect(x: size.width * CGFloat(i), y: 0, width: size.width, height: size.height + 100)
+                
+                contentView.addSubview(pageviewscroll)
+                pageViewArray.append(pageviewscroll)
+                
+                
+                /*
                 if pageview.frame.size.height < WordName.frame.size.height + WordMean.frame.size.height + WordPicture.frame.height + 40{
                     WordMean.frame.size.height = pageview.frame.size.height - WordName.frame.size.height - WordPicture.frame.size.height + 100
                     WordMean.isScrollEnabled = true
@@ -103,6 +134,10 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
                 pageview.addSubview(WordName)
                 pageview.addSubview(WordPicture)
                 pageview.addSubview(WordMean)
+                */
+
+                
+
                 
             } else {
                 
@@ -117,23 +152,37 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
                 WordMean.frame.origin.y = WordName.frame.height + 20
                 WordMean.tag = WordDetailViewController.LABEL_TAG
                 WordMean.isEditable = false
-                WordMean.isScrollEnabled = true
-                WordMean.isSelectable = true
+                WordMean.isScrollEnabled = false
+                WordMean.isSelectable = false
+                
+                let pageviewscroll = UIScrollView()
+                pageviewscroll.addSubview(WordName)
+                pageviewscroll.addSubview(WordMean)
+                pageviewscroll.contentSize = CGSize(width: size.width, height: WordName.frame.size.height + WordMean.frame.size.height + 20)
+                pageviewscroll.contentOffset = CGPoint(x: 0, y: 0)
+                pageviewscroll.frame = CGRect(x: size.width * CGFloat(i), y: 0, width: size.width, height: size.height + 100)
+                
+                
+                contentView.addSubview(pageviewscroll)
+                pageViewArray.append(pageviewscroll)
 
+
+                /*
                 if pageview.frame.size.height < WordName.frame.size.height + WordMean.frame.size.height + 20{
                     WordMean.frame.size.height = pageview.frame.size.height - WordName.frame.size.height + 100
                     WordMean.isScrollEnabled = true
                 }else{
                     WordMean.isScrollEnabled = false
                 }
-
+ 
+ 
                 pageview.addSubview(WordName)
                 pageview.addSubview(WordMean)
-                
+                */
             }
             
-            contentView.addSubview(pageview)
-            pageViewArray.append(pageview)
+            //contentView.addSubview(pageview)
+            //pageViewArray.append(pageview)
  
         }
         
@@ -153,6 +202,12 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         page =  Int((scrollView.contentOffset.x + (0.5 * scrollView.bounds.width)) / scrollView.bounds.width)
         print(page)
 
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     override func didReceiveMemoryWarning() {

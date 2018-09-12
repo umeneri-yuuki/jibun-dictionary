@@ -163,13 +163,15 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
             
            // if let selectpicture = selectpicture{
                 print("こんにちは")
+            
                 selectpicturekey = String(Int(Date().timeIntervalSince1970))
                 let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!,wordpicturekey: selectpicturekey)
                 self.selectDic.addWordList(word: word)
                 self.selectDic.save(row: Int(selectDic.dicid)!)
                 //let picture = UIImageJPEGRepresentation(selectpicture!, 1)
-                let picture = pictureconversion(picture: selectpicture!)
-                UserDefaults.standard.set(picture, forKey: selectpicturekey)
+                //let picture = pictureconversion(picture: selectpicture!)
+                //UserDefaults.standard.set(picture, forKey: selectpicturekey)
+                saveImageToDocumentsDirectory(image: selectpicture!, key: selectpicturekey)
             
             /*
             } else {
@@ -190,13 +192,28 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
        
         }
     }
-    
+    /*
     func pictureconversion(picture: UIImage) -> NSData?{
         self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
         let picturedata = UIImageJPEGRepresentation(picture, 1)
         UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
         return picturedata as NSData?
     }
+ */
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+
+    func saveImageToDocumentsDirectory(image: UIImage, key: String) {
+            let data = UIImageJPEGRepresentation(image,1)
+            let filename = getDocumentsDirectory().appendingPathComponent(key)
+            try? data?.write(to: filename)
+    
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        //self.mydiclist.save()
+        self.mydiclist.save()
         
         /*
         print("こんにちは！")
