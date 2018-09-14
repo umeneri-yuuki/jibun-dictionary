@@ -20,7 +20,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
     
     var selectDic = myDic(dictitle: "",dicid: "")
     
-    var dicid = -1
+    var dicid = ""
     
     var selectrow = -1
     
@@ -49,7 +49,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        selectDic.fetchWordList(row: Int(selectDic.dicid)!)
+        //selectDic.fetchWordList(row: Int(selectDic.dicid)!)
         
         let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
@@ -102,6 +102,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
             
             //if let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[i].wordpicturekey) as? NSData {
             
+            /*
             let filename = getDocumentsDirectory().appendingPathComponent(selectDic.words[i].wordpicturekey)
             
             if let imageDate:NSData = NSData(contentsOf: filename){
@@ -156,6 +157,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
                 
             } else {
                 
+                */
                 let WordMean = UITextView()
                 WordMean.text = selectDic.words[i].wordmean
                 WordMean.font = UIFont(name: "Hiragino Sans", size: 15)
@@ -194,7 +196,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
                 pageview.addSubview(WordName)
                 pageview.addSubview(WordMean)
                 */
-            }
+            //}
             
             //contentView.addSubview(pageview)
             //pageViewArray.append(pageview)
@@ -279,10 +281,10 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
         if (segue.identifier == "toWordEdit") {
             let nc = segue.destination as! UINavigationController
             let WEVC = nc.topViewController as! WordEditViewController
-            /*
+            
             WEVC.dicid = self.dicid
-            WEVC.selectpicturekey = selectDic.words[page].wordpicturekey
-             */
+           // WEVC.selectpicturekey = selectDic.words[page].wordpicturekey
+            
             WEVC.selectpage = selectrow
             WEVC.selectDic = self.selectDic
         }

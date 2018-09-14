@@ -7,26 +7,30 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
     @IBOutlet weak var newWordtitle: UITextField!
     @IBOutlet weak var newWordmean: UITextView!
     @IBOutlet weak var newWordpictureview: UIImageView!
-    
+    var ref: DatabaseReference!
     
    // var mydiclist = DicList.sharedInstance
     var selectDic = myDic(dictitle: "",dicid: "")
     var selectDicNum = 0
+    var wordcount = 0
     var selectpicture:UIImage? = UIImage()
     var selectpicturekey = String()
-    var dicid = -1
+    var dicid = ""
     var backgroundTaskID : UIBackgroundTaskIdentifier = 0
     
     var picker: UIImagePickerController! = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Database.database().reference()
         
         newWordmean.layer.cornerRadius = 5
         newWordmean.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
@@ -59,7 +63,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.save))
         
         //mydiclist.fetchDicList()
-        selectDic.fetchWordList(row: Int(selectDic.dicid)!)
+      //  selectDic.fetchWordList(row: Int(selectDic.dicid)!)
         
     }
     
@@ -162,16 +166,33 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
             }
             
            // if let selectpicture = selectpicture{a
-                print("こんにちは")
             
                 selectpicturekey = String(Int(Date().timeIntervalSince1970))
-                let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!,wordpicturekey: selectpicturekey)
-                self.selectDic.addWordList(word: word)
-                self.selectDic.save(row: Int(selectDic.dicid)!)
+                //let word = Word(wordtitle: newWordtitle.text!, wordmean: newWordmean.text!,wordpicturekey: selectpicturekey)
+                //self.selectDic.addWordList(word: word)
+                //self.selectDic.save(row: Int(selectDic.dicid)!)
                 //let picture = UIImageJPEGRepresentation(selectpicture!, 1)
                 //let picture = pictureconversion(picture: selectpicture!)
                 //UserDefaults.standard.set(picture, forKey: selectpicturekey)
                 saveImageToDocumentsDirectory(image: selectpicture!, key: selectpicturekey)
+            
+                let wordid = ref.child("users/dictionarylist/\(dicid)/words").childByAutoId().key
+                let newword = Word()
+                newword.wordtitle = newWordtitle.text!
+                newword.wordid = wordid
+                newword.wordmean = newWordmean.text!
+                newword.wordpos = wordcount
+                self.selectDic.addWordList(word: newword)
+            
+                let wordtitledata = ["wordtitle": newWordtitle.text!]
+                let wordmeandata = ["wordmean": newWordmean.text!]
+                let wordiddata = ["wordid": wordid]
+                let wordposdata = ["wordpos": wordcount]
+            
+                ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordtitledata)
+                ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordmeandata)
+                ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordiddata)
+                ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordposdata)
             
             /*
             } else {

@@ -8,21 +8,37 @@
 
 import UIKit
 
+import FirebaseDatabase
+
+
 class WordListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate{
    
     var mydiclist = DicList.sharedInstance
     
     var selectDic = myDic(dictitle: "",dicid: "")
+    //var selectDic = myDic()
 
-    var dicid = -1
+    var dicid = ""
     
     var selectrow = -1
     
     var selectdictitle = ""
     
+    var selectwordtitle = ""
+    
+    var selectwordmean = ""
+    
+    var selectwordid = ""
+    
+    var selectwordpos = 0
+    
+    var wordid = ""
+    
     var tableheight = CGFloat()
     
     var backgroundTaskID : UIBackgroundTaskIdentifier = 0
+    
+    var ref: DatabaseReference!
     
     @IBOutlet weak var TableView: UITableView!
     
@@ -45,9 +61,44 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.navigationItem.leftItemsSupplementBackButton = true
         
-        selectDic.fetchWordList(row: Int(selectDic.dicid)!)
+       // selectDic.fetchWordList(row: Int(selectDic.dicid)!)
+       // print("選択した辞書の名前：\()")
+        print("選択した辞書のID：\(dicid)")
 
-        
+        ref = Database.database().reference()
+
+        self.ref.child("users/dictionarylist/\(dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+                let subdic = myDic(dictitle: "",dicid: "")
+            
+            for list in snapshot.children {
+                
+                let snap = list as! DataSnapshot
+                let word = snap.value as! [String: Any]
+                self.selectwordtitle = (word["wordtitle"])! as! String
+                self.selectwordid = (word["wordid"])! as! String
+                self.selectwordmean = (word["wordmean"])! as! String
+                self.selectwordpos = (word["wordpos"])!  as! Int
+                print("self.selectwordtitle:\(self.selectwordtitle)")
+                print("self.wordid:\(self.selectwordid)")
+                //let newdic = myDic(dictitle: (dic["dictitle"])!, dicid: (dic["dicid"])!)
+                //print(newdic.dictitle)
+                // self.mydiclist.addDicList(dic: newdic)
+                //print(self.mydiclist.dics[0].dictitle)
+                //let newdic = myDic(dictitle: self.selectwordtitle, dicid: self.dicid)
+                let newword = Word()
+                newword.wordtitle = self.selectwordtitle
+                newword.wordmean = self.selectwordmean
+                newword.wordid = self.selectwordid
+                newword.wordpos = self.selectwordpos
+                subdic.addWordList(word: newword)
+ 
+            }
+            self.selectDic.words = subdic.words.sorted(by: {$0.wordpos < $1.wordpos})
+            self.TableView.reloadData()
+            
+        }
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,14 +121,17 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.TableView.reloadData()
 
-        //selectDic.dictitle = selectdictitle
+        selectDic.dicid = self.dicid
+        selectDic.dictitle = selectdictitle
         
         self.WordListTitle.title = selectDic.dictitle
-        print("選択した辞書の名前：\(selectDic.dictitle)")
+   
        
         navigationController?.hidesBarsOnTap = false
         
         tableheight = TableView.frame.size.height
+        
+      //  print(selectDic.words[0].wordid)
         
     }
     
@@ -134,11 +188,13 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         self.TableView.setEditing(false, animated: true)
         editview.endEditing(true)
         
-        self.selectDic.save(row: Int(selectDic.dicid)!)
+       // self.selectDic.save(row: Int(selectDic.dicid)!)
         
         for dic in mydiclist.dics {
             if dic.dicid == selectDic.dicid {
                 dic.dictitle = selectDic.dictitle
+                let data = ["dictitle":selectDic.dictitle]
+                ref.child("users/dictionarylist/\(dic.dicid!)").updateChildValues(data)
             }
         }
         
@@ -156,16 +212,17 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             let nc = segue.destination as! UINavigationController
             let NWVC = nc.topViewController as! NewWordViewController
             NWVC.selectDic = self.selectDic
-            //NWVC.dicid = self.dicid
+            NWVC.dicid = self.dicid
+            NWVC.wordcount = self.selectDic.words.count
         }
         if (segue.identifier == "toWordDetail") {
             let WDVC = segue.destination as! WordDetailViewController
             WDVC.selectDic = self.selectDic
             
             WDVC.selectrow = self.selectrow
-            /*
+            
             WDVC.dicid = self.dicid
-             */
+             
         }
     }
 
@@ -185,6 +242,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         
         let word = self.selectDic.words[indexPath.row]
+
         cell.textLabel!.text = word.wordtitle
         cell.textLabel!.font = UIFont(name: "HirakakuProN-W3", size: 15)
         
@@ -195,15 +253,32 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            UserDefaults.standard.removeObject(forKey: selectDic.words[indexPath.row].wordpicturekey)
             self.selectDic.words.remove(at: indexPath.row)
+            
+            self.ref.child("users/dictionarylist/\(self.dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                for list in snapshot.children {
+                    
+                    let snap = list as! DataSnapshot
+                    let word = snap.value as! [String: Any]
+                    self.selectwordtitle = (word["wordtitle"])! as! String
+                    self.selectwordid = (word["wordid"])! as! String
+                    self.selectwordpos = (word["wordpos"])!  as! Int
+                    if indexPath.row == self.selectwordpos {
+                        self.ref.child("users/dictionarylist/\(self.dicid)/words/\(self.selectwordid)").removeValue()
+                    }
+                    if indexPath.row < self.selectwordpos {
+                        let data = ["wordpos":self.selectwordpos - 1]
+                        self.ref.child("users/dictionarylist/\(self.dicid)/words/\(self.selectwordid)").updateChildValues(data)
+                    }
+                }
+                
+            }
+            )
+            
+            
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
 
-            if self.selectDic.words.isEmpty == false {
-            self.selectDic.save(row: Int(selectDic.dicid)!)
-            } else {
-                UserDefaults.standard.removeObject(forKey: selectDic.dicid)
-            }
         default:
             return
         }
@@ -222,7 +297,14 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         let dic = self.selectDic.words[sourceIndexPath.row]
         self.selectDic.words.remove(at: sourceIndexPath.row)
         self.selectDic.words.insert(dic, at: destinationIndexPath.row)
-        self.selectDic.save(row: Int(selectDic.dicid)!)
+      //  self.selectDic.save(row: Int(selectDic.dicid)!)
+        var counter = 0
+        for word in self.selectDic.words{
+            let data = ["wordpos":counter]
+            print(word.wordid)
+            ref.child("users/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(data)
+            counter = counter + 1
+        }
     }
     
     

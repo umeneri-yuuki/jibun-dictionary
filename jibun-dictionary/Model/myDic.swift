@@ -8,11 +8,14 @@
 
 import UIKit
 
-class myDic: NSObject, NSCoding{
+class myDic: NSObject{
+//, NSCoding{
     
     var dictitle: String!
     
     var dicid: String!
+    
+    var dicpos: Int!
     
     var words:[Word] = []
     
@@ -26,7 +29,7 @@ class myDic: NSObject, NSCoding{
         self.dictitle = dictitle
         self.dicid = dicid
     }
-    
+    /*
     required init?(coder aDecoder: NSCoder) {
         self.dictitle = aDecoder.decodeObject(forKey: "dictitle") as! String
         self.dicid = aDecoder.decodeObject(forKey: "dicid") as! String
@@ -51,7 +54,7 @@ class myDic: NSObject, NSCoding{
            // print(words[words.count - 1].wordtitle)
         }
     }
-
+*/
     
 
 }

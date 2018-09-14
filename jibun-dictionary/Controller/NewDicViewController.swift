@@ -7,18 +7,25 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class NewDicViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var newDicname: UITextField!
     
+    var ref: DatabaseReference!
+    
     var mydiclist = DicList.sharedInstance
+    
+    var diccount = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewDicViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newDicname.delegate = self
+        ref = Database.database().reference()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,13 +45,26 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
             alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alertView, animated: true, completion: nil)
         } else {
-            let dicid = Int(Date().timeIntervalSince1970)
-            let dic = myDic(dictitle: newDicname.text!, dicid: String(dicid))
+           //let dicid = Int(Date().timeIntervalSince1970)
+            let dicid = ref.child("users/dictionarylist").childByAutoId().key
+            let dic = myDic(dictitle: newDicname.text!, dicid: dicid!)
             //dic.dicid = self.dicid
             //dic.dictitle = newDicname.text!
             self.mydiclist.addDicList(dic: dic)
-            self.mydiclist.save()
+           // self.mydiclist.save()
             newDicname.resignFirstResponder()
+            
+            //Firebase
+            let dictitledata = ["dictitle": newDicname.text!]
+            let diciddata = ["dicid": dicid]
+            let dicposdata = ["dicpos": diccount]
+           // self.ref.child("users").child("dictionarylist").setValue(["dictionary": newDicname.text!])
+            
+            ref.child("users/dictionarylist/\(dicid!)").updateChildValues(dictitledata)
+            ref.child("users/dictionarylist/\(dicid!)").updateChildValues(diciddata)
+            ref.child("users/dictionarylist/\(dicid!)").updateChildValues(dicposdata)
+            
+            
             self.dismiss(animated: true, completion: nil)
         }
     }

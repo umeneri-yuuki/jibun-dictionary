@@ -27,6 +27,8 @@
 		6358F15E214418250006E17E /* WordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6358F15D214418250006E17E /* WordEditViewController.swift */; };
 		636C76A4214B669500E4BD55 /* 半透明.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A3214B669400E4BD55 /* 半透明.png */; };
 		636C76A6214B6B7500E4BD55 /* 半透明2.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A5214B6B7500E4BD55 /* 半透明2.png */; };
+		636C76A8214B7A7200E4BD55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */; };
+		636C76A9214B7E3700E4BD55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */; };
 		8D7F926F5069A096CC334921 /* Pods_jibun_dictionaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA17325457DC0BE62663FDF /* Pods_jibun_dictionaryTests.framework */; };
 		D71BB60B4C481615E8DAE7E9 /* Pods_jibun_dictionaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD8057409D001891CC7D3DA /* Pods_jibun_dictionaryUITests.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +78,7 @@
 		6358F15D214418250006E17E /* WordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEditViewController.swift; sourceTree = "<group>"; };
 		636C76A3214B669400E4BD55 /* 半透明.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "半透明.png"; sourceTree = "<group>"; };
 		636C76A5214B6B7500E4BD55 /* 半透明2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "半透明2.png"; sourceTree = "<group>"; };
+		636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		784759D817E01FBFBFCBBAB6 /* Pods_jibun_dictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jibun_dictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD8057409D001891CC7D3DA /* Pods_jibun_dictionaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jibun_dictionaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E2FB2DA03B6C7A6578A1478 /* Pods-jibun-dictionaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jibun-dictionaryUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jibun-dictionaryUITests/Pods-jibun-dictionaryUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +183,7 @@
 				6330001B213125E400A3FAAC /* Assets.xcassets */,
 				6330001D213125E400A3FAAC /* LaunchScreen.storyboard */,
 				63300020213125E400A3FAAC /* Info.plist */,
+				636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */,
 				63114A1A213FA2AC00CA0383 /* アプリ用画像 */,
 			);
 			path = "jibun-dictionary";
@@ -342,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63114A1E213FA30800CA0383 /* 辞書タブ用.png in Resources */,
+				636C76A9214B7E3700E4BD55 /* GoogleService-Info.plist in Resources */,
 				6323F7D22141163300B9EEA1 /* Main.storyboard in Resources */,
 				63114A20213FA49100CA0383 /* 辞書タブ.png in Resources */,
 				636C76A4214B669500E4BD55 /* 半透明.png in Resources */,
@@ -355,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				636C76A8214B7A7200E4BD55 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,10 +418,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-jibun-dictionary/Pods-jibun-dictionary-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

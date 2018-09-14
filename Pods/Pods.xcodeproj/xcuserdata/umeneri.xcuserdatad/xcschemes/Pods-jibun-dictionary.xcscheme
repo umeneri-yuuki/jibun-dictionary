@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "54C6B44C2DD5B935B7D9EF7EE6E8383F"
+               BlueprintIdentifier = "8DE8992E2B02CC2176BE16DB1D25201E"
                BuildableName = "Pods_jibun_dictionary.framework"
                BlueprintName = "Pods-jibun-dictionary"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "54C6B44C2DD5B935B7D9EF7EE6E8383F"
+            BlueprintIdentifier = "8DE8992E2B02CC2176BE16DB1D25201E"
             BuildableName = "Pods_jibun_dictionary.framework"
             BlueprintName = "Pods-jibun-dictionary"
             ReferencedContainer = "container:Pods.xcodeproj">

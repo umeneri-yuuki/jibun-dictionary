@@ -8,12 +8,16 @@
 
 import UIKit
 
-class Word: NSObject, NSCoding{
+class Word: NSObject{
+//, NSCoding{
     
     var wordtitle: String!
     var wordmean: String!
     var wordpicturekey: String!
+    var wordid: String!
+    var wordpos: Int!
     
+    /*
     init(wordtitle: String, wordmean: String, wordpicturekey: String) {
         self.wordtitle = wordtitle
         self.wordmean = wordmean
@@ -32,5 +36,6 @@ class Word: NSObject, NSCoding{
         if let wordmean = wordmean { aCoder.encode(wordmean, forKey: "wordmean") }
         if let wordpicturekey = wordpicturekey { aCoder.encode(wordpicturekey, forKey: "wordpicturekey") }
     }
+ */
 
 }

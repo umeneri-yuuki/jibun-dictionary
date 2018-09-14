@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
@@ -15,8 +16,10 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
     @IBOutlet weak var editimageview: UIImageView!
     @IBOutlet weak var edittextview: UITextView!
     
+    var ref: DatabaseReference!
+    
     var selectDic = myDic(dictitle: "",dicid: "")
-    var dicid = -1
+    var dicid = ""
     var selectpage = -1
     var selectpicture:UIImage? = UIImage()
     var selectpicturekey = String()
@@ -28,6 +31,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         super.viewDidLoad()
         edittextfield.delegate = self
         
+         ref = Database.database().reference()
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
@@ -35,7 +39,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         edittextview.layer.cornerRadius = 5
         edittextview.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
         edittextview.layer.borderWidth = 1
-        
+        /*
         let filename = getDocumentsDirectory().appendingPathComponent(selectDic.words[selectpage].wordpicturekey)
         
         if let imageDate:NSData = NSData(contentsOf: filename){
@@ -62,6 +66,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
             imagePickUpButton.tag = 0
             editimageview.addSubview(imagePickUpButton)
         }
+ */
         
         
     }
@@ -172,8 +177,21 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
  
         selectDic.words[selectpage].wordtitle = edittextfield.text
         selectDic.words[selectpage].wordmean = edittextview.text
-        self.selectDic.save(row: Int(selectDic.dicid)!)
-        saveImageToDocumentsDirectory(image: selectpicture!, key: selectDic.words[selectpage].wordpicturekey)
+       // self.selectDic.save(row: Int(selectDic.dicid)!)
+       // saveImageToDocumentsDirectory(image: selectpicture!, key: selectDic.words[selectpage].wordpicturekey)
+            
+            for word in selectDic.words {
+                if word.wordid == selectDic.words[selectpage].wordid {
+                    word.wordtitle = selectDic.words[selectpage].wordtitle
+                    word.wordmean = selectDic.words[selectpage].wordmean
+                    let wordtitledata = ["wordtitle":selectDic.words[selectpage].wordtitle]
+                    ref.child("users/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(wordtitledata)
+                    let wordmeandata = ["wordmean":selectDic.words[selectpage].wordmean]
+                    ref.child("users/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(wordmeandata)
+                    
+                }
+            }
+        
          self.dismiss(animated: true, completion: nil)
             
         }
