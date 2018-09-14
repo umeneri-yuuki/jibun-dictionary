@@ -1,0 +1,6 @@
+framework module Pods_jibun_dictionaryTests {
+  umbrella header "Pods-jibun-dictionaryTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

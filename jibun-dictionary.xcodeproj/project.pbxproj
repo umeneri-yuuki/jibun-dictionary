@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A27012EEE183DC4BA38D822 /* Pods_jibun_dictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784759D817E01FBFBFCBBAB6 /* Pods_jibun_dictionary.framework */; };
 		63114A1E213FA30800CA0383 /* 辞書タブ用.png in Resources */ = {isa = PBXBuildFile; fileRef = 63114A1D213FA30800CA0383 /* 辞書タブ用.png */; };
 		63114A20213FA49100CA0383 /* 辞書タブ.png in Resources */ = {isa = PBXBuildFile; fileRef = 63114A1F213FA49100CA0383 /* 辞書タブ.png */; };
 		63168D862137ECCC00BFF6F5 /* DictionaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63168D852137ECCC00BFF6F5 /* DictionaryListViewController.swift */; };
@@ -24,6 +25,10 @@
 		6330005A2133E0E500A3FAAC /* NewWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633000592133E0E500A3FAAC /* NewWordViewController.swift */; };
 		6330005C2134356E00A3FAAC /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330005B2134356E00A3FAAC /* WordListViewController.swift */; };
 		6358F15E214418250006E17E /* WordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6358F15D214418250006E17E /* WordEditViewController.swift */; };
+		636C76A4214B669500E4BD55 /* 半透明.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A3214B669400E4BD55 /* 半透明.png */; };
+		636C76A6214B6B7500E4BD55 /* 半透明2.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A5214B6B7500E4BD55 /* 半透明2.png */; };
+		8D7F926F5069A096CC334921 /* Pods_jibun_dictionaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA17325457DC0BE62663FDF /* Pods_jibun_dictionaryTests.framework */; };
+		D71BB60B4C481615E8DAE7E9 /* Pods_jibun_dictionaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD8057409D001891CC7D3DA /* Pods_jibun_dictionaryUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2534380627BFD5EE1E530E0D /* Pods-jibun-dictionaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jibun-dictionaryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jibun-dictionaryTests/Pods-jibun-dictionaryTests.release.xcconfig"; sourceTree = "<group>"; };
+		4B9149AFBB18F1589896C0B6 /* Pods-jibun-dictionaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jibun-dictionaryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jibun-dictionaryTests/Pods-jibun-dictionaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		63114A1D213FA30800CA0383 /* 辞書タブ用.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "辞書タブ用.png"; sourceTree = "<group>"; };
 		63114A1F213FA49100CA0383 /* 辞書タブ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "辞書タブ.png"; sourceTree = "<group>"; };
 		63168D852137ECCC00BFF6F5 /* DictionaryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryListViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +74,15 @@
 		633000592133E0E500A3FAAC /* NewWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordViewController.swift; sourceTree = "<group>"; };
 		6330005B2134356E00A3FAAC /* WordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListViewController.swift; sourceTree = "<group>"; };
 		6358F15D214418250006E17E /* WordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEditViewController.swift; sourceTree = "<group>"; };
+		636C76A3214B669400E4BD55 /* 半透明.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "半透明.png"; sourceTree = "<group>"; };
+		636C76A5214B6B7500E4BD55 /* 半透明2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "半透明2.png"; sourceTree = "<group>"; };
+		784759D817E01FBFBFCBBAB6 /* Pods_jibun_dictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jibun_dictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AD8057409D001891CC7D3DA /* Pods_jibun_dictionaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jibun_dictionaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E2FB2DA03B6C7A6578A1478 /* Pods-jibun-dictionaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jibun-dictionaryUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jibun-dictionaryUITests/Pods-jibun-dictionaryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B3F9631CFF8F85F898704992 /* Pods-jibun-dictionaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jibun-dictionaryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jibun-dictionaryUITests/Pods-jibun-dictionaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BAA17325457DC0BE62663FDF /* Pods_jibun_dictionaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jibun_dictionaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61EB9FE8AC055984B7437C0 /* Pods-jibun-dictionary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jibun-dictionary.release.xcconfig"; path = "Pods/Target Support Files/Pods-jibun-dictionary/Pods-jibun-dictionary.release.xcconfig"; sourceTree = "<group>"; };
+		D23FF0540BD93F40F25C732F /* Pods-jibun-dictionary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jibun-dictionary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jibun-dictionary/Pods-jibun-dictionary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A27012EEE183DC4BA38D822 /* Pods_jibun_dictionary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D7F926F5069A096CC334921 /* Pods_jibun_dictionaryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,17 +106,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D71BB60B4C481615E8DAE7E9 /* Pods_jibun_dictionaryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D43DB84E2D73450A62FEA39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D23FF0540BD93F40F25C732F /* Pods-jibun-dictionary.debug.xcconfig */,
+				C61EB9FE8AC055984B7437C0 /* Pods-jibun-dictionary.release.xcconfig */,
+				4B9149AFBB18F1589896C0B6 /* Pods-jibun-dictionaryTests.debug.xcconfig */,
+				2534380627BFD5EE1E530E0D /* Pods-jibun-dictionaryTests.release.xcconfig */,
+				B3F9631CFF8F85F898704992 /* Pods-jibun-dictionaryUITests.debug.xcconfig */,
+				7E2FB2DA03B6C7A6578A1478 /* Pods-jibun-dictionaryUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		464875C69B70379933E62CD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				784759D817E01FBFBFCBBAB6 /* Pods_jibun_dictionary.framework */,
+				BAA17325457DC0BE62663FDF /* Pods_jibun_dictionaryTests.framework */,
+				7AD8057409D001891CC7D3DA /* Pods_jibun_dictionaryUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		63114A1A213FA2AC00CA0383 /* アプリ用画像 */ = {
 			isa = PBXGroup;
 			children = (
 				63114A1D213FA30800CA0383 /* 辞書タブ用.png */,
 				63114A1F213FA49100CA0383 /* 辞書タブ.png */,
+				636C76A3214B669400E4BD55 /* 半透明.png */,
+				636C76A5214B6B7500E4BD55 /* 半透明2.png */,
 			);
 			path = "アプリ用画像";
 			sourceTree = "<group>";
@@ -110,6 +154,8 @@
 				63300028213125E400A3FAAC /* jibun-dictionaryTests */,
 				63300033213125E400A3FAAC /* jibun-dictionaryUITests */,
 				63300012213125E100A3FAAC /* Products */,
+				3D43DB84E2D73450A62FEA39 /* Pods */,
+				464875C69B70379933E62CD0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,9 +240,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63300039213125E400A3FAAC /* Build configuration list for PBXNativeTarget "jibun-dictionary" */;
 			buildPhases = (
+				54B170CB91D6B2C3E05B31A4 /* [CP] Check Pods Manifest.lock */,
 				6330000D213125E100A3FAAC /* Sources */,
 				6330000E213125E100A3FAAC /* Frameworks */,
 				6330000F213125E100A3FAAC /* Resources */,
+				583470BA7EC702750C2DD4BB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -211,6 +259,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6330003C213125E400A3FAAC /* Build configuration list for PBXNativeTarget "jibun-dictionaryTests" */;
 			buildPhases = (
+				68DCDCE59A076F8F02704E6D /* [CP] Check Pods Manifest.lock */,
 				63300021213125E400A3FAAC /* Sources */,
 				63300022213125E400A3FAAC /* Frameworks */,
 				63300023213125E400A3FAAC /* Resources */,
@@ -229,6 +278,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6330003F213125E400A3FAAC /* Build configuration list for PBXNativeTarget "jibun-dictionaryUITests" */;
 			buildPhases = (
+				3FB83C5BD64149BE01576D91 /* [CP] Check Pods Manifest.lock */,
 				6330002C213125E400A3FAAC /* Sources */,
 				6330002D213125E400A3FAAC /* Frameworks */,
 				6330002E213125E400A3FAAC /* Resources */,
@@ -294,7 +344,9 @@
 				63114A1E213FA30800CA0383 /* 辞書タブ用.png in Resources */,
 				6323F7D22141163300B9EEA1 /* Main.storyboard in Resources */,
 				63114A20213FA49100CA0383 /* 辞書タブ.png in Resources */,
+				636C76A4214B669500E4BD55 /* 半透明.png in Resources */,
 				6330001F213125E400A3FAAC /* LaunchScreen.storyboard in Resources */,
+				636C76A6214B6B7500E4BD55 /* 半透明2.png in Resources */,
 				6330001C213125E400A3FAAC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +366,81 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3FB83C5BD64149BE01576D91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jibun-dictionaryUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54B170CB91D6B2C3E05B31A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jibun-dictionary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		583470BA7EC702750C2DD4BB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-jibun-dictionary/Pods-jibun-dictionary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jibun-dictionary/Pods-jibun-dictionary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68DCDCE59A076F8F02704E6D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jibun-dictionaryTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6330000D213125E100A3FAAC /* Sources */ = {
@@ -500,6 +627,7 @@
 		};
 		6330003A213125E400A3FAAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D23FF0540BD93F40F25C732F /* Pods-jibun-dictionary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -518,6 +646,7 @@
 		};
 		6330003B213125E400A3FAAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C61EB9FE8AC055984B7437C0 /* Pods-jibun-dictionary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -536,6 +665,7 @@
 		};
 		6330003D213125E400A3FAAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B9149AFBB18F1589896C0B6 /* Pods-jibun-dictionaryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -557,6 +687,7 @@
 		};
 		6330003E213125E400A3FAAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2534380627BFD5EE1E530E0D /* Pods-jibun-dictionaryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -578,6 +709,7 @@
 		};
 		63300040213125E400A3FAAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F9631CFF8F85F898704992 /* Pods-jibun-dictionaryUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -598,6 +730,7 @@
 		};
 		63300041213125E400A3FAAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E2FB2DA03B6C7A6578A1478 /* Pods-jibun-dictionaryUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

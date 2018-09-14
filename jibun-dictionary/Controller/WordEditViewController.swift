@@ -158,7 +158,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
             
         } else {
         
-            saveImageToDocumentsDirectory(image: selectpicture!, key: selectDic.words[selectpage].wordpicturekey)
+
             /*
         if  let selectpicture = selectpicture{
             //let picture = pictureconversion(picture: selectpicture)
@@ -173,6 +173,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         selectDic.words[selectpage].wordtitle = edittextfield.text
         selectDic.words[selectpage].wordmean = edittextview.text
         self.selectDic.save(row: Int(selectDic.dicid)!)
+        saveImageToDocumentsDirectory(image: selectpicture!, key: selectDic.words[selectpage].wordpicturekey)
          self.dismiss(animated: true, completion: nil)
             
         }

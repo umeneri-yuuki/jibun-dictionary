@@ -52,6 +52,11 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //self.navigationController!.navigationBar.backgroundColor = UIColor.white
+        //self.navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
+       // self.navigationController!.navigationBar.shadowImage = nil
+       // navigationController?.navigationBar.alpha = 1.0
+        //self.navigationController!.navigationBar.isTranslucent = false
         self.navigationController!.navigationBar.tintColor = UIColor.black
 
         let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))

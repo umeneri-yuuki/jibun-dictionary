@@ -161,7 +161,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 newWordmean.text = ""
             }
             
-           // if let selectpicture = selectpicture{
+           // if let selectpicture = selectpicture{a
                 print("こんにちは")
             
                 selectpicturekey = String(Int(Date().timeIntervalSince1970))

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ChameleonFramework
 
-class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
+class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestureRecognizerDelegate{
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -16,7 +17,6 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
     var pageNum:Int!
 
     var screenSize:CGRect!
-    
     
     var selectDic = myDic(dictitle: "",dicid: "")
     
@@ -33,13 +33,13 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
     private var startPoint: CGPoint!
     // 表示するページビューの配列
     private var pageViewArray: [UIView] = []
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
        scrollView.delegate = self
-        
- 
         
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -51,9 +51,24 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         
         selectDic.fetchWordList(row: Int(selectDic.dicid)!)
         
-         navigationController?.hidesBarsOnTap = true
+        let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(WordDetailViewController.tapped(_:)))
+        
+        tapGesture.delegate = self
+        
+        self.view.addGestureRecognizer(tapGesture)
+        
+        //navigationController?.navigationBar.backgroundColor = UIColor.clear
+        //navigationController?.navigationBar.alpha = 0.7
+
+
+        
+         //navigationController?.hidesBarsOnTap = true
         
         //self.navigationController?.view.addSubview(self.scrollView)
+        //self.scrollView.addSubview((navigationController?.navigationBar)!)
+        //navigationController?.navigationBar.frame.origin.y = 100
         
        // scrollView.frame.origin.x = 0
        // scrollView.frame.origin.y = 0
@@ -115,7 +130,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
                 pageviewscroll.addSubview(WordName)
                 pageviewscroll.addSubview(WordPicture)
                 pageviewscroll.addSubview(WordMean)
-                pageviewscroll.contentSize = CGSize(width: size.width, height: WordName.frame.size.height + WordMean.frame.size.height + WordPicture.frame.height + 40)
+                pageviewscroll.contentSize = CGSize(width: size.width, height: WordName.frame.size.height + WordMean.frame.size.height + WordPicture.frame.height + 100)
                 pageviewscroll.contentOffset = CGPoint(x: 0, y: 0)
                 pageviewscroll.frame = CGRect(x: size.width * CGFloat(i), y: 0, width: size.width, height: size.height + 100)
                 
@@ -158,7 +173,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
                 let pageviewscroll = UIScrollView()
                 pageviewscroll.addSubview(WordName)
                 pageviewscroll.addSubview(WordMean)
-                pageviewscroll.contentSize = CGSize(width: size.width, height: WordName.frame.size.height + WordMean.frame.size.height + 20)
+                pageviewscroll.contentSize = CGSize(width: size.width, height: WordName.frame.size.height + WordMean.frame.size.height + 100)
                 pageviewscroll.contentOffset = CGPoint(x: 0, y: 0)
                 pageviewscroll.frame = CGRect(x: size.width * CGFloat(i), y: 0, width: size.width, height: size.height + 100)
                 
@@ -194,7 +209,45 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        super.viewDidAppear(animated)
+        /*
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
+        //let clearbackimage = UIImage(named: "半透明2.png")
+        let clearbackimage = UIImage(named: "halfclear")
+        //let reSize = CGSize(width: (navigationController?.navigationBar.frame.size.width)!, height: (navigationController?.navigationBar.frame.size.height)!)
+        //let clearbackimage = UIImage(named: "半透明2.png")?.reSizeImage(reSize: reSize)
+        self.navigationController!.navigationBar.setBackgroundImage(clearbackimage, for: .default)
+        self.navigationController!.navigationBar.shadowImage = clearbackimage
+       // self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.7)
+        //self.navigationController?.navigationBar.alpha = 0.5
+        self.navigationController?.navigationBar.isTranslucent = true
+ */
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        /*
+        self.navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController!.navigationBar.shadowImage = nil
+        self.navigationController!.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.alpha = 1.0
+ */
+    }
+    @objc func tapped(_ sender: UITapGestureRecognizer){
+       // print(navigationController?.navigationBar.barTintColor)
+        if self.navigationController?.navigationBar.isHidden == true {
+            //scrollView.frame.origin.y = scrollView.frame.origin.y - (navigationController?.navigationBar.frame.height)!
+            navigationController?.setNavigationBarHidden(false, animated: true)
+
+            //navigationController?.navigationBar.isTranslucent = false
+        } else {
+            //scrollView.frame.origin.y = scrollView.frame.origin.y + (navigationController?.navigationBar.frame.height)!
+            
+            navigationController?.setNavigationBarHidden(true, animated: true)
+
+            //navigationController?.navigationBar.isTranslucent = true
+        }
     }
     
     open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -238,4 +291,22 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate{
     
  
 
+}
+
+extension UIImage {
+    // resize image
+    func reSizeImage(reSize:CGSize)->UIImage {
+        //UIGraphicsBeginImageContext(reSize);
+        UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale);
+        self.draw(in: CGRect(x: 0, y: 0, width: reSize.width, height: reSize.height));
+        let reSizeImage:UIImage! = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return reSizeImage;
+    }
+    
+    // scale the image at rates
+    func scaleImage(scaleSize:CGFloat)->UIImage {
+        let reSize = CGSize(width: self.size.width * scaleSize, height: self.size.height * scaleSize)
+        return reSizeImage(reSize: reSize)
+    }
 }
