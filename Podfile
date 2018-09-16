@@ -8,6 +8,7 @@ target 'jibun-dictionary' do
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git', :branch => 'wip/swift4'
 
   pod 'Firebase/Core'
+  pod 'Firebase/Storage'
   pod 'Firebase/Database'
 
   # Pods for jibun-dictionary

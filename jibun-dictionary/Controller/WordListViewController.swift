@@ -9,7 +9,7 @@
 import UIKit
 
 import FirebaseDatabase
-
+import FirebaseStorage
 
 class WordListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate{
    
@@ -39,6 +39,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     var backgroundTaskID : UIBackgroundTaskIdentifier = 0
     
     var ref: DatabaseReference!
+    var storage = Storage.storage()
     
     @IBOutlet weak var TableView: UITableView!
     
@@ -266,6 +267,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.selectwordpos = (word["wordpos"])!  as! Int
                     if indexPath.row == self.selectwordpos {
                         self.ref.child("users/dictionarylist/\(self.dicid)/words/\(self.selectwordid)").removeValue()
+
                     }
                     if indexPath.row < self.selectwordpos {
                         let data = ["wordpos":self.selectwordpos - 1]
@@ -275,7 +277,15 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
                 
             }
             )
-            
+            let storageRef = self.storage.reference()
+            let reference = storageRef.child("users/dictionarylist/\(self.dicid)/words/\(self.selectwordid)")
+            reference.delete { error in
+                if error != nil {
+                    // Uh-oh, an error occurred!
+                } else {
+                    // File deleted successfully
+                }
+            }
             
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.middle)
 
@@ -286,7 +296,6 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         
-
         self.selectrow = indexPath.row
         
         performSegue(withIdentifier: "toWordDetail",sender:nil)

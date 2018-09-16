@@ -10,6 +10,7 @@ import UIKit
 
 //import Firebase
 import FirebaseDatabase
+import FirebaseStorage
 
 class DictionaryListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
   
@@ -26,6 +27,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     var renametext = ""
     
     var ref: DatabaseReference!
+    var storage = Storage.storage()
 
     @IBOutlet weak var TableView: UITableView!
     
@@ -222,6 +224,15 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
                     self.selectdicpos = (dic["dicpos"])! as! Int
                     if indexPath.row == self.selectdicpos {
                         self.ref.child("users/dictionarylist/\(self.dicid)").removeValue()
+                        let storageRef = self.storage.reference()
+                        let reference = storageRef.child("users/dictionarylist/\(self.dicid)")
+                        reference.delete { error in
+                            if error != nil {
+                                // Uh-oh, an error occurred!
+                            } else {
+                                // File deleted successfully
+                            }
+                        }
                     }
                     if indexPath.row < self.selectdicpos {
                         let data = ["dicpos":self.selectdicpos - 1]

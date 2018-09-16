@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseStorage
 
 class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
@@ -15,6 +16,8 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
     @IBOutlet weak var newWordmean: UITextView!
     @IBOutlet weak var newWordpictureview: UIImageView!
     var ref: DatabaseReference!
+    var storage = Storage.storage()
+
     
    // var mydiclist = DicList.sharedInstance
     var selectDic = myDic(dictitle: "",dicid: "")
@@ -174,7 +177,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 //let picture = UIImageJPEGRepresentation(selectpicture!, 1)
                 //let picture = pictureconversion(picture: selectpicture!)
                 //UserDefaults.standard.set(picture, forKey: selectpicturekey)
-                saveImageToDocumentsDirectory(image: selectpicture!, key: selectpicturekey)
+               // saveImageToDocumentsDirectory(image: selectpicture!, key: selectpicturekey)
             
                 let wordid = ref.child("users/dictionarylist/\(dicid)/words").childByAutoId().key
                 let newword = Word()
@@ -193,6 +196,23 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordmeandata)
                 ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordiddata)
                 ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordposdata)
+            
+            
+            if selectpicture != nil {
+            var resize = 1.0
+                var data = UIImageJPEGRepresentation(selectpicture!,CGFloat(resize))!
+                while data.count > 1048576 {
+                    resize = resize/2
+                    data = UIImageJPEGRepresentation(selectpicture!,CGFloat(resize))!
+                }
+                
+            let storageRef = storage.reference()
+               let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(wordid!)")
+            reference.putData(data, metadata: nil, completion: { metaData, error in
+                print("metaData:\(metaData as Any)")
+                print("error:\(error as Any)")
+            })
+            }
             
             /*
             } else {

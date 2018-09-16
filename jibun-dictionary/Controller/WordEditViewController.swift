@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseStorage
 
 class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
@@ -17,6 +18,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
     @IBOutlet weak var edittextview: UITextView!
     
     var ref: DatabaseReference!
+    var storage = Storage.storage()
     
     var selectDic = myDic(dictitle: "",dicid: "")
     var dicid = ""
@@ -39,6 +41,37 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         edittextview.layer.cornerRadius = 5
         edittextview.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
         edittextview.layer.borderWidth = 1
+        
+        let storageRef = storage.reference()
+        let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(selectDic.words[selectpage].wordid!)")
+        print("wordid:\(selectDic.words[selectpage].wordid!)")
+        reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if error != nil {
+                let imagePickUpButton:UIButton = UIButton()
+                imagePickUpButton.addTarget(self, action: #selector(self.imagePickUpButtonClicked(_:)), for: .touchUpInside)
+                imagePickUpButton.setImage(UIImage(named: "AddPhoto"), for: UIControlState.normal)
+                imagePickUpButton.sizeToFit()
+                let pickbuttonwidth =  imagePickUpButton.frame.width
+                let pickbuttonheight = imagePickUpButton.frame.height
+                imagePickUpButton.frame = CGRect(x: self.editimageview.frame.width - pickbuttonwidth, y: self.editimageview.frame.height - pickbuttonheight, width:pickbuttonwidth, height:pickbuttonheight )
+                imagePickUpButton.tag = 0
+                self.editimageview.addSubview(imagePickUpButton)
+                
+            } else {
+                let image = UIImage(data: data!)
+                self.editimageview.image = image
+                self.selectpicture = image
+                
+                let imagedeletebutton:UIButton = UIButton()
+                imagedeletebutton.frame =  CGRect(x: 2, y: 0, width: 40, height: 40)
+                imagedeletebutton.addTarget(self, action: #selector(self.imagedelete), for: .touchUpInside)
+                imagedeletebutton.setImage(UIImage(named: "Cansel"), for: UIControlState.normal)
+                imagedeletebutton.sizeToFit()
+                imagedeletebutton.tag = 1
+                self.editimageview.addSubview(imagedeletebutton)
+                
+            }
+        }
         /*
         let filename = getDocumentsDirectory().appendingPathComponent(selectDic.words[selectpage].wordpicturekey)
         
@@ -188,6 +221,32 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
                     ref.child("users/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(wordtitledata)
                     let wordmeandata = ["wordmean":selectDic.words[selectpage].wordmean]
                     ref.child("users/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(wordmeandata)
+                    
+                    if selectpicture != nil {
+                        var resize = 1.0
+                        var data = UIImageJPEGRepresentation(selectpicture!,CGFloat(resize))!
+                        while data.count > 1048576 {
+                            resize = resize/2
+                            data = UIImageJPEGRepresentation(selectpicture!,CGFloat(resize))!
+                        }
+                        
+                        let storageRef = storage.reference()
+                        let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(word.wordid!)")
+                        reference.putData(data, metadata: nil, completion: { metaData, error in
+                            print("metaData:\(metaData as Any)")
+                            print("error:\(error as Any)")
+                        })
+                    } else {
+                        let storageRef = storage.reference()
+                        let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(word.wordid!)")
+                        reference.delete { error in
+                            if error != nil {
+                                // Uh-oh, an error occurred!
+                            } else {
+                                // File deleted successfully
+                            }
+                        }
+                    }
                     
                 }
             }

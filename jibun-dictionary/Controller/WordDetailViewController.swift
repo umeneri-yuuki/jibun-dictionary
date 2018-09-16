@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import FirebaseStorage
 
 class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestureRecognizerDelegate{
     
@@ -25,6 +26,8 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
     var selectrow = -1
     
     let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+    
+    var storage = Storage.storage()
     
     static let LABEL_TAG = 100
     // 現在表示されているページ
@@ -100,6 +103,74 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
             WordName.tag = WordDetailViewController.LABEL_TAG
             WordName.isEditable = false
             
+            let storageRef = storage.reference()
+            let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(selectDic.words[i].wordid!)")
+            print("wordid:\(selectDic.words[i].wordid!)")
+            reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                if error != nil {
+                    // Uh-oh, an error occurred!
+                    let WordMean = UITextView()
+                    WordMean.text = self.selectDic.words[i].wordmean
+                    WordMean.font = UIFont(name: "Hiragino Sans", size: 15)
+                    WordMean.backgroundColor = .white
+                    WordMean.frame.size.width = size.width - 20
+                    WordMean.sizeToFit()
+                    WordMean.center = pageview.center
+                    WordMean.frame.origin.x = 10
+                    WordMean.frame.origin.y = WordName.frame.height + 20
+                    WordMean.tag = WordDetailViewController.LABEL_TAG
+                    WordMean.isEditable = false
+                    WordMean.isScrollEnabled = false
+                    WordMean.isSelectable = false
+                    
+                    let pageviewscroll = UIScrollView()
+                    pageviewscroll.addSubview(WordName)
+                    pageviewscroll.addSubview(WordMean)
+                    pageviewscroll.contentSize = CGSize(width: size.width, height: WordName.frame.size.height + WordMean.frame.size.height + 100)
+                    pageviewscroll.contentOffset = CGPoint(x: 0, y: 0)
+                    pageviewscroll.frame = CGRect(x: size.width * CGFloat(i), y: 0, width: size.width, height: size.height + 100)
+                    
+                    
+                    contentView.addSubview(pageviewscroll)
+                    self.pageViewArray.append(pageviewscroll)
+                    
+                } else {
+                    // Data for "images/island.jpg" is returned
+                    let image = UIImage(data: data!)
+                    
+                    let WordPicture = UIImageView()
+                    WordPicture.frame = CGRect(x: 20, y: WordName.frame.height + 20, width: size.width - 40, height: (size.width - 40)*3/4)
+                    WordPicture.contentMode = UIViewContentMode.scaleAspectFit
+                    WordPicture.image = image
+                    WordPicture.tag = WordDetailViewController.LABEL_TAG
+                    
+                    let WordMean = UITextView()
+                    WordMean.text = self.selectDic.words[i].wordmean
+                    WordMean.font = UIFont(name: "Hiragino Sans", size: 15)
+                    WordMean.backgroundColor = .white
+                    WordMean.frame.size.width = size.width - 20
+                    WordMean.sizeToFit()
+                    WordMean.center = pageview.center
+                    WordMean.frame.origin.x = 10
+                    WordMean.frame.origin.y = WordName.frame.height + WordPicture.frame.height + 40
+                    WordMean.tag = WordDetailViewController.LABEL_TAG
+                    WordMean.isEditable = false
+                    WordMean.isScrollEnabled = false
+                    WordMean.isSelectable = false
+                    
+                    let pageviewscroll = UIScrollView()
+                    pageviewscroll.addSubview(WordName)
+                    pageviewscroll.addSubview(WordPicture)
+                    pageviewscroll.addSubview(WordMean)
+                    pageviewscroll.contentSize = CGSize(width: size.width, height: WordName.frame.size.height + WordMean.frame.size.height + WordPicture.frame.height + 100)
+                    pageviewscroll.contentOffset = CGPoint(x: 0, y: 0)
+                    pageviewscroll.frame = CGRect(x: size.width * CGFloat(i), y: 0, width: size.width, height: size.height + 100)
+                    
+                    contentView.addSubview(pageviewscroll)
+                    self.pageViewArray.append(pageviewscroll)
+                }
+            }
+            
             //if let imageDate:NSData = UserDefaults.standard.object(forKey: selectDic.words[i].wordpicturekey) as? NSData {
             
             /*
@@ -158,6 +229,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
             } else {
                 
                 */
+            /*
                 let WordMean = UITextView()
                 WordMean.text = selectDic.words[i].wordmean
                 WordMean.font = UIFont(name: "Hiragino Sans", size: 15)
@@ -182,6 +254,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
                 
                 contentView.addSubview(pageviewscroll)
                 pageViewArray.append(pageviewscroll)
+            */
 
 
                 /*
