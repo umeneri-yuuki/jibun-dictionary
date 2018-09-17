@@ -42,6 +42,13 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         edittextview.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
         edittextview.layer.borderWidth = 1
         
+        if edittextview.text.isEmpty {
+            edittextview.text = "意味・コメントを入力"
+            edittextview.textColor = UIColor.lightGray
+            edittextview.alpha = 0.7
+        }
+        
+        
         let storageRef = storage.reference()
         let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(selectDic.words[selectpage].wordid!)")
         print("wordid:\(selectDic.words[selectpage].wordid!)")
@@ -189,12 +196,37 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
     
     @objc func editfinish(){
         
+        edittextfield.resignFirstResponder()
+        edittextview.resignFirstResponder()
+        
         if edittextfield.text!.isEmpty {
             let alertView = UIAlertController(title: "失敗しました", message: "単語名が記述されていません", preferredStyle: UIAlertControllerStyle.alert)
             alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alertView, animated: true, completion: nil)
             
         } else {
+            
+            let size = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
+            let IndicatorView = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            IndicatorView.backgroundColor = UIColor.black
+            IndicatorView.alpha = 0.7
+            
+            let naviH: CGFloat = UIApplication.shared.statusBarFrame.height + self.navigationController!.navigationBar.frame.height
+            let naviIndicatorView = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: naviH))
+            naviIndicatorView.backgroundColor = UIColor.black
+            naviIndicatorView.alpha = 0.7
+            
+            let ActivityIndicator = UIActivityIndicatorView()
+            ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+            ActivityIndicator.transform = CGAffineTransform(scaleX: 2, y: 2)
+            ActivityIndicator.center = self.view.center
+            ActivityIndicator.color = UIColor.white
+            IndicatorView.addSubview(ActivityIndicator)
+            
+            self.view.addSubview(IndicatorView)
+            self.navigationController!.view.addSubview(naviIndicatorView)
+            
+            ActivityIndicator.startAnimating()
         
 
             /*
@@ -223,7 +255,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
                     ref.child("users/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(wordmeandata)
                     
                     if selectpicture != nil {
-                        var resize = 1.0
+                        var resize = 0.2
                         var data = UIImageJPEGRepresentation(selectpicture!,CGFloat(resize))!
                         while data.count > 1048576 {
                             resize = resize/2
@@ -235,6 +267,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
                         reference.putData(data, metadata: nil, completion: { metaData, error in
                             print("metaData:\(metaData as Any)")
                             print("error:\(error as Any)")
+                            self.dismiss(animated: true, completion: nil)
                         })
                     } else {
                         let storageRef = storage.reference()
@@ -242,16 +275,19 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
                         reference.delete { error in
                             if error != nil {
                                 // Uh-oh, an error occurred!
+                                self.dismiss(animated: true, completion: nil)
                             } else {
                                 // File deleted successfully
+                                self.dismiss(animated: true, completion: nil)
                             }
                         }
+                        
                     }
                     
                 }
             }
         
-         self.dismiss(animated: true, completion: nil)
+
             
         }
         

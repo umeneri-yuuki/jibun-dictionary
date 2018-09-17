@@ -39,6 +39,11 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
         newWordmean.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
         newWordmean.layer.borderWidth = 1
         
+        newWordmean.text = "意味・コメントを入力"
+        newWordmean.textColor = UIColor.lightGray
+        newWordmean.alpha = 0.7
+        newWordmean.delegate = self
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewWordViewController.tapGesture(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         newWordtitle.delegate = self
@@ -56,10 +61,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        newWordmean.text = "意味・コメントを入力"
-        newWordmean.textColor = UIColor.lightGray
-        newWordmean.alpha = 0.7
-        newWordmean.delegate = self
+       
         
         self.navigationController!.navigationBar.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Clear"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(NewWordViewController.close))
@@ -157,6 +159,10 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
  
     
     @objc func save() {
+        
+        newWordtitle.resignFirstResponder()
+        newWordmean.resignFirstResponder()
+        
         if newWordtitle.text!.isEmpty {
             let alertView = UIAlertController(title: "失敗しました", message: "単語名が記述されていません", preferredStyle: UIAlertControllerStyle.alert)
             alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -167,6 +173,28 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
             if newWordmean.textColor == UIColor.lightGray {
                 newWordmean.text = ""
             }
+            
+            let size = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
+            let IndicatorView = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            IndicatorView.backgroundColor = UIColor.black
+            IndicatorView.alpha = 0.7
+            
+            let naviH: CGFloat = UIApplication.shared.statusBarFrame.height + self.navigationController!.navigationBar.frame.height
+            let naviIndicatorView = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: naviH))
+            naviIndicatorView.backgroundColor = UIColor.black
+            naviIndicatorView.alpha = 0.7
+            
+            let ActivityIndicator = UIActivityIndicatorView()
+            ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+            ActivityIndicator.transform = CGAffineTransform(scaleX: 2, y: 2)
+            ActivityIndicator.center = self.view.center
+            ActivityIndicator.color = UIColor.white
+            IndicatorView.addSubview(ActivityIndicator)
+            
+            self.view.addSubview(IndicatorView)
+            self.navigationController!.view.addSubview(naviIndicatorView)
+            
+            ActivityIndicator.startAnimating()
             
            // if let selectpicture = selectpicture{a
             
@@ -206,12 +234,15 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                     data = UIImageJPEGRepresentation(selectpicture!,CGFloat(resize))!
                 }
                 
-            let storageRef = storage.reference()
+               let storageRef = storage.reference()
                let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(wordid!)")
             reference.putData(data, metadata: nil, completion: { metaData, error in
                 print("metaData:\(metaData as Any)")
                 print("error:\(error as Any)")
+                self.dismiss(animated: true, completion: nil)
             })
+            }else{
+               self.dismiss(animated: true, completion: nil)
             }
             
             /*
@@ -229,7 +260,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
  
             
             
-            self.dismiss(animated: true, completion: nil)
+  
        
         }
     }
