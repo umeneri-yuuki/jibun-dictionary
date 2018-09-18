@@ -10,6 +10,7 @@ target 'jibun-dictionary' do
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
 
   # Pods for jibun-dictionary
 

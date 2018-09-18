@@ -25,6 +25,9 @@
 		6330005A2133E0E500A3FAAC /* NewWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633000592133E0E500A3FAAC /* NewWordViewController.swift */; };
 		6330005C2134356E00A3FAAC /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330005B2134356E00A3FAAC /* WordListViewController.swift */; };
 		6358F15E214418250006E17E /* WordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6358F15D214418250006E17E /* WordEditViewController.swift */; };
+		635AEBD5214FC5FB00831820 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBD4214FC5FB00831820 /* FirstViewController.swift */; };
+		635AEBD7214FC62B00831820 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBD6214FC62B00831820 /* LogInViewController.swift */; };
+		635AEBD9214FC67400831820 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBD8214FC67400831820 /* RegisterViewController.swift */; };
 		636C76A4214B669500E4BD55 /* 半透明.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A3214B669400E4BD55 /* 半透明.png */; };
 		636C76A6214B6B7500E4BD55 /* 半透明2.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A5214B6B7500E4BD55 /* 半透明2.png */; };
 		636C76A8214B7A7200E4BD55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */; };
@@ -76,6 +79,9 @@
 		633000592133E0E500A3FAAC /* NewWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordViewController.swift; sourceTree = "<group>"; };
 		6330005B2134356E00A3FAAC /* WordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListViewController.swift; sourceTree = "<group>"; };
 		6358F15D214418250006E17E /* WordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEditViewController.swift; sourceTree = "<group>"; };
+		635AEBD4214FC5FB00831820 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		635AEBD6214FC62B00831820 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		635AEBD8214FC67400831820 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		636C76A3214B669400E4BD55 /* 半透明.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "半透明.png"; sourceTree = "<group>"; };
 		636C76A5214B6B7500E4BD55 /* 半透明2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "半透明2.png"; sourceTree = "<group>"; };
 		636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -177,7 +183,8 @@
 			children = (
 				63300046213138CC00A3FAAC /* Model */,
 				63300047213138D500A3FAAC /* View */,
-				63300048213138DB00A3FAAC /* Controller */,
+				63300048213138DB00A3FAAC /* LibraryController */,
+				635AEBD3214FC47B00831820 /* LogInController */,
 				63300014213125E100A3FAAC /* AppDelegate.swift */,
 				63300018213125E100A3FAAC /* Main.storyboard */,
 				6330001B213125E400A3FAAC /* Assets.xcassets */,
@@ -224,7 +231,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		63300048213138DB00A3FAAC /* Controller */ = {
+		63300048213138DB00A3FAAC /* LibraryController */ = {
 			isa = PBXGroup;
 			children = (
 				63168D852137ECCC00BFF6F5 /* DictionaryListViewController.swift */,
@@ -234,7 +241,17 @@
 				63168D87213837B100BFF6F5 /* WordDetailViewController.swift */,
 				6358F15D214418250006E17E /* WordEditViewController.swift */,
 			);
-			path = Controller;
+			path = LibraryController;
+			sourceTree = "<group>";
+		};
+		635AEBD3214FC47B00831820 /* LogInController */ = {
+			isa = PBXGroup;
+			children = (
+				635AEBD4214FC5FB00831820 /* FirstViewController.swift */,
+				635AEBD6214FC62B00831820 /* LogInViewController.swift */,
+				635AEBD8214FC67400831820 /* RegisterViewController.swift */,
+			);
+			path = LogInController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,8 +486,11 @@
 				63300015213125E100A3FAAC /* AppDelegate.swift in Sources */,
 				63168D88213837B100BFF6F5 /* WordDetailViewController.swift in Sources */,
 				6330004A2131396D00A3FAAC /* Word.swift in Sources */,
+				635AEBD7214FC62B00831820 /* LogInViewController.swift in Sources */,
 				63168D862137ECCC00BFF6F5 /* DictionaryListViewController.swift in Sources */,
+				635AEBD9214FC67400831820 /* RegisterViewController.swift in Sources */,
 				633000582132EC2800A3FAAC /* NewDicViewController.swift in Sources */,
+				635AEBD5214FC5FB00831820 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
