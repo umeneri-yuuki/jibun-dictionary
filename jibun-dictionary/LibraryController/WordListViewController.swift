@@ -41,6 +41,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     var ref: DatabaseReference!
     var storage = Storage.storage()
     
+    var userid = ""
+    
     @IBOutlet weak var TableView: UITableView!
     
     @IBOutlet weak var WordListTitle: UINavigationItem!
@@ -68,7 +70,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
 
         ref = Database.database().reference()
 
-        self.ref.child("users/dictionarylist/\(dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("\(self.userid)/dictionarylist/\(dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
             
                 let subdic = myDic(dictitle: "",dicid: "")
             
@@ -195,7 +197,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             if dic.dicid == selectDic.dicid {
                 dic.dictitle = selectDic.dictitle
                 let data = ["dictitle":selectDic.dictitle]
-                ref.child("users/dictionarylist/\(dic.dicid!)").updateChildValues(data)
+                ref.child("\(self.userid)/dictionarylist/\(dic.dicid!)").updateChildValues(data)
             }
         }
         
@@ -215,14 +217,15 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             NWVC.selectDic = self.selectDic
             NWVC.dicid = self.dicid
             NWVC.wordcount = self.selectDic.words.count
+            NWVC.userid = self.userid
         }
         if (segue.identifier == "toWordDetail") {
             let WDVC = segue.destination as! WordDetailViewController
             WDVC.selectDic = self.selectDic
-            
             WDVC.selectrow = self.selectrow
-            
             WDVC.dicid = self.dicid
+            WDVC.userid = self.userid
+            
              
         }
     }
@@ -256,7 +259,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         case .delete:
             self.selectDic.words.remove(at: indexPath.row)
             
-            self.ref.child("users/dictionarylist/\(self.dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 for list in snapshot.children {
                     
@@ -266,19 +269,19 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.selectwordid = (word["wordid"])! as! String
                     self.selectwordpos = (word["wordpos"])!  as! Int
                     if indexPath.row == self.selectwordpos {
-                        self.ref.child("users/dictionarylist/\(self.dicid)/words/\(self.selectwordid)").removeValue()
+                        self.ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(self.selectwordid)").removeValue()
 
                     }
                     if indexPath.row < self.selectwordpos {
                         let data = ["wordpos":self.selectwordpos - 1]
-                        self.ref.child("users/dictionarylist/\(self.dicid)/words/\(self.selectwordid)").updateChildValues(data)
+                        self.ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(self.selectwordid)").updateChildValues(data)
                     }
                 }
                 
             }
             )
             let storageRef = self.storage.reference()
-            let reference = storageRef.child("users/dictionarylist/\(self.dicid)/words/\(self.selectwordid)")
+            let reference = storageRef.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(self.selectwordid)")
             reference.delete { error in
                 if error != nil {
                     // Uh-oh, an error occurred!
@@ -311,7 +314,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         for word in self.selectDic.words{
             let data = ["wordpos":counter]
             print(word.wordid)
-            ref.child("users/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(data)
+            ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(data)
             counter = counter + 1
         }
     }

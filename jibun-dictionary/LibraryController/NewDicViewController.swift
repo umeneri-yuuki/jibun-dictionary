@@ -19,6 +19,8 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
     
     var diccount = -1
     
+    var userid = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewDicViewController.tapGesture(_:)))
@@ -46,7 +48,7 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
             self.present(alertView, animated: true, completion: nil)
         } else {
            //let dicid = Int(Date().timeIntervalSince1970)
-            let dicid = ref.child("users/dictionarylist").childByAutoId().key
+            let dicid = ref.child("\(self.userid)/dictionarylist").childByAutoId().key
             let dic = myDic(dictitle: newDicname.text!, dicid: dicid!)
             //dic.dicid = self.dicid
             //dic.dictitle = newDicname.text!
@@ -58,11 +60,10 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
             let dictitledata = ["dictitle": newDicname.text!]
             let diciddata = ["dicid": dicid]
             let dicposdata = ["dicpos": diccount]
-           // self.ref.child("users").child("dictionarylist").setValue(["dictionary": newDicname.text!])
             
-            ref.child("users/dictionarylist/\(dicid!)").updateChildValues(dictitledata)
-            ref.child("users/dictionarylist/\(dicid!)").updateChildValues(diciddata)
-            ref.child("users/dictionarylist/\(dicid!)").updateChildValues(dicposdata)
+            ref.child("\(self.userid)/dictionarylist/\(dicid!)").updateChildValues(dictitledata)
+            ref.child("\(self.userid)/dictionarylist/\(dicid!)").updateChildValues(diciddata)
+            ref.child("\(self.userid)/dictionarylist/\(dicid!)").updateChildValues(dicposdata)
             
             
             self.dismiss(animated: true, completion: nil)

@@ -28,6 +28,12 @@
 		635AEBD5214FC5FB00831820 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBD4214FC5FB00831820 /* FirstViewController.swift */; };
 		635AEBD7214FC62B00831820 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBD6214FC62B00831820 /* LogInViewController.swift */; };
 		635AEBD9214FC67400831820 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBD8214FC67400831820 /* RegisterViewController.swift */; };
+		635AEBDC215367B500831820 /* AcountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBDB215367B500831820 /* AcountViewController.swift */; };
+		635AEBDE2153750000831820 /* AcountEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBDD2153750000831820 /* AcountEditViewController.swift */; };
+		635AEBE02153967600831820 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBDF2153967600831820 /* NameEditViewController.swift */; };
+		635AEBE22153A79900831820 /* EmailEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBE12153A79900831820 /* EmailEditViewController.swift */; };
+		635AEBE42153CF4400831820 /* EmailEditCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBE32153CF4400831820 /* EmailEditCheckViewController.swift */; };
+		635AEBE62153DA5300831820 /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AEBE52153DA5300831820 /* PasswordEditViewController.swift */; };
 		636C76A4214B669500E4BD55 /* 半透明.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A3214B669400E4BD55 /* 半透明.png */; };
 		636C76A6214B6B7500E4BD55 /* 半透明2.png in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A5214B6B7500E4BD55 /* 半透明2.png */; };
 		636C76A8214B7A7200E4BD55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */; };
@@ -82,6 +88,12 @@
 		635AEBD4214FC5FB00831820 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		635AEBD6214FC62B00831820 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		635AEBD8214FC67400831820 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		635AEBDB215367B500831820 /* AcountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcountViewController.swift; sourceTree = "<group>"; };
+		635AEBDD2153750000831820 /* AcountEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcountEditViewController.swift; sourceTree = "<group>"; };
+		635AEBDF2153967600831820 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
+		635AEBE12153A79900831820 /* EmailEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditViewController.swift; sourceTree = "<group>"; };
+		635AEBE32153CF4400831820 /* EmailEditCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditCheckViewController.swift; sourceTree = "<group>"; };
+		635AEBE52153DA5300831820 /* PasswordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
 		636C76A3214B669400E4BD55 /* 半透明.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "半透明.png"; sourceTree = "<group>"; };
 		636C76A5214B6B7500E4BD55 /* 半透明2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "半透明2.png"; sourceTree = "<group>"; };
 		636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -185,6 +197,7 @@
 				63300047213138D500A3FAAC /* View */,
 				63300048213138DB00A3FAAC /* LibraryController */,
 				635AEBD3214FC47B00831820 /* LogInController */,
+				635AEBDA2153678300831820 /* AcountController */,
 				63300014213125E100A3FAAC /* AppDelegate.swift */,
 				63300018213125E100A3FAAC /* Main.storyboard */,
 				6330001B213125E400A3FAAC /* Assets.xcassets */,
@@ -252,6 +265,19 @@
 				635AEBD8214FC67400831820 /* RegisterViewController.swift */,
 			);
 			path = LogInController;
+			sourceTree = "<group>";
+		};
+		635AEBDA2153678300831820 /* AcountController */ = {
+			isa = PBXGroup;
+			children = (
+				635AEBDB215367B500831820 /* AcountViewController.swift */,
+				635AEBDD2153750000831820 /* AcountEditViewController.swift */,
+				635AEBDF2153967600831820 /* NameEditViewController.swift */,
+				635AEBE12153A79900831820 /* EmailEditViewController.swift */,
+				635AEBE32153CF4400831820 /* EmailEditCheckViewController.swift */,
+				635AEBE52153DA5300831820 /* PasswordEditViewController.swift */,
+			);
+			path = AcountController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -478,17 +504,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635AEBE62153DA5300831820 /* PasswordEditViewController.swift in Sources */,
 				6330005021313B5800A3FAAC /* myDic.swift in Sources */,
 				6330005C2134356E00A3FAAC /* WordListViewController.swift in Sources */,
 				6358F15E214418250006E17E /* WordEditViewController.swift in Sources */,
 				6330005221313E6800A3FAAC /* DicList.swift in Sources */,
 				6330005A2133E0E500A3FAAC /* NewWordViewController.swift in Sources */,
 				63300015213125E100A3FAAC /* AppDelegate.swift in Sources */,
+				635AEBE22153A79900831820 /* EmailEditViewController.swift in Sources */,
 				63168D88213837B100BFF6F5 /* WordDetailViewController.swift in Sources */,
 				6330004A2131396D00A3FAAC /* Word.swift in Sources */,
 				635AEBD7214FC62B00831820 /* LogInViewController.swift in Sources */,
+				635AEBDE2153750000831820 /* AcountEditViewController.swift in Sources */,
 				63168D862137ECCC00BFF6F5 /* DictionaryListViewController.swift in Sources */,
+				635AEBE42153CF4400831820 /* EmailEditCheckViewController.swift in Sources */,
+				635AEBDC215367B500831820 /* AcountViewController.swift in Sources */,
 				635AEBD9214FC67400831820 /* RegisterViewController.swift in Sources */,
+				635AEBE02153967600831820 /* NameEditViewController.swift in Sources */,
 				633000582132EC2800A3FAAC /* NewDicViewController.swift in Sources */,
 				635AEBD5214FC5FB00831820 /* FirstViewController.swift in Sources */,
 			);

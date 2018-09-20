@@ -25,6 +25,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
     var wordcount = 0
     var selectpicture:UIImage? = UIImage()
     var selectpicturekey = String()
+    var userid = ""
     var dicid = ""
     var backgroundTaskID : UIBackgroundTaskIdentifier = 0
     
@@ -207,7 +208,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 //UserDefaults.standard.set(picture, forKey: selectpicturekey)
                // saveImageToDocumentsDirectory(image: selectpicture!, key: selectpicturekey)
             
-                let wordid = ref.child("users/dictionarylist/\(dicid)/words").childByAutoId().key
+                let wordid = ref.child("\(self.userid)/dictionarylist/\(dicid)/words").childByAutoId().key
                 let newword = Word()
                 newword.wordtitle = newWordtitle.text!
                 newword.wordid = wordid
@@ -220,10 +221,10 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 let wordiddata = ["wordid": wordid]
                 let wordposdata = ["wordpos": wordcount]
             
-                ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordtitledata)
-                ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordmeandata)
-                ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordiddata)
-                ref.child("users/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordposdata)
+                ref.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordtitledata)
+                ref.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordmeandata)
+                ref.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordiddata)
+                ref.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordposdata)
             
             
             if selectpicture != nil {
@@ -235,7 +236,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 }
                 
                let storageRef = storage.reference()
-               let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(wordid!)")
+               let reference = storageRef.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)")
             reference.putData(data, metadata: nil, completion: { metaData, error in
                 print("metaData:\(metaData as Any)")
                 print("error:\(error as Any)")

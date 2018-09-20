@@ -21,6 +21,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
     var storage = Storage.storage()
     
     var selectDic = myDic(dictitle: "",dicid: "")
+    var userid = ""
     var dicid = ""
     var selectpage = -1
     var selectpicture:UIImage? = UIImage()
@@ -50,7 +51,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
         
         
         let storageRef = storage.reference()
-        let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(selectDic.words[selectpage].wordid!)")
+        let reference = storageRef.child("\(self.userid)/dictionarylist/\(dicid)/words/\(selectDic.words[selectpage].wordid!)")
         print("wordid:\(selectDic.words[selectpage].wordid!)")
         reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if error != nil {
@@ -250,9 +251,9 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
                     word.wordtitle = selectDic.words[selectpage].wordtitle
                     word.wordmean = selectDic.words[selectpage].wordmean
                     let wordtitledata = ["wordtitle":selectDic.words[selectpage].wordtitle]
-                    ref.child("users/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(wordtitledata)
+                    ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(wordtitledata)
                     let wordmeandata = ["wordmean":selectDic.words[selectpage].wordmean]
-                    ref.child("users/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(wordmeandata)
+                    ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(wordmeandata)
                     
                     if selectpicture != nil {
                         var resize = 0.2
@@ -263,7 +264,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
                         }
                         
                         let storageRef = storage.reference()
-                        let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(word.wordid!)")
+                        let reference = storageRef.child("\(self.userid)/dictionarylist/\(dicid)/words/\(word.wordid!)")
                         reference.putData(data, metadata: nil, completion: { metaData, error in
                             print("metaData:\(metaData as Any)")
                             print("error:\(error as Any)")
@@ -271,7 +272,7 @@ class WordEditViewController: UIViewController , UITextFieldDelegate,UIImagePick
                         })
                     } else {
                         let storageRef = storage.reference()
-                        let reference = storageRef.child("users/dictionarylist/\(dicid)/words/\(word.wordid!)")
+                        let reference = storageRef.child("\(self.userid)/dictionarylist/\(dicid)/words/\(word.wordid!)")
                         reference.delete { error in
                             if error != nil {
                                 // Uh-oh, an error occurred!
