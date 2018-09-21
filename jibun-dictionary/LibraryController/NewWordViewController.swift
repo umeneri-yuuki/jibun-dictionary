@@ -208,7 +208,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 //UserDefaults.standard.set(picture, forKey: selectpicturekey)
                // saveImageToDocumentsDirectory(image: selectpicture!, key: selectpicturekey)
             
-                let wordid = ref.child("\(self.userid)/dictionarylist/\(dicid)/words").childByAutoId().key
+                let wordid = ref.child("alldictionarylist/\(dicid)/words").childByAutoId().key
                 let newword = Word()
                 newword.wordtitle = newWordtitle.text!
                 newword.wordid = wordid
@@ -221,10 +221,10 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 let wordiddata = ["wordid": wordid]
                 let wordposdata = ["wordpos": wordcount]
             
-                ref.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordtitledata)
-                ref.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordmeandata)
-                ref.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordiddata)
-                ref.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordposdata)
+                ref.child("alldictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordtitledata)
+                ref.child("alldictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordmeandata)
+                ref.child("alldictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordiddata)
+                ref.child("alldictionarylist/\(dicid)/words/\(wordid!)").updateChildValues(wordposdata)
             
             
             if selectpicture != nil {
@@ -236,7 +236,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 }
                 
                let storageRef = storage.reference()
-               let reference = storageRef.child("\(self.userid)/dictionarylist/\(dicid)/words/\(wordid!)")
+               let reference = storageRef.child("alldictionarylist/\(dicid)/words/\(wordid!)")
             reference.putData(data, metadata: nil, completion: { metaData, error in
                 print("metaData:\(metaData as Any)")
                 print("error:\(error as Any)")

@@ -88,8 +88,8 @@ class RegisterViewController: UIViewController , UITextFieldDelegate{
                     changeRequest?.commitChanges { (error) in
                         // ...
                     }
-                    self.dismiss(animated: true, completion: nil)
-                    
+                   // self.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: true)
                 } else {
                 }
             }

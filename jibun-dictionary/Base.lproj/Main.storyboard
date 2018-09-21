@@ -10,6 +10,42 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--ランキング-->
+        <scene sceneID="0f5-3O-fgD">
+            <objects>
+                <viewController id="dW4-TF-K0H" customClass="RankingViewController" customModule="jibun_dictionary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KpS-cY-Lbk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LAn-km-CF3">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="2l0-id-XD0">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2l0-id-XD0" id="74v-7X-LsV">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ayf-Ir-qnA"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="ランキング" id="Ao2-LX-bbZ"/>
+                    <connections>
+                        <outlet property="TableView" destination="LAn-km-CF3" id="MkV-me-0k7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A9f-Xa-pij" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757.60000000000002" y="1378.8177339901479"/>
+        </scene>
         <!--Password Edit View Controller-->
         <scene sceneID="w8q-Gi-Anu">
             <objects>
@@ -61,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0j-uW-cnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="1071"/>
+            <point key="canvasLocation" x="1580" y="1070.6896551724139"/>
         </scene>
         <!--新規辞書作成-->
         <scene sceneID="TGp-cT-xTD">
@@ -96,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ks-MB-83d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3138" y="974"/>
+            <point key="canvasLocation" x="4079.1999999999998" y="973.89162561576359"/>
         </scene>
         <!--新規単語追加-->
         <scene sceneID="bQQ-El-J4V">
@@ -155,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qsf-dD-Uf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4071" y="974"/>
+            <point key="canvasLocation" x="5012" y="973.89162561576359"/>
         </scene>
         <!--単語編集-->
         <scene sceneID="JKm-TB-xzv">
@@ -213,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PwS-rU-kWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4991" y="974"/>
+            <point key="canvasLocation" x="5932" y="973.89162561576359"/>
         </scene>
         <!--ライブラリ-->
         <scene sceneID="5tz-T3-lsO">
@@ -592,12 +628,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="vKL-Kr-4ei" kind="relationship" relationship="viewControllers" id="XMo-yH-dQc"/>
+                        <segue destination="2Ah-yQ-QVS" kind="relationship" relationship="viewControllers" id="Vfn-fa-gmS"/>
                         <segue destination="f5x-yw-K0H" kind="relationship" relationship="viewControllers" id="Qvv-6l-fTQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nuV-VA-ay7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-650" y="-574"/>
+            <point key="canvasLocation" x="-1295" y="-576"/>
         </scene>
         <!--Acount View Controller-->
         <scene sceneID="dHx-BL-JGv">
@@ -774,7 +811,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIC-zf-bWM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1424.8" y="755.9113300492611"/>
+            <point key="canvasLocation" x="2367.1999999999998" y="755.9113300492611"/>
         </scene>
         <!--Email Edit Check View Controller-->
         <scene sceneID="aKm-Uz-XpL">
@@ -826,7 +863,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dk0-ut-6pI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2196" y="755.9113300492611"/>
+            <point key="canvasLocation" x="3138.4000000000001" y="755.9113300492611"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jey-T8-ZWJ">
@@ -904,11 +941,11 @@
             </objects>
             <point key="canvasLocation" x="425" y="-1425"/>
         </scene>
-        <!--Item-->
+        <!--マイページ-->
         <scene sceneID="FS3-4u-g1Q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f5x-yw-K0H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="64h-Jm-iK0"/>
+                    <tabBarItem key="tabBarItem" title="マイページ" id="64h-Jm-iK0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Stn-A0-KnN">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -922,6 +959,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQq-jw-pzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1295" y="266"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="hSd-F7-8QM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Ah-yQ-QVS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="vq9-h7-sea"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TTt-J3-PYu">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dW4-TF-K0H" kind="relationship" relationship="rootViewController" id="Dsa-vn-qqV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lpS-jF-O4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-184.80000000000001" y="1378.8177339901479"/>
         </scene>
     </scenes>
     <resources>

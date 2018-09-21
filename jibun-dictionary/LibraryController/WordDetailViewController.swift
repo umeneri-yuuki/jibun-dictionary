@@ -106,7 +106,7 @@ class WordDetailViewController: UIViewController ,UIScrollViewDelegate ,UIGestur
             WordName.isEditable = false
             
             let storageRef = storage.reference()
-            let reference = storageRef.child("\(self.userid)/dictionarylist/\(dicid)/words/\(selectDic.words[i].wordid!)")
+            let reference = storageRef.child("alldictionarylist/\(dicid)/words/\(selectDic.words[i].wordid!)")
             print("wordid:\(selectDic.words[i].wordid!)")
             reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
                 if error != nil {

@@ -34,6 +34,8 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     
     var userid = ""
     var username = ""
+    
+      var refreshControl:UIRefreshControl!
 
     @IBOutlet weak var TableView: UITableView!
     
@@ -49,8 +51,12 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         
         self.auth = Auth.auth()
         
+       
         
-        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: UIControlEvents.valueChanged)
+        self.TableView.addSubview(refreshControl)
+    
         
  
         /*
@@ -102,7 +108,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         self.navigationItem.setRightBarButtonItems([diclisteditbutton], animated: true)
         self.navigationItem.setLeftBarButtonItems([flexibleItem], animated: true)
         
-        self.ref.child("\(self.userid)/dictionarylist").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("user/\(self.userid)/dictionarylist").observeSingleEvent(of: .value, with: { (snapshot) in
             
             let diclist = DicList()
             
@@ -147,6 +153,43 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         tabBarController?.tabBar.isHidden = false
         
 
+    }
+    
+   @objc func refresh(_ sender: UIRefreshControl) {
+    self.ref.child("user/\(self.userid)/dictionarylist").observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        let diclist = DicList()
+        
+        for list in snapshot.children {
+            
+            let snap = list as! DataSnapshot
+            let dic = snap.value as! [String: Any]
+            print((dic["dictitle"])!)
+            print((dic["dicid"])!)// "category" keyの値がprintされる。
+            self.selectdictitle = (dic["dictitle"])! as! String
+            self.dicid = (dic["dicid"])! as! String
+            self.selectdicpos = (dic["dicpos"])! as! Int
+            print("self.selectdictitle:\(self.selectdictitle)")
+            print("self.dicid:\(self.dicid)")
+            //let newdic = myDic(dictitle: (dic["dictitle"])!, dicid: (dic["dicid"])!)
+            //print(newdic.dictitle)
+            // self.mydiclist.addDicList(dic: newdic)
+            //print(self.mydiclist.dics[0].dictitle)
+            let newdic = myDic(dictitle: self.selectdictitle, dicid: self.dicid)
+            newdic.dicpos = self.selectdicpos
+            diclist.addDicList(dic: newdic)
+            
+        }
+        
+        self.mydiclist.dics  = diclist.dics.sorted(by: {$0.dicpos < $1.dicpos})
+        
+        self.TableView.reloadData()
+        
+    }
+    )
+        self.TableView.reloadData()
+    
+        sender.endRefreshing()
     }
     
     @objc func newDic() {
@@ -239,7 +282,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
              */
             self.mydiclist.dics.remove(at: indexPath.row)
             
-            self.ref.child("\(self.userid)/dictionarylist").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.ref.child("user/\(self.userid)/dictionarylist").observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 for list in snapshot.children {
                     
@@ -249,9 +292,9 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
                     self.dicid = (dic["dicid"])! as! String
                     self.selectdicpos = (dic["dicpos"])! as! Int
                     if indexPath.row == self.selectdicpos {
-                        self.ref.child("\(self.userid)/dictionarylist/\(self.dicid)").removeValue()
+                        self.ref.child("user/\(self.userid)/dictionarylist/\(self.dicid)").removeValue()
                         let storageRef = self.storage.reference()
-                        let reference = storageRef.child("\(self.userid)/dictionarylist/\(self.dicid)")
+                        let reference = storageRef.child("user/\(self.userid)/dictionarylist/\(self.dicid)")
                         reference.delete { error in
                             if error != nil {
                                 // Uh-oh, an error occurred!
@@ -262,7 +305,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
                     }
                     if indexPath.row < self.selectdicpos {
                         let data = ["dicpos":self.selectdicpos - 1]
-                        self.ref.child("\(self.userid)/dictionarylist/\(self.dicid)").updateChildValues(data)
+                        self.ref.child("user/\(self.userid)/dictionarylist/\(self.dicid)").updateChildValues(data)
                     }
                 }
             }
@@ -287,7 +330,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         var counter = 0
         for dic in self.mydiclist.dics{
             let data = ["dicpos":counter]
-             ref.child("\(self.userid)/dictionarylist/\(dic.dicid!)").updateChildValues(data)
+             ref.child("user/\(self.userid)/dictionarylist/\(dic.dicid!)").updateChildValues(data)
             counter = counter + 1
         }
         

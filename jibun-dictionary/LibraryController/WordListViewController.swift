@@ -43,12 +43,16 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var userid = ""
     
+    var selectpublish = false
+    
     @IBOutlet weak var TableView: UITableView!
     
     @IBOutlet weak var WordListTitle: UINavigationItem!
     @IBOutlet weak var editview: UIView!
     
     @IBOutlet weak var renameTextField: UITextField!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +73,33 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         print("選択した辞書のID：\(dicid)")
 
         ref = Database.database().reference()
+        
+        self.ref.child("alldictionarylist").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            for list in snapshot.children {
+                
+                let snap = list as! DataSnapshot
+                let dic = snap.value as! [String: Any]
+                let selectdicid = (dic["dicid"])! as! String
+                if selectdicid == self.dicid {
+                    self.selectpublish = (dic["publish"])! as! Bool
+                    print("公開：\(self.selectpublish)")
+                }
+            }
+            
+                 let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
+            print("公開2：\(self.selectpublish)")
+            if self.selectpublish == false {
+                let changeprivatebutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Private"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.changePrivate))
+                self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changeprivatebutton], animated: true)
+            }else{
+                let changepublishbutton = UIBarButtonItem(image: UIImage(named: "Publish"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.changePublish))
+                self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changepublishbutton], animated: true)
+            }
+        }
+        )
 
-        self.ref.child("\(self.userid)/dictionarylist/\(dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("alldictionarylist/\(dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
             
                 let subdic = myDic(dictitle: "",dicid: "")
             
@@ -102,6 +131,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             
         }
         )
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,9 +144,11 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         //self.navigationController!.navigationBar.isTranslucent = false
         self.navigationController!.navigationBar.tintColor = UIColor.black
 
-        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
-        self.navigationItem.setRightBarButtonItems([wordlisteditbutton], animated: true)
-
+       
+        
+       
+        
+        
         let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
         self.navigationItem.setLeftBarButtonItems([wordlistaddbutton], animated: true)
         
@@ -162,16 +195,28 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    /*
-    @objc func doneprocess() {
-        self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
-
-        print("にゃー")
-
-        UIApplication.shared.endBackgroundTask(self.backgroundTaskID)
-     
+    
+    @objc func changePrivate() {
+        selectpublish = true
+        let data = ["publish": true]
+        self.ref.child("alldictionarylist/\(self.dicid)").updateChildValues(data)
+        
+        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
+        let changepublishbutton = UIBarButtonItem(image: UIImage(named: "Publish"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.changePublish))
+        self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changepublishbutton], animated: true)
+        
     }
- */
+    
+    @objc func changePublish() {
+        selectpublish = false
+        let data = ["publish": false]
+        self.ref.child("alldictionarylist/\(self.dicid)").updateChildValues(data)
+        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
+        let changeprivatebutton = UIBarButtonItem(image: UIImage(named: "Private"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.changePrivate))
+        self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changeprivatebutton], animated: true)
+        
+    }
+ 
     
     @objc func done() {
         self.navigationItem.leftItemsSupplementBackButton = true
@@ -180,8 +225,13 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         editview.isHidden = true
         
         let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
-        
-        self.navigationItem.setRightBarButtonItems([wordlisteditbutton], animated: true)
+        if self.selectpublish == false {
+            let changeprivatebutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Private"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.changePrivate))
+            self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changeprivatebutton], animated: true)
+        }else{
+            let changepublishbutton = UIBarButtonItem(image: UIImage(named: "Publish"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.changePublish))
+            self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changepublishbutton], animated: true)
+        }
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         self.navigationItem.leftBarButtonItem?.tintColor =  UIColor.clear
         
@@ -197,7 +247,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             if dic.dicid == selectDic.dicid {
                 dic.dictitle = selectDic.dictitle
                 let data = ["dictitle":selectDic.dictitle]
-                ref.child("\(self.userid)/dictionarylist/\(dic.dicid!)").updateChildValues(data)
+                ref.child("user/\(self.userid)/dictionarylist/\(dic.dicid!)").updateChildValues(data)
             }
         }
         
@@ -259,7 +309,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         case .delete:
             self.selectDic.words.remove(at: indexPath.row)
             
-            self.ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.ref.child("alldictionarylist/\(self.dicid)/words").observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 for list in snapshot.children {
                     
@@ -269,19 +319,19 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.selectwordid = (word["wordid"])! as! String
                     self.selectwordpos = (word["wordpos"])!  as! Int
                     if indexPath.row == self.selectwordpos {
-                        self.ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(self.selectwordid)").removeValue()
+                        self.ref.child("alldictionarylist/\(self.dicid)/words/\(self.selectwordid)").removeValue()
 
                     }
                     if indexPath.row < self.selectwordpos {
                         let data = ["wordpos":self.selectwordpos - 1]
-                        self.ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(self.selectwordid)").updateChildValues(data)
+                        self.ref.child("alldictionarylist/\(self.dicid)/words/\(self.selectwordid)").updateChildValues(data)
                     }
                 }
                 
             }
             )
             let storageRef = self.storage.reference()
-            let reference = storageRef.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(self.selectwordid)")
+            let reference = storageRef.child("alldictionarylist/\(self.dicid)/words/\(self.selectwordid)")
             reference.delete { error in
                 if error != nil {
                     // Uh-oh, an error occurred!
@@ -314,7 +364,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
         for word in self.selectDic.words{
             let data = ["wordpos":counter]
             print(word.wordid)
-            ref.child("\(self.userid)/dictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(data)
+            ref.child("alldictionarylist/\(self.dicid)/words/\(word.wordid!)").updateChildValues(data)
             counter = counter + 1
         }
     }

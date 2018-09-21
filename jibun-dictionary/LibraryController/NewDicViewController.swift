@@ -20,6 +20,7 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
     var diccount = -1
     
     var userid = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,7 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
             self.present(alertView, animated: true, completion: nil)
         } else {
            //let dicid = Int(Date().timeIntervalSince1970)
-            let dicid = ref.child("\(self.userid)/dictionarylist").childByAutoId().key
+            let dicid = ref.child("user/\(self.userid)/dictionarylist").childByAutoId().key
             let dic = myDic(dictitle: newDicname.text!, dicid: dicid!)
             //dic.dicid = self.dicid
             //dic.dictitle = newDicname.text!
@@ -58,12 +59,21 @@ class NewDicViewController: UIViewController, UITextFieldDelegate{
             
             //Firebase
             let dictitledata = ["dictitle": newDicname.text!]
-            let diciddata = ["dicid": dicid]
+            let diciddata = ["dicid": dicid!]
             let dicposdata = ["dicpos": diccount]
             
-            ref.child("\(self.userid)/dictionarylist/\(dicid!)").updateChildValues(dictitledata)
-            ref.child("\(self.userid)/dictionarylist/\(dicid!)").updateChildValues(diciddata)
-            ref.child("\(self.userid)/dictionarylist/\(dicid!)").updateChildValues(dicposdata)
+            let publishdata = ["publish": false]
+            let useriddata = ["userid": self.userid]
+            
+            ref.child("user/\(self.userid)/dictionarylist/\(dicid!)").updateChildValues(dictitledata)
+            ref.child("user/\(self.userid)/dictionarylist/\(dicid!)").updateChildValues(diciddata)
+            ref.child("user/\(self.userid)/dictionarylist/\(dicid!)").updateChildValues(dicposdata)
+            
+            ref.child("alldictionarylist/\(dicid!)").updateChildValues(dictitledata)
+            ref.child("alldictionarylist/\(dicid!)").updateChildValues(publishdata)
+            ref.child("alldictionarylist/\(dicid!)").updateChildValues(useriddata)
+            ref.child("alldictionarylist/\(dicid!)").updateChildValues(diciddata)
+
             
             
             self.dismiss(animated: true, completion: nil)
