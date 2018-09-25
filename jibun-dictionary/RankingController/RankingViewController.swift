@@ -49,8 +49,11 @@ class RankingViewController: UIViewController , UITableViewDataSource, UITableVi
                 let snap = list as! DataSnapshot
                 let dic = snap.value as! [String: Any]
                 let selectdictitle = (dic["dictitle"])! as! String
+                let selectdicpublish = (dic["publish"])! as! Bool
+                if selectdicpublish == true {
                 let newdic = myDic(dictitle: selectdictitle, dicid: "")
                 diclist.addDicList(dic: newdic)
+                }
                 
             }
             self.rankingdiclist.dics  = diclist.dics
@@ -76,8 +79,11 @@ class RankingViewController: UIViewController , UITableViewDataSource, UITableVi
                 let snap = list as! DataSnapshot
                 let dic = snap.value as! [String: Any]
                 let selectdictitle = (dic["dictitle"])! as! String
-                let newdic = myDic(dictitle: selectdictitle, dicid: "")
-                diclist.addDicList(dic: newdic)
+                let selectdicpublish = (dic["publish"])! as! Bool
+                if selectdicpublish == true {
+                    let newdic = myDic(dictitle: selectdictitle, dicid: "")
+                    diclist.addDicList(dic: newdic)
+                }
                 
             }
             self.rankingdiclist.dics  = diclist.dics
