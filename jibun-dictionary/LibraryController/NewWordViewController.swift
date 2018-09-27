@@ -12,9 +12,9 @@ import FirebaseStorage
 
 class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
+    @IBOutlet weak var newWordpictureview: UIImageView!
     @IBOutlet weak var newWordtitle: UITextField!
     @IBOutlet weak var newWordmean: UITextView!
-    @IBOutlet weak var newWordpictureview: UIImageView!
     var ref: DatabaseReference!
     var storage = Storage.storage()
 
@@ -237,7 +237,7 @@ class NewWordViewController: UIViewController, UITextFieldDelegate,UITextViewDel
                 
                let storageRef = storage.reference()
                let reference = storageRef.child("alldictionarylist/\(dicid)/words/\(wordid!)")
-            reference.putData(data, metadata: nil, completion: { metaData, error in
+               reference.putData(data, metadata: nil, completion: { metaData, error in
                 print("metaData:\(metaData as Any)")
                 print("error:\(error as Any)")
                 self.dismiss(animated: true, completion: nil)

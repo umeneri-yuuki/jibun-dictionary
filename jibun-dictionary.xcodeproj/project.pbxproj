@@ -39,6 +39,7 @@
 		636C76A8214B7A7200E4BD55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */; };
 		636C76A9214B7E3700E4BD55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */; };
 		63D9B29B2154AB9F00F3EC17 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9B29A2154AB9F00F3EC17 /* RankingViewController.swift */; };
+		63DA2749215B4ED200EA6969 /* NewWordViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA2748215B4ED200EA6969 /* NewWordViewController2.swift */; };
 		8D7F926F5069A096CC334921 /* Pods_jibun_dictionaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA17325457DC0BE62663FDF /* Pods_jibun_dictionaryTests.framework */; };
 		D71BB60B4C481615E8DAE7E9 /* Pods_jibun_dictionaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD8057409D001891CC7D3DA /* Pods_jibun_dictionaryUITests.framework */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 		636C76A5214B6B7500E4BD55 /* 半透明2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "半透明2.png"; sourceTree = "<group>"; };
 		636C76A7214B7A7200E4BD55 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63D9B29A2154AB9F00F3EC17 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
+		63DA2748215B4ED200EA6969 /* NewWordViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordViewController2.swift; sourceTree = "<group>"; };
 		784759D817E01FBFBFCBBAB6 /* Pods_jibun_dictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jibun_dictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD8057409D001891CC7D3DA /* Pods_jibun_dictionaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jibun_dictionaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E2FB2DA03B6C7A6578A1478 /* Pods-jibun-dictionaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jibun-dictionaryUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jibun-dictionaryUITests/Pods-jibun-dictionaryUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				633000592133E0E500A3FAAC /* NewWordViewController.swift */,
 				63168D87213837B100BFF6F5 /* WordDetailViewController.swift */,
 				6358F15D214418250006E17E /* WordEditViewController.swift */,
+				63DA2748215B4ED200EA6969 /* NewWordViewController2.swift */,
 			);
 			path = LibraryController;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				635AEBE42153CF4400831820 /* EmailEditCheckViewController.swift in Sources */,
 				635AEBDC215367B500831820 /* AcountViewController.swift in Sources */,
 				63D9B29B2154AB9F00F3EC17 /* RankingViewController.swift in Sources */,
+				63DA2749215B4ED200EA6969 /* NewWordViewController2.swift in Sources */,
 				635AEBD9214FC67400831820 /* RegisterViewController.swift in Sources */,
 				635AEBE02153967600831820 /* NameEditViewController.swift in Sources */,
 				633000582132EC2800A3FAAC /* NewDicViewController.swift in Sources */,

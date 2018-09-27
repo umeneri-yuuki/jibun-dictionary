@@ -44,7 +44,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9f-Xa-pij" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-431" y="1379"/>
+            <point key="canvasLocation" x="-431.19999999999999" y="1378.8177339901479"/>
         </scene>
         <!--Password Edit View Controller-->
         <scene sceneID="w8q-Gi-Anu">
@@ -151,33 +151,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uzJ-1T-r1t">
-                                <rect key="frame" x="16" y="154" width="343" height="175"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="175" id="Woq-mf-IUh"/>
-                                </constraints>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5Pv-5R-Pno">
-                                <rect key="frame" x="16" y="349" width="343" height="151"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5Pv-5R-Pno">
+                                <rect key="frame" x="16" y="384" width="343" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="151" id="kfQ-s4-Ra6"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gnq-xc-mbY">
+                                <rect key="frame" x="16" y="177" width="343" height="163"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Lel-P1-aNI" firstAttribute="leading" secondItem="fHF-7c-yMQ" secondAttribute="leading" constant="16" id="3Cv-NK-ABN"/>
                             <constraint firstItem="Lel-P1-aNI" firstAttribute="top" secondItem="fHF-7c-yMQ" secondAttribute="top" constant="17" id="5IT-ND-KEm"/>
                             <constraint firstItem="fHF-7c-yMQ" firstAttribute="trailing" secondItem="Lel-P1-aNI" secondAttribute="trailing" constant="16" id="GcO-ch-OWO"/>
-                            <constraint firstItem="uzJ-1T-r1t" firstAttribute="top" secondItem="Lel-P1-aNI" secondAttribute="bottom" constant="19" id="LnF-6p-zm8"/>
-                            <constraint firstItem="5Pv-5R-Pno" firstAttribute="leading" secondItem="fHF-7c-yMQ" secondAttribute="leading" constant="16" id="PZJ-Ip-AvZ"/>
-                            <constraint firstItem="fHF-7c-yMQ" firstAttribute="trailing" secondItem="uzJ-1T-r1t" secondAttribute="trailing" constant="16" id="dRf-Nl-yD5"/>
-                            <constraint firstItem="fHF-7c-yMQ" firstAttribute="trailing" secondItem="5Pv-5R-Pno" secondAttribute="trailing" constant="16" id="iRD-C0-eUa"/>
-                            <constraint firstItem="uzJ-1T-r1t" firstAttribute="leading" secondItem="fHF-7c-yMQ" secondAttribute="leading" constant="16" id="urG-2S-d5N"/>
-                            <constraint firstItem="5Pv-5R-Pno" firstAttribute="top" secondItem="uzJ-1T-r1t" secondAttribute="bottom" constant="20" id="wJe-L4-HSu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fHF-7c-yMQ"/>
                     </view>
@@ -185,7 +175,7 @@
                     <navigationItem key="navigationItem" title="新規単語追加" id="aW4-hC-Y33"/>
                     <connections>
                         <outlet property="newWordmean" destination="5Pv-5R-Pno" id="1PN-ej-1x2"/>
-                        <outlet property="newWordpictureview" destination="uzJ-1T-r1t" id="8bk-xc-Zgc"/>
+                        <outlet property="newWordpictureview" destination="Gnq-xc-mbY" id="Tb7-RL-Pio"/>
                         <outlet property="newWordtitle" destination="Lel-P1-aNI" id="Sb7-Yn-15s"/>
                     </connections>
                 </viewController>
@@ -394,26 +384,25 @@
             </objects>
             <point key="canvasLocation" x="5932" y="-574"/>
         </scene>
-        <!--View Controller-->
+        <!--New Word View Controller2-->
         <scene sceneID="nuc-HJ-hff">
             <objects>
-                <viewController id="Kdg-hd-0cu" sceneMemberID="viewController">
+                <viewController id="Kdg-hd-0cu" customClass="NewWordViewController2" customModule="jibun_dictionary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="46F-II-7W7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77b-XN-J9Y">
-                                <rect key="frame" x="16" y="83" width="343" height="75"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトル" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ca6-cT-8Ok">
+                                <rect key="frame" x="16" y="115" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zg5-y0-Ea1">
-                                <rect key="frame" x="16" y="192" width="343" height="200"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sd8-fW-QyM">
+                                <rect key="frame" x="16" y="164" width="343" height="614"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -421,10 +410,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OGq-Cq-7pG"/>
                     </view>
+                    <navigationItem key="navigationItem" id="L9F-JH-BhY"/>
+                    <connections>
+                        <outlet property="newWordmean" destination="sd8-fW-QyM" id="h4Q-cT-VpH"/>
+                        <outlet property="newWordtitle" destination="ca6-cT-8Ok" id="OWt-Mr-sru"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjl-3x-YpG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5433" y="-1352"/>
+            <point key="canvasLocation" x="5012" y="-2063.0541871921182"/>
         </scene>
         <!--ライブラリ-->
         <scene sceneID="ztL-YG-m0F">
@@ -978,6 +972,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpS-jF-O4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1295" y="1379"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qpx-jC-Amd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="luR-04-gGo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bOg-S6-PR3">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Kdg-hd-0cu" kind="relationship" relationship="rootViewController" id="pPA-DT-Pa1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hp3-ja-Ode" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5012" y="-1326"/>
         </scene>
     </scenes>
     <resources>

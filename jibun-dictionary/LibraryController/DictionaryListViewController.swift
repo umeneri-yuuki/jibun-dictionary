@@ -36,6 +36,8 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     var username = ""
     
       var refreshControl:UIRefreshControl!
+    
+    let diclistsection = ["ジブンの辞書","ミンナの辞書"]
 
     @IBOutlet weak var TableView: UITableView!
     
@@ -230,25 +232,45 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
         super.didReceiveMemoryWarning()
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return diclistsection.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return diclistsection[section]
+        
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
         return self.mydiclist.dics.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         
+        if indexPath.section == 0 {
         let dic = self.mydiclist.dics[indexPath.row]
         cell.textLabel!.text = dic.dictitle
         cell.textLabel!.font = UIFont(name: "HirakakuProN-W3", size: 15)
         
                 return cell
+        } else {
+          return cell
+        }
     }
 
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
+         if indexPath.section == 0 {
         self.selectdictitle = self.mydiclist.dics[indexPath.row].dictitle
-        //self.dicid = Int(self.mydiclist.dics[indexPath.row].dicid)!
         self.selectdicnum = indexPath.row
         performSegue(withIdentifier: "toWordsList",sender:nil)
+        }
         
     }
     
@@ -272,6 +294,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
         switch editingStyle {
         case .delete:
             /*
@@ -317,6 +340,7 @@ class DictionaryListViewController: UIViewController, UITableViewDataSource, UIT
 
         default:
             return
+        }
         }
     }
  

@@ -56,7 +56,8 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewDicViewController.tapGesture(_:)))
+        self.view.addGestureRecognizer(tapRecognizer)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
 
         TableView.delegate = self
@@ -143,11 +144,6 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
        // navigationController?.navigationBar.alpha = 1.0
         //self.navigationController!.navigationBar.isTranslucent = false
         self.navigationController!.navigationBar.tintColor = UIColor.black
-
-       
-        
-       
-        
         
         let wordlistaddbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.newWord))
         self.navigationItem.setLeftBarButtonItems([wordlistaddbutton], animated: true)
@@ -197,24 +193,51 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     @objc func changePrivate() {
-        selectpublish = true
-        let data = ["publish": true]
-        self.ref.child("alldictionarylist/\(self.dicid)").updateChildValues(data)
+        let alertView = UIAlertController(title: "公開設定", message: "公開にしますか", preferredStyle: UIAlertControllerStyle.alert)
+        let OKAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            
+            self.selectpublish = true
+            let data = ["publish": true]
+            self.ref.child("alldictionarylist/\(self.dicid)").updateChildValues(data)
+            
+            let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
+            let changepublishbutton = UIBarButtonItem(image: UIImage(named: "Publish"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.changePublish))
+            self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changepublishbutton], animated: true)
+            
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: nil)
+        alertView.addAction(OKAction)
+        alertView.addAction(cancelAction)
         
-        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
-        let changepublishbutton = UIBarButtonItem(image: UIImage(named: "Publish"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.changePublish))
-        self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changepublishbutton], animated: true)
+        self.present(alertView, animated: true, completion: nil)
+
+
         
+       
     }
     
     @objc func changePublish() {
-        selectpublish = false
-        let data = ["publish": false]
-        self.ref.child("alldictionarylist/\(self.dicid)").updateChildValues(data)
-        let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
-        let changeprivatebutton = UIBarButtonItem(image: UIImage(named: "Private"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.changePrivate))
-        self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changeprivatebutton], animated: true)
+        let alertView = UIAlertController(title: "公開設定", message: "非公開にしますか", preferredStyle: UIAlertControllerStyle.alert)
+        let OKAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            
+            self.selectpublish = false
+            let data = ["publish": false]
+            self.ref.child("alldictionarylist/\(self.dicid)").updateChildValues(data)
+            let wordlisteditbutton :UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "EditItem"), style: UIBarButtonItemStyle.plain, target: self, action:#selector(WordListViewController.tapWordEdit))
+            let changeprivatebutton = UIBarButtonItem(image: UIImage(named: "Private"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(WordListViewController.changePrivate))
+            self.navigationItem.setRightBarButtonItems([wordlisteditbutton,changeprivatebutton], animated: true)
+            
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: nil)
+        alertView.addAction(OKAction)
+        alertView.addAction(cancelAction)
         
+        self.present(alertView, animated: true, completion: nil)
+        
+        
+      
     }
  
     
@@ -269,6 +292,16 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
             NWVC.wordcount = self.selectDic.words.count
             NWVC.userid = self.userid
         }
+        /*
+        if (segue.identifier == "toNewWord2") {
+            let nc = segue.destination as! UINavigationController
+            let NWVC = nc.topViewController as! NewWordViewController2
+            NWVC.selectDic = self.selectDic
+            NWVC.dicid = self.dicid
+            NWVC.wordcount = self.selectDic.words.count
+            NWVC.userid = self.userid
+        }
+ */
         if (segue.identifier == "toWordDetail") {
             let WDVC = segue.destination as! WordDetailViewController
             WDVC.selectDic = self.selectDic
@@ -287,6 +320,7 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("selectDic.words.count:\(selectDic.words.count)")
         return selectDic.words.count
     }
     
@@ -350,8 +384,10 @@ class WordListViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         
         self.selectrow = indexPath.row
-        
-        performSegue(withIdentifier: "toWordDetail",sender:nil)
+        print("卍")
+         DispatchQueue.main.async {
+        self.performSegue(withIdentifier: "toWordDetail",sender:nil)
+        }
         
     }
     

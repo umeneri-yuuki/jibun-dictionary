@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class RankingViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
 
@@ -19,6 +20,10 @@ class RankingViewController: UIViewController , UITableViewDataSource, UITableVi
     var ref: DatabaseReference!
     
     var refreshControl:UIRefreshControl!
+    
+    var userid = ""
+    var username = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +43,13 @@ class RankingViewController: UIViewController , UITableViewDataSource, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        /*
+        let user = Auth.auth().currentUser
+        if let user = user {
+            self.userid = user.uid
+            self.username = user.displayName!
+        }
+ */
         
         
         self.ref.child("alldictionarylist").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -113,13 +125,17 @@ class RankingViewController: UIViewController , UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        //let button = cell.viewWithTag(1) as! UIButton
         
         let dic = self.rankingdiclist.dics[indexPath.row]
         cell.textLabel!.text = dic.dictitle
         cell.textLabel!.font = UIFont(name: "HirakakuProN-W3", size: 15)
         
+        
+        
         return cell
     }
+    
     
 
     /*
